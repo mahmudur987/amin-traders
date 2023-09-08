@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
-import { AiOutlineCaretDown } from "react-icons/ai";
+import { Link, useLocation } from "react-router-dom";
+import { AiOutlineCaretDown, AiOutlineMenuUnfold } from "react-icons/ai";
 const Navbar = () => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   const menuItems = (
     <>
       <li>
@@ -12,10 +14,10 @@ const Navbar = () => {
         </label>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          className="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52"
         >
           <li>
-            <Link>Service 1</Link>
+            <Link to={"/internetservice"}>Internet </Link>
           </li>
 
           <li>
@@ -39,11 +41,11 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar text-white">
+    <div className={`navbar ${pathname === "/" ? "text-white" : ""}`}>
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            menuIcons
+            <AiOutlineMenuUnfold />
           </label>
           <ul
             tabIndex={0}

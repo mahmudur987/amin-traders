@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FaFacebook,
   FaTwitter,
@@ -8,10 +7,16 @@ import {
   FaPhone,
   FaSms,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const TopNavbar = () => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
-    <div className="flex justify-between p-1 text-white">
+    <div
+      className={`hidden lg:flex justify-between p-1 ${
+        pathname === "/" ? "text-white" : ""
+      }`}
+    >
       <div className="flex items-center gap-2">
         <span>
           <Link>
@@ -55,8 +60,15 @@ const TopNavbar = () => {
       <div>
         <div className="form-control">
           <label className="label cursor-pointer ">
-            <span className="label-text mr-1 text-white"> Theme</span>
-            <input type="checkbox" className="toggle" checked />
+            <span
+              className={`label-text mr-1 ${
+                pathname === "/" ? "text-white" : ""
+              }`}
+            >
+              {" "}
+              Theme
+            </span>
+            <input type="checkbox" className="toggle" />
           </label>
         </div>
       </div>

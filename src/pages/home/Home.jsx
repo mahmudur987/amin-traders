@@ -5,7 +5,6 @@ import FeedbackForm from "../../components/home/feedbackFrom/FeedBackFrom";
 import HomeAboutUs from "../../components/home/homeAboutUs/HomeAboutUs";
 import Offer from "../../components/home/offer/Offer";
 import Services from "../../components/home/service/Services";
-import Footer from "../../components/shared/footer/Footer";
 
 const Home = () => {
   return (
@@ -13,12 +12,10 @@ const Home = () => {
       <BannerSlider />
       <Services />
       <Offer />
-
       <HomeAboutUs />
       <Galarry />
       <ContactUs />
       <FeedbackForm />
-      <Footer />
     </div>
   );
 };
