@@ -55,7 +55,7 @@ const TopNavbar = () => {
       <div>
         <div className="form-control">
           <label className="label cursor-pointer ">
-            <span className="label-text mr-1"> Theme</span>
+            <span className="label-text mr-1 text-white"> Theme</span>
             <input type="checkbox" className="toggle" checked />
           </label>
         </div>

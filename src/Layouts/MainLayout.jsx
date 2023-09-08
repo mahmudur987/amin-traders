@@ -3,13 +3,13 @@ import Header from "../components/home/Header/Header";
 
 const MainLayout = () => {
   return (
-    <div className=" relative ">
+    <main className=" container mx-auto relative">
       <div className="absolute top-0 z-10 w-full">
         <Header />
       </div>
       <Outlet />
       <p>footer</p>
-    </div>
+    </main>
   );
 };
 
