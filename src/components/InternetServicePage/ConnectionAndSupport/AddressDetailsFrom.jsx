@@ -1,5 +1,6 @@
 // src/components/FeedbackForm.js
 import { useState } from "react";
+import { InternetPackagesData } from "../../../constant/Constant";
 
 const AddressDetailsFrom = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +18,10 @@ const AddressDetailsFrom = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can handle the form submission logic here, e.g., send data to an API
-    console.log(formData);
+
+    const packagename = e.target.package.value;
+
+    console.log({ ...formData, packagename });
   };
 
   return (
@@ -26,6 +30,7 @@ const AddressDetailsFrom = () => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
+        {/* fullname */}
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -42,6 +47,7 @@ const AddressDetailsFrom = () => {
             placeholder="Full Name"
           />
         </div>
+        {/* email */}
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -58,6 +64,8 @@ const AddressDetailsFrom = () => {
             placeholder="Email"
           />
         </div>
+
+        {/* phone Number */}
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -74,6 +82,7 @@ const AddressDetailsFrom = () => {
             placeholder="Phone Number"
           />
         </div>
+        {/* address */}
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -90,6 +99,25 @@ const AddressDetailsFrom = () => {
             placeholder="Address"
           ></textarea>
         </div>
+
+        {/* select package */}
+
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="address"
+          >
+            select your package
+          </label>
+          <select name="package" className="select select-bordered w-full ">
+            {InternetPackagesData.map((x, i) => (
+              <option key={i} selected={i === 0}>
+                {x.name} {x.speed} mbps
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div className="flex items-center justify-end">
           <button
             type="submit"

@@ -1,7 +1,18 @@
 /* eslint-disable react/prop-types */
 import { BsFillHouseCheckFill } from "react-icons/bs";
+import Modal from "./Modal";
+import { useState } from "react";
 const SinglePackage = ({ data }) => {
   const { name, speed, price, condition } = data;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="flex flex-col gap-5 border p-2 rounded-xl shadow-xl">
@@ -31,6 +42,13 @@ const SinglePackage = ({ data }) => {
           </p>
         ))}
       </p>
+
+      <div className="flex justify-end">
+        <button onClick={openModal} className="btn btn-sm btn-secondary">
+          BooK Now
+        </button>
+      </div>
+      <Modal data={data} isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };
