@@ -1,14 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout";
 
 import Home from "../pages/home/Home";
 import InternetServicePage from "../pages/broadBandInternet/InternetServicePage";
-import InternetservicePageLayout from "../Layouts/internetservicePageLayout";
+import HomepageLayout from "../Layouts/HomePageLayout";
+import MainLayout from "../Layouts/MainLayout";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <HomepageLayout />,
     children: [
       {
         path: "/",
@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/internetservice",
-    element: <InternetservicePageLayout />,
+    element: <MainLayout />,
     children: [
       {
         path: "/internetservice",

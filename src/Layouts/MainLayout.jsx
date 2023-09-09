@@ -4,13 +4,11 @@ import Footer from "../components/shared/footer/Footer";
 
 const MainLayout = () => {
   return (
-    <main className=" container mx-auto relative">
-      <div className="absolute top-0 z-10 w-full">
-        <Header />
-      </div>
+    <div className="flex flex-col gap-5">
+      <Header />
       <Outlet />
       <Footer />
-    </main>
+    </div>
   );
 };
 

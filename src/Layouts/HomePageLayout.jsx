@@ -2,14 +2,16 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/home/Header/Header";
 import Footer from "../components/shared/footer/Footer";
 
-const InternetservicePageLayout = () => {
+const HomepageLayout = () => {
   return (
-    <div className="flex flex-col gap-5">
-      <Header />
+    <main className=" container mx-auto relative">
+      <div className="absolute top-0 z-10 w-full">
+        <Header />
+      </div>
       <Outlet />
       <Footer />
-    </div>
+    </main>
   );
 };
 
-export default InternetservicePageLayout;
+export default HomepageLayout;

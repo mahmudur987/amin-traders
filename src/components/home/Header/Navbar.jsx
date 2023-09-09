@@ -1,31 +1,37 @@
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineCaretDown, AiOutlineMenuUnfold } from "react-icons/ai";
+import { useState } from "react";
 const Navbar = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
+  const [showMenu, setShowMenu] = useState(false);
   const menuItems = (
     <>
       <li>
         <Link to={"/"}>Home</Link>
       </li>
       <li className="dropdown">
-        <label tabIndex={0} className="">
+        <label onClick={() => setShowMenu(!showMenu)} tabIndex={1} className="">
           Services <AiOutlineCaretDown />
         </label>
         <ul
-          tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52"
+          tabIndex={1}
+          className=" menu p-2 shadow  rounded-box w-52"
+          onClick={() => setShowMenu(!showMenu)}
         >
-          <li>
-            <Link to={"/internetservice"}>Internet </Link>
-          </li>
+          {showMenu && (
+            <>
+              <li>
+                <Link to={"/internetservice"}>Internet </Link>
+              </li>
 
-          <li>
-            <Link>Service 2</Link>
-          </li>
-          <li>
-            <Link>Service 3</Link>
-          </li>
+              <li>
+                <Link>Service 2</Link>
+              </li>
+              <li>
+                <Link>Service 3</Link>
+              </li>
+            </>
+          )}
         </ul>
       </li>
       <li>
@@ -49,7 +55,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[5] p-2 shadow rounded-box w-52"
           >
             {menuItems}
           </ul>
@@ -59,7 +65,7 @@ const Navbar = () => {
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{menuItems}</ul>
+        <ul className="menu menu-horizontal px-1 ">{menuItems}</ul>
       </div>
       {/* <div className="navbar-end">
         <a className="btn">Button</a>
