@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import Home from "../pages/home/Home";
-import InternetServicePage from "../pages/broadBandInternet/InternetServicePage";
+import InternetServicePage from "../pages/internetServicePage/InternetServicePage";
 import HomepageLayout from "../Layouts/HomePageLayout";
 import MainLayout from "../Layouts/MainLayout";
 

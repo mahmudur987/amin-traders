@@ -1,10 +1,17 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/home/Header/Header";
 import Footer from "../components/shared/footer/Footer";
+import { useContext } from "react";
+import { authContext } from "../context/UserContext";
 
 const HomepageLayout = () => {
+  const { theme } = useContext(authContext);
+  console.log(theme);
   return (
-    <main className=" container mx-auto relative">
+    <main
+      data-theme={`${theme ? "bumblebee" : "dark"}`}
+      className=" container mx-auto relative "
+    >
       <div className="absolute top-0 z-10 w-full">
         <Header />
       </div>

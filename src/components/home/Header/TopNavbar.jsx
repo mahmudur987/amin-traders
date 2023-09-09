@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   FaFacebook,
   FaTwitter,
@@ -8,9 +9,10 @@ import {
   FaSms,
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import { authContext } from "../../../context/UserContext";
 const TopNavbar = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
+  const { SetTheme, theme } = useContext(authContext);
   return (
     <div
       className={`hidden lg:flex justify-between p-1 ${
@@ -68,7 +70,12 @@ const TopNavbar = () => {
               {" "}
               Theme
             </span>
-            <input type="checkbox" className="toggle" />
+
+            <input
+              onClick={() => SetTheme(!theme)}
+              type="checkbox"
+              className="toggle"
+            />
           </label>
         </div>
       </div>

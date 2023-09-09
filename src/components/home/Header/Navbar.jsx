@@ -15,7 +15,7 @@ const Navbar = () => {
         </label>
         <ul
           tabIndex={1}
-          className=" menu p-2 shadow  rounded-box w-52"
+          className="dropdown-content p-2 shadow   rounded-box w-52"
           onClick={() => setShowMenu(!showMenu)}
         >
           {showMenu && (

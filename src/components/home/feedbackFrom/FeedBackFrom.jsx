@@ -35,7 +35,7 @@ const FeedbackForm = () => {
           <div>
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block   text-sm font-bold mb-2"
                 htmlFor="fullName"
               >
                 Full Name
@@ -45,15 +45,12 @@ const FeedbackForm = () => {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3   leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Full Name"
               />
             </div>
             <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="email"
-              >
+              <label className="block   text-sm font-bold mb-2" htmlFor="email">
                 Email
               </label>
               <input
@@ -61,13 +58,13 @@ const FeedbackForm = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3   leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Email"
               />
             </div>
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block   text-sm font-bold mb-2"
                 htmlFor="phoneNumber"
               >
                 Phone Number
@@ -77,24 +74,21 @@ const FeedbackForm = () => {
                 name="phoneNumber"
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3   leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Phone Number"
               />
             </div>
           </div>
 
           <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="message"
-            >
+            <label className="block   text-sm font-bold mb-2" htmlFor="message">
               Message
             </label>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3   leading-tight focus:outline-none focus:shadow-outline"
               rows="8"
               placeholder="Message"
             ></textarea>
