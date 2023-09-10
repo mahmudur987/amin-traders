@@ -1,10 +1,34 @@
 import { useState } from "react";
 import SinglePackage from "./SinglePackage";
-import { InternetPackagesData } from "../../../constant/constant";
+import LoadingSpinner from "../../shared/loading/Loading";
+import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
 
 const InternetPackages = () => {
   const [count, setCount] = useState(3);
   const [showAll, setShowAll] = useState(false);
+  const {
+    data: InternetPackagesData,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: [],
+    queryFn: async () => {
+      const data = await AxiosBaseURL.get("/internetservice/allpackage");
+      return data.data.data;
+    },
+  });
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (isError) {
+    return toast.error(error.message, {
+      id: "clipboard",
+    });
+  }
 
   return (
     <div className="my-10 flex flex-col gap-10 items-center p-2 lg:p-10">

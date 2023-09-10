@@ -6,7 +6,7 @@ import { authContext } from "../context/UserContext";
 
 const HomepageLayout = () => {
   const { theme } = useContext(authContext);
-  console.log(theme);
+
   return (
     <main
       data-theme={`${theme ? "bumblebee" : "dark"}`}

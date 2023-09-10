@@ -16,7 +16,7 @@ const OilProduct = ({ data }) => {
         <h2 className="card-title">
           {name}
 
-          {offer.isOffer && <div className="badge badge-secondary">Offer</div>}
+          {offer?.isOffer && <div className="badge badge-secondary">Offer</div>}
         </h2>
         <p>
           Quantity : <span>{quantity}</span>

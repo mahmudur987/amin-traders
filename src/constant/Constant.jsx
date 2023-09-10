@@ -1,6 +1,5 @@
 export const InternetPackagesData = [
   {
-    index: 1,
     name: "Basic",
     speed: 5,
     price: 500,
@@ -8,7 +7,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 2,
     name: "Starter",
     speed: 5,
     price: 500,
@@ -16,7 +14,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 3,
     name: "Pro",
     speed: 5,
     price: 500,
@@ -24,7 +21,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 4,
     name: "Premium",
     speed: 5,
     price: 500,
@@ -32,7 +28,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 5,
     name: "Ultra",
     speed: 5,
     price: 500,
@@ -40,7 +35,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 6,
     name: "Deluxe",
     speed: 5,
     price: 500,
@@ -48,7 +42,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 7,
     name: "Super",
     speed: 5,
     price: 500,
@@ -56,7 +49,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 8,
     name: "Mega",
     speed: 5,
     price: 500,
@@ -64,7 +56,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 9,
     name: "Extreme",
     speed: 5,
     price: 500,
@@ -72,7 +63,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 10,
     name: "Platinum",
     speed: 5,
     price: 500,
@@ -80,7 +70,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 11,
     name: "Gold",
     speed: 5,
     price: 500,
@@ -88,7 +77,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 12,
     name: "Silver",
     speed: 5,
     price: 500,
@@ -96,7 +84,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 13,
     name: "Bronze",
     speed: 5,
     price: 500,
@@ -104,7 +91,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 14,
     name: "Titanium",
     speed: 5,
     price: 500,
@@ -112,7 +98,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 15,
     name: "Diamond",
     speed: 5,
     price: 500,
@@ -120,7 +105,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 16,
     name: "Sapphire",
     speed: 5,
     price: 500,
@@ -128,7 +112,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 17,
     name: "Ruby",
     speed: 5,
     price: 500,
@@ -136,7 +119,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 18,
     name: "Emerald",
     speed: 5,
     price: 500,
@@ -144,7 +126,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 19,
     name: "Crystal",
     speed: 5,
     price: 500,
@@ -152,7 +133,6 @@ export const InternetPackagesData = [
     condition: ["No Security Deposit Required (for Any packages)"],
   },
   {
-    index: 20,
     name: "Basic",
     speed: 5,
     price: 500,
