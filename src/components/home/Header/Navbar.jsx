@@ -38,7 +38,7 @@ const Navbar = () => {
         <Link to={"/"}>Address</Link>
       </li>
       <li>
-        <Link to={"/login"}>LogIn</Link>
+        <Link to={"/internetservice/signup"}>SignUp</Link>
       </li>
       <li>
         <Link to={"/"}>LogOut</Link>

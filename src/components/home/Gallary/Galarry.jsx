@@ -2,7 +2,7 @@ import React from "react";
 
 const Galarry = () => {
   return (
-    <div className=" flex flex-col items-center justify-center min-h-[400px] border my-10">
+    <div className=" flex flex-col items-center justify-center min-h-[400px] border my-10 p-2 lg:p-10">
       <h2 className="text-3xl text-center font-bold my-4">Gallary</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
