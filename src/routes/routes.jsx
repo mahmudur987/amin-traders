@@ -4,6 +4,7 @@ import Home from "../pages/home/Home";
 import InternetServicePage from "../pages/internetServicePage/InternetServicePage";
 import HomepageLayout from "../Layouts/HomePageLayout";
 import MainLayout from "../Layouts/MainLayout";
+import GasServicePage from "../pages/gasServicePage/GasServicePage";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "/internetservice",
         element: <InternetServicePage />,
+      },
+      {
+        path: "/internetservice/gasservice",
+        element: <GasServicePage />,
       },
     ],
   },

@@ -2,10 +2,11 @@
 import { BsFillHouseCheckFill } from "react-icons/bs";
 import Modal from "./Modal";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 const SinglePackage = ({ data }) => {
   const { name, speed, price, condition } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const { pathname } = useLocation();
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -15,7 +16,11 @@ const SinglePackage = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col gap-5 border p-2 rounded-xl shadow-xl">
+    <div
+      className={`flex flex-col gap-5 border p-2 rounded-xl shadow-xl ${
+        pathname === "/" ? "bg-info text-primary" : ""
+      }`}
+    >
       <h1 className="text-lg font-bold">{name}</h1>
 
       <div className="flex gap-5 justify-center">

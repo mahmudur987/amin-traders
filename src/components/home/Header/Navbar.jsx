@@ -15,7 +15,7 @@ const Navbar = () => {
         </label>
         <ul
           tabIndex={1}
-          className="dropdown-content p-2 shadow   rounded-box w-52"
+          className="dropdown-content p-2 shadow z-10  rounded-box w-52 text-primary"
           onClick={() => setShowMenu(!showMenu)}
         >
           {showMenu && (
@@ -25,7 +25,7 @@ const Navbar = () => {
               </li>
 
               <li>
-                <Link>Service 2</Link>
+                <Link to={"/internetservice/gasservice"}>LPG gas</Link>
               </li>
               <li>
                 <Link>Service 3</Link>
