@@ -48,13 +48,13 @@ const TopNavbar = () => {
         <span>
           <Link className="flex gap-2 items-center">
             <FaPhone />
-            <a href="">01671706882</a>
+            <span href="">01671706882</span>
           </Link>
         </span>
         <span>
           <Link className="flex gap-2 items-center">
             <FaSms />
-            <a href="">safemahmud987@gmail.com</a>
+            <span href="">safemahmud987@gmail.com</span>
           </Link>
         </span>
       </div>

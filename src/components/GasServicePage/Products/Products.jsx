@@ -6,7 +6,7 @@ const Products = () => {
   const [count, setCount] = useState(3);
   const [showAll, setShowAll] = useState(false);
   return (
-    <div className="my-20 flex flex-col gap-10 items-center">
+    <div className="my-20 flex flex-col gap-10 items-center p-2 lg:p-10">
       <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">
         All Available L P G Gas
       </h1>

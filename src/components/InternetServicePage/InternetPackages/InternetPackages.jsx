@@ -7,7 +7,7 @@ const InternetPackages = () => {
   const [showAll, setShowAll] = useState(false);
 
   return (
-    <div className="my-10 flex flex-col gap-10 items-center">
+    <div className="my-10 flex flex-col gap-10 items-center p-2 lg:p-10">
       <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">
         Home Internet Packages
       </h1>

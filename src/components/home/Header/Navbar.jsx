@@ -28,7 +28,7 @@ const Navbar = () => {
                 <Link to={"/internetservice/gasservice"}>LPG gas</Link>
               </li>
               <li>
-                <Link>Service 3</Link>
+                <Link to={"/internetservice/oilpage"}>Food Oil</Link>
               </li>
             </>
           )}

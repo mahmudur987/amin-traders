@@ -329,78 +329,114 @@ export const OilData = [
     picture: "https://dailyshoppingbd.com/images/detailed/161/AAAAA.jpeg",
     name: "soyabin oil",
     brandName: "pusti",
-    quaintity: 1,
+    quantity: 1,
     price: 200,
     publishDate: new Date(),
+    offer: {
+      isOffer: true,
+      lessPrice: 50,
+    },
   },
   {
     picture: "https://dailyshoppingbd.com/images/detailed/161/AAAAA.jpeg",
     name: "soyabin oil",
     brandName: "pusti",
-    quaintity: 2,
+    quantity: 2,
     price: 400,
     publishDate: new Date(),
+    offer: {
+      isOffer: true,
+      lessPrice: 50,
+    },
   },
   {
     picture: "https://dailyshoppingbd.com/images/detailed/161/AAAAA.jpeg",
     name: "soyabin oil",
     brandName: "pusti",
-    quaintity: 5,
+    quantity: 5,
     price: 960,
     publishDate: new Date(),
+    offer: {
+      isOffer: true,
+      lessPrice: 50,
+    },
   },
   {
     picture:
       "https://images.deliveryhero.io/image/product-information-management/640dc1abd5795c467cf53c69.jpg?height=480",
     name: "soyabin oil",
     brandName: "Fresh",
-    quaintity: 1,
+    quantity: 1,
     price: 200,
     publishDate: new Date(),
+    offer: {
+      isOffer: true,
+      lessPrice: 50,
+    },
   },
   {
     picture:
       "https://images.deliveryhero.io/image/product-information-management/640dc1abd5795c467cf53c69.jpg?height=480",
     name: "soyabin oil",
     brandName: "Fresh",
-    quaintity: 2,
+    quantity: 2,
     price: 400,
     publishDate: new Date(),
+    offer: {
+      isOffer: true,
+      lessPrice: 50,
+    },
   },
   {
     picture:
       "https://images.deliveryhero.io/image/product-information-management/640dc1abd5795c467cf53c69.jpg?height=480",
     name: "soyabin oil",
     brandName: "Fresh",
-    quaintity: 5,
+    quantity: 5,
     price: 960,
     publishDate: new Date(),
+    offer: {
+      isOffer: true,
+      lessPrice: 50,
+    },
   },
   {
     picture:
       "https://i0.wp.com/www.khan.com.bd/wp-content/uploads/2020/10/Bashundara-Soyabean-Oil-Price-in-Mirpur.jpg?fit=1200%2C1200&ssl=1",
     name: "soyabin oil",
     brandName: "Bashundhara",
-    quaintity: 1,
+    quantity: 1,
     price: 200,
     publishDate: new Date(),
+    offer: {
+      isOffer: true,
+      lessPrice: 50,
+    },
   },
   {
     picture:
       "https://i0.wp.com/www.khan.com.bd/wp-content/uploads/2020/10/Bashundara-Soyabean-Oil-Price-in-Mirpur.jpg?fit=1200%2C1200&ssl=1",
     name: "soyabin oil",
     brandName: "Bashundhara",
-    quaintity: 2,
+    quantity: 2,
     price: 400,
     publishDate: new Date(),
+    offer: {
+      isOffer: true,
+      lessPrice: 50,
+    },
   },
   {
     picture:
       "https://i0.wp.com/www.khan.com.bd/wp-content/uploads/2020/10/Bashundara-Soyabean-Oil-Price-in-Mirpur.jpg?fit=1200%2C1200&ssl=1",
     name: "soyabin oil",
     brandName: "Bashundhara",
-    quaintity: 5,
+    quantity: 5,
     price: 960,
     publishDate: new Date(),
+    offer: {
+      isOffer: true,
+      lessPrice: 50,
+    },
   },
 ];

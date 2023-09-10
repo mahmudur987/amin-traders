@@ -2,7 +2,7 @@ import AddressDetailsFrom from "./AddressDetailsFrom";
 import { AiFillPhone, AiOutlineMail } from "react-icons/ai";
 const ConnectionSupport = () => {
   return (
-    <div className="my-10 flex flex-col lg:flex-row gap-10 ">
+    <div className="my-10 flex flex-col lg:flex-row gap-10 p-2 lg:p-10 ">
       {/* left */}
       <div className="lg:w-1/2 flex flex-col gap-8 p-3">
         <h1 className="text-xl md:text-3xl text-center font-bold">

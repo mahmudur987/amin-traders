@@ -17,8 +17,8 @@ const SinglePackage = ({ data }) => {
 
   return (
     <div
-      className={`flex flex-col gap-5 border p-2 rounded-xl shadow-xl ${
-        pathname === "/" ? "bg-info text-primary" : ""
+      className={`flex flex-col gap-5 border p-2 lg:p-10 rounded-xl shadow-xl ${
+        pathname === "/" ? "bg-base-100 text-primary" : ""
       }`}
     >
       <h1 className="text-lg font-bold">{name}</h1>
