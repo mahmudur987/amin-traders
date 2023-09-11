@@ -96,7 +96,7 @@ const SignUpPage = () => {
   }
 
   return (
-    <div className="h-[800px] flex justify-center items-center gap-5 m-2 lg:m-10 ">
+    <div className=" flex justify-center items-center gap-5 m-2 lg:mx-10 ">
       <div className="w-1/2 p-5">
         <img
           className="rounded-md"
@@ -166,6 +166,7 @@ const SignUpPage = () => {
               </p>
             )}
           </div>
+
           <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">Email</span>
@@ -196,11 +197,6 @@ const SignUpPage = () => {
                   value: 6,
                   message: "password must be 6 character",
                 },
-                // pattern: {
-                //   value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
-                //   message:
-                //     "password must be one Uppercase one symbol and one number",
-                // },
               })}
               type="text"
               placeholder="Password"
