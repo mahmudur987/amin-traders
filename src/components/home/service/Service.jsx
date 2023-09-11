@@ -14,7 +14,7 @@ const Service = ({ service }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">
-          <Link to={"/internetservice"}>{name}</Link>
+          <Link to={"/service"}>{name}</Link>
         </h2>
         <p>If a dog chews shoes whose shoes does he choose?</p>
       </div>

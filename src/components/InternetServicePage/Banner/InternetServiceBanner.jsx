@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // Import your images
 
-const InternetServiceBanner = () => {
+const serviceBanner = () => {
   const sliderData = [
     {
       ImageUrl:
@@ -63,4 +63,4 @@ const InternetServiceBanner = () => {
   );
 };
 
-export default InternetServiceBanner;
+export default serviceBanner;

@@ -13,8 +13,6 @@ const Product = ({ data }) => {
     valveType,
   } = data;
 
-  console.log(data);
-
   return (
     <>
       {data && (

@@ -35,7 +35,7 @@ const Offer = () => {
       {InternetPackagesData && (
         <div className="w-full p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
           {InternetPackagesData?.slice(0, 4).map((data) => (
-            <SinglePackage data={data} key={data.index}></SinglePackage>
+            <SinglePackage data={data} key={data._id}></SinglePackage>
           ))}
         </div>
       )}

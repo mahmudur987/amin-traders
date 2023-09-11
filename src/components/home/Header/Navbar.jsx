@@ -1,9 +1,24 @@
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineCaretDown, AiOutlineMenuUnfold } from "react-icons/ai";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { authContext } from "../../../Context/UserContext";
+import toast from "react-hot-toast";
 const Navbar = () => {
   const { pathname } = useLocation();
   const [showMenu, setShowMenu] = useState(false);
+
+  const { user, logout } = useContext(authContext);
+
+  const handleLogOut = () => {
+    logout()
+      .then(() => {
+        // user Logout
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+
   const menuItems = (
     <>
       <li>
@@ -21,14 +36,14 @@ const Navbar = () => {
           {showMenu && (
             <>
               <li>
-                <Link to={"/internetservice"}>Internet </Link>
+                <Link to={"/service"}>Internet </Link>
               </li>
 
               <li>
-                <Link to={"/internetservice/gasservice"}>LPG gas</Link>
+                <Link to={"/service/gasservice"}>LPG gas</Link>
               </li>
               <li>
-                <Link to={"/internetservice/oilpage"}>Food Oil</Link>
+                <Link to={"/service/oilpage"}>Food Oil</Link>
               </li>
             </>
           )}
@@ -37,12 +52,27 @@ const Navbar = () => {
       <li>
         <Link to={"/"}>Address</Link>
       </li>
-      <li>
-        <Link to={"/internetservice/signup"}>SignUp</Link>
-      </li>
-      <li>
-        <Link to={"/"}>LogOut</Link>
-      </li>
+
+      {user ? (
+        <>
+          <li className="flex gap-1" onClick={handleLogOut}>
+            <Link>LogOut</Link>
+          </li>
+
+          <li>
+            <Link>{user.displayName}</Link>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to={"/service/signup"}>SignUp</Link>
+          </li>
+          <li>
+            <Link to={"/service/login"}>Log In</Link>
+          </li>
+        </>
+      )}
     </>
   );
 

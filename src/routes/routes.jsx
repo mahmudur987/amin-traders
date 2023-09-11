@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-
 import Home from "../pages/home/Home";
-import InternetServicePage from "../pages/internetServicePage/InternetServicePage";
 import HomepageLayout from "../Layouts/HomePageLayout";
 import MainLayout from "../Layouts/MainLayout";
 import GasServicePage from "../pages/gasServicePage/GasServicePage";
 import OilPages from "../pages/Oilpages/OilPages";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
+import InternetPackages from "../components/InternetServicePage/InternetPackages/InternetPackages";
 
 export const router = createBrowserRouter([
   {
@@ -20,28 +20,32 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/internetservice",
+    path: "/service",
     element: <MainLayout />,
     children: [
       {
-        path: "/internetservice",
-        element: <InternetServicePage />,
+        path: "/service",
+        element: <InternetPackages />,
       },
       {
-        path: "/internetservice/gasservice",
+        path: "/service/gasservice",
         element: <GasServicePage />,
       },
       {
-        path: "/internetservice/oilpage",
+        path: "/service/oilpage",
         element: <OilPages />,
       },
       {
-        path: "/internetservice/oilpage",
+        path: "/service/oilpage",
         element: <OilPages />,
       },
       {
-        path: "/internetservice/signup",
+        path: "/service/signup",
         element: <SignUpPage />,
+      },
+      {
+        path: "/service/login",
+        element: <LoginPage />,
       },
     ],
   },
