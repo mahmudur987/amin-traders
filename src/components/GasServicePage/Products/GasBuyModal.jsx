@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 // Modal.js
-import React, { useState } from "react";
+import { useState } from "react";
 // eslint-disable-next-line react/prop-types
 
 // eslint-disable-next-line react/prop-types
-const Modal = ({ isOpen, onClose, data }) => {
+const GasBuyModal = ({ isOpen, onClose, data }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,8 +39,8 @@ const Modal = ({ isOpen, onClose, data }) => {
           <div className="flex justify-between items-center pb-3">
             <p className="text-xl font-bold">
               {" "}
-              Buying Internet Package{" "}
-              <span className="text-info text-2xl">{data.name}</span>{" "}
+              Buying
+              <span className="text-info text-2xl">{data.name}</span> Gas
             </p>
             <div className="modal-close cursor-pointer z-50" onClick={onClose}>
               <svg
@@ -51,7 +52,9 @@ const Modal = ({ isOpen, onClose, data }) => {
               >
                 <path
                   d="M6.293 6.293a1 1 0 011.414 0L9 7.586l1.293-1.293a1 1 0 111.414 1.414L10.414 9l1.293 1.293a1 1 0 11-1.414 1.414L9 10.414l-1.293 1.293a1 1 0 01-1.414-1.414L7.586 9 6.293 7.707a1 1 0 010-1.414z"
+                  // eslint-disable-next-line react/no-unknown-property
                   fill-rule="evenodd"
+                  // eslint-disable-next-line react/no-unknown-property
                   clip-rule="evenodd"
                 ></path>
               </svg>
@@ -138,4 +141,4 @@ const Modal = ({ isOpen, onClose, data }) => {
   );
 };
 
-export default Modal;
+export default GasBuyModal;

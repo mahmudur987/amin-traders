@@ -1,27 +1,31 @@
+/* eslint-disable react/prop-types */
 // Modal.js
-import React, { useState } from "react";
+import { useState } from "react";
+import { ImCross } from "react-icons/im";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
 // eslint-disable-next-line react/prop-types
 
 // eslint-disable-next-line react/prop-types
-const Modal = ({ isOpen, onClose, data }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    // eslint-disable-next-line react/prop-types
-    packageName: `${data?.name}`,
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
+const InternetPackModal = ({ isOpen, onClose, data }) => {
+  // eslint-disable-next-line no-unused-vars
+  const [name, setName] = useState(data?.name);
+  const [price, setprice] = useState(data.price);
+  const [speed, setspeed] = useState(data.speed);
+  const [condition, setCondition] = useState(data.condition);
+  const [vat, setvat] = useState(data.vat);
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can handle the form submission logic here
-    console.log(formData);
+    const newData = { name, price, speed, condition, vat };
+
+    AxiosBaseURL.post("/internetpack/:id", newData)
+      .then((data) => {
+        console.log(data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
+    console.log(newData);
     onClose();
   };
 
@@ -36,25 +40,12 @@ const Modal = ({ isOpen, onClose, data }) => {
       <div className="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
         <div className="modal-content py-4 text-left px-6">
           <div className="flex justify-between items-center pb-3">
-            <p className="text-xl font-bold">
-              {" "}
-              Buying Internet Package{" "}
-              <span className="text-info text-2xl">{data.name}</span>{" "}
-            </p>
-            <div className="modal-close cursor-pointer z-50" onClick={onClose}>
-              <svg
-                className="fill-current text-black"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-              >
-                <path
-                  d="M6.293 6.293a1 1 0 011.414 0L9 7.586l1.293-1.293a1 1 0 111.414 1.414L10.414 9l1.293 1.293a1 1 0 11-1.414 1.414L9 10.414l-1.293 1.293a1 1 0 01-1.414-1.414L7.586 9 6.293 7.707a1 1 0 010-1.414z"
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
+            <p className="text-xl font-bold"> Update Internet Package </p>
+            <div
+              className="modal-close text-2xl cursor-pointer z-50"
+              onClick={onClose}
+            >
+              <ImCross />
             </div>
           </div>
 
@@ -69,8 +60,8 @@ const Modal = ({ isOpen, onClose, data }) => {
               <input
                 type="text"
                 name="name"
-                value={formData.name}
-                onChange={handleChange}
+                defaultValue={name}
+                onChange={(e) => setName(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
               />
@@ -80,13 +71,13 @@ const Modal = ({ isOpen, onClose, data }) => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="email"
               >
-                Email
+                Price
               </label>
               <input
-                type="email"
+                type="text"
                 name="email"
-                value={formData.email}
-                onChange={handleChange}
+                defaultValue={price}
+                onChange={(e) => setprice(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Email"
               />
@@ -96,15 +87,28 @@ const Modal = ({ isOpen, onClose, data }) => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="phoneNumber"
               >
-                Phone Number
+                Speed
               </label>
               <input
-                type="tel"
+                type="text"
                 name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleChange}
+                defaultValue={speed}
+                onChange={(e) => setspeed(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Phone Number"
+              />
+            </div>
+            <div className="mb-4  flex gap-10 items-center">
+              <label
+                className="block text-gray-700 text-sm font-bold "
+                htmlFor="phoneNumber"
+              >
+                Vat
+              </label>
+              <input
+                type="checkbox"
+                name="vat"
+                onChange={(e) => setvat(e.target.checked)}
               />
             </div>
             <div className="mb-4">
@@ -112,12 +116,12 @@ const Modal = ({ isOpen, onClose, data }) => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="address"
               >
-                Address
+                Condition
               </label>
               <textarea
                 name="address"
-                value={formData.address}
-                onChange={handleChange}
+                defaultValue={condition[0]}
+                onChange={(e) => setCondition([e.target.value])}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 rows="4"
                 placeholder="Address"
@@ -138,4 +142,4 @@ const Modal = ({ isOpen, onClose, data }) => {
   );
 };
 
-export default Modal;
+export default InternetPackModal;

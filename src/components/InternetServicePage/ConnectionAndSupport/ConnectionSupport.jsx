@@ -14,7 +14,7 @@ const ConnectionSupport = () => {
         </div>
       </div>
       {/* right */}
-      <div className="lg:w-1/2 flex flex-col gap-5">
+      <div className="w-full  lg:w-1/2 flex flex-col gap-5">
         <h1 className="text-xl md:text-3xl text-center font-bold">
           24/7 Support Service
         </h1>
@@ -33,15 +33,15 @@ const ConnectionSupport = () => {
                   <AiFillPhone />
                 </span>
               </p>
-              <h1 className="mb-5 text-3xl font-bold"> 16335</h1>
-              <h1 className="mb-5 text-3xl font-bold"> +880-1671-706882</h1>
+              <h1 className="mb-5 md:text-3xl font-bold"> 16335</h1>
+              <p className="mb-5 md:text-3xl font-bold"> +880-1671-706882</p>
 
               <p className=" text-3xl my-3 flex justify-center ">
                 <span>
                   <AiOutlineMail />
                 </span>
               </p>
-              <p className="mb-5 text-3xl font-bold">
+              <p className="mb-5 md:text-3xl font-bold">
                 {" "}
                 Amintraders985@gmail.com
               </p>

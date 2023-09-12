@@ -1,8 +1,8 @@
 import { GoogleAuthProvider } from "firebase/auth";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../../Context/UserContext";
 import AxiosBaseURL from "../../axios/AxiosConfig";
 
@@ -15,7 +15,8 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const { login, googleLogIn, user } = useContext(authContext);
+  const { login, googleLogIn, user, passwordResset } = useContext(authContext);
+  const [Email, setEmail] = useState("");
 
   const handleLogin = (data) => {
     login(data.email, data.password)
@@ -49,6 +50,7 @@ const LoginPage = () => {
           address: "",
         };
         AxiosBaseURL.post(`/users`, fullprofile)
+          // eslint-disable-next-line no-unused-vars
           .then((data) => {
             // console.log("Save user", data);
             toast.success("user login successfully");
@@ -67,8 +69,25 @@ const LoginPage = () => {
       });
   };
 
+  const handleForgetPass = () => {
+    console.log(Email);
+    if (!Email)
+      return toast.error("enter your email first", {
+        id: "first",
+      });
+
+    passwordResset(Email)
+      .then(() => {
+        toast.success("password reset Email send To your Email address");
+      })
+      .catch((error) => {
+        toast.error(error.message.slice(22, 60));
+        console.error("Error", error.message);
+      });
+  };
+
   return (
-    <section className="bg-base-200 font-bold md:flex">
+    <main className="bg-base-200 font-bold md:flex">
       <div className="md:w-1/2  md:mx-5 flex items-center  ">
         <img
           className="h-96 mx-auto "
@@ -79,8 +98,7 @@ const LoginPage = () => {
 
       <div className=" my-10 md:w-1/2 ">
         <h1 className="text-4xl text-center font bold mb-8"> LOG IN</h1>
-        {/* <p className="text-center">Admin Email :safemahmud987@gmail.com</p>
-        <p className="text-center">Admin Password :123456A@9</p> */}
+
         <form className="" onSubmit={handleSubmit(handleLogin)}>
           <div className="form-control w-full text-center ">
             <label className="label mx-auto">
@@ -114,7 +132,14 @@ const LoginPage = () => {
           </div>
 
           <label className="label text-center">
-            <span className="label-text-alt mx-auto">Forget password</span>
+            <button
+              onClick={() =>
+                document.getElementById("forgetPassModal").showModal()
+              }
+              className="btn btn-link text-blue-600 mx-auto"
+            >
+              Forget password
+            </button>
           </label>
 
           <p className="text-center">
@@ -136,8 +161,48 @@ const LoginPage = () => {
             Google LogIn
           </button>
         </p>
+
+        <p>
+          Dont have an account plese{" "}
+          <Link
+            to={"/service/signup"}
+            className="text-blue-500 hover:underline"
+          >
+            sign Up
+          </Link>
+        </p>
       </div>
-    </section>
+
+      {/* modal */}
+      <>
+        {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+        <dialog
+          id="forgetPassModal"
+          className="modal modal-bottom sm:modal-middle"
+        >
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Enter Your Email</h3>
+            <p className="py-4">
+              <input
+                type="text"
+                className="input input-bordered"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </p>
+            <div className="modal-action">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button onClick={() => handleForgetPass()} className="btn">
+                  ok
+                </button>
+                <button className="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </>
+    </main>
   );
 };
 

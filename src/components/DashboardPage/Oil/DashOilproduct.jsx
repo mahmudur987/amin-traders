@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import OilBuyModal from "./OilBuyModal";
+
 import { useLocation } from "react-router-dom";
+import UpdateOilModal from "./UpdateOilModal";
 
 // eslint-disable-next-line react/prop-types
-const OilProduct = ({ data }) => {
+const DashOilProduct = ({ data }) => {
   // eslint-disable-next-line react/prop-types
   const { picture, name, brandName, quantity, price, offer } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { pathname } = useLocation();
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -48,10 +48,10 @@ const OilProduct = ({ data }) => {
             Buy Now
           </button>
         </div>
-        <OilBuyModal data={data} isOpen={isModalOpen} onClose={closeModal} />
+        <UpdateOilModal data={data} isOpen={isModalOpen} onClose={closeModal} />
       </div>
     </div>
   );
 };
 
-export default OilProduct;
+export default DashOilProduct;

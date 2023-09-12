@@ -8,7 +8,7 @@ import Services from "../../components/home/service/Services";
 
 const Home = () => {
   return (
-    <div className="">
+    <div className=" mx-auto ">
       <BannerSlider />
       <Services />
       <Offer />

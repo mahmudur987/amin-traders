@@ -5,15 +5,15 @@ const HotOffer = () => {
         Ongoing Hot Offers
       </h1>
 
-      <div className="flex gap-5 p-3">
-        <figure className="w-1/2">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-5 p-3">
+        <figure className=" md:w-1/2">
           <img
             className="w-full h-full rounded-full p-5"
             src="https://images.unsplash.com/photo-1611403570720-162d8829689a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
             alt=""
           />
         </figure>
-        <figure className="w-1/2">
+        <figure className="md:w-1/2">
           <img
             className="w-full h-full rounded-md p-5"
             src="https://images.unsplash.com/photo-1650737736263-67daef292284?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"

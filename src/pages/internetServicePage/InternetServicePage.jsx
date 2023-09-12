@@ -11,7 +11,6 @@ const InternetService = () => {
       <HowToConnect />
       <InternetPackages />
       <HotOffer />
-
       <ConnectionSupport />
     </div>
   );

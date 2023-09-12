@@ -1,5 +1,9 @@
 /* eslint-disable react/prop-types */
 
+import { useState } from "react";
+import GasBuyModal from "./GasBuyModal";
+import { useLocation } from "react-router-dom";
+
 const Product = ({ data }) => {
   const {
     picture,
@@ -12,11 +16,19 @@ const Product = ({ data }) => {
     use,
     valveType,
   } = data;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { pathname } = useLocation();
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
       {data && (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card  bg-base-100 shadow-xl">
           <figure>
             <img className="w-full h-80" src={picture} alt="Shoes" />
           </figure>
@@ -50,9 +62,16 @@ const Product = ({ data }) => {
                 Offer Price : <span>{price - offer.lessPrice}</span>
               </p>
             )}
-            <div className="card-actions justify-end">
-              <button className="btn btn-sm btn-secondary">Buy Now</button>
+            <div className="flex justify-end">
+              <button onClick={openModal} className="btn btn-sm btn-secondary">
+                Buy Now
+              </button>
             </div>
+            <GasBuyModal
+              data={data}
+              isOpen={isModalOpen}
+              onClose={closeModal}
+            />
           </div>
         </div>
       )}

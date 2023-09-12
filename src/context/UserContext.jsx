@@ -7,6 +7,7 @@ import {
   updateProfile,
   signOut,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 import app from "../firebase/Firebase.config";
@@ -43,7 +44,9 @@ const UserContext = ({ children }) => {
 
     return signInWithPopup(auth, provider);
   };
-
+  const passwordResset = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
   const logout = () => {
     return signOut(auth);
   };
@@ -71,6 +74,7 @@ const UserContext = ({ children }) => {
     login,
     googleLogIn,
     logout,
+    passwordResset,
   };
   return (
     <div>

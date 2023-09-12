@@ -4,18 +4,23 @@ const Services = () => {
   const servicesData = [
     {
       name: "Broad-band Internet",
+      link: "/service",
       description: "weqfrefrqwher  khqwbrgkhwqb wqhbrwq  q3jhgbiq3w",
       imageUrl:
         "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
     },
     {
       name: "LPG Gas",
+      link: "/service/gasservice",
+
       description: "weqfrefrqwher  khqwbrgkhwqb wqhbrwq  q3jhgbiq3w",
       imageUrl:
         "https://images.unsplash.com/photo-1596465664095-f1f622965562?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80",
     },
     {
       name: "Food Oil",
+      link: "/service/oilpage",
+
       description: "weqfrefrqwher  khqwbrgkhwqb wqhbrwq  q3jhgbiq3w",
       imageUrl:
         "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1318&q=80",

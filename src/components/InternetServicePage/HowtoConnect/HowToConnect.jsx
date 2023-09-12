@@ -5,8 +5,8 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 
 const HowToConnect = () => {
   return (
-    <div className="my-10 flex justify-center gap-5">
-      <div className="flex flex-col items-center gap-3">
+    <div className="my-10 flex flex-col md:flex-row items-center justify-center gap-5 p-5">
+      <div className="flex flex-col items-center md:gap-3">
         <p className="text-5xl">
           {" "}
           <BsFillClipboardCheckFill />{" "}

@@ -6,7 +6,11 @@ import GasServicePage from "../pages/gasServicePage/GasServicePage";
 import OilPages from "../pages/Oilpages/OilPages";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
-import InternetPackages from "../components/InternetServicePage/InternetPackages/InternetPackages";
+import InternetService from "../pages/internetServicePage/InternetServicePage";
+import NotFound from "../components/shared/NotFound/NotFound";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import Profile from "../pages/DashboardPage/Profile";
+import Internet from "../pages/DashboardPage/Internet";
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +29,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/service",
-        element: <InternetPackages />,
+        element: <InternetService />,
       },
       {
         path: "/service/gasservice",
@@ -46,6 +50,41 @@ export const router = createBrowserRouter([
       {
         path: "/service/login",
         element: <LoginPage />,
+        errorElement: <>some error happend</>,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Profile />,
+      },
+      {
+        path: "/dashboard/order",
+        element: <Profile />,
+      },
+      {
+        path: "/dashboard/Internet",
+        element: <Internet />,
+      },
+      {
+        path: "/dashboard/gas",
+        element: <Profile />,
+      },
+      {
+        path: "/dashboard/oil",
+        element: <Profile />,
+      },
+      {
+        path: "/dashboard/users",
+        element: <Profile />,
       },
     ],
   },
