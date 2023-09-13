@@ -33,10 +33,10 @@ const DashboardLayout = () => {
               <Link> All Order</Link>
             </li>
             <li>
-              <Link to={"/dashboard/Internet"}> Internet Packages</Link>
+              <Link to={"/dashboard/internet"}> Internet Packages</Link>
             </li>
             <li>
-              <Link> Lpg Gas </Link>
+              <Link to={"/dashboard/gas"}> Lpg Gas </Link>
             </li>
             <li>
               <Link> Oil</Link>

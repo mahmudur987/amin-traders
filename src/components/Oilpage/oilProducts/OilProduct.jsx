@@ -29,7 +29,7 @@ const OilProduct = ({ data }) => {
           {offer?.isOffer && <div className="badge badge-secondary">Offer</div>}
         </h2>
         <p>
-          Quantity : <span>{quantity}</span>
+          Quantity : <span>{quantity}</span> Liter
         </p>
 
         <p>

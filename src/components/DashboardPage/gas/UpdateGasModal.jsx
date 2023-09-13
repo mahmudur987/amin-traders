@@ -6,34 +6,48 @@ import AxiosBaseURL from "../../../axios/AxiosConfig";
 // eslint-disable-next-line react/prop-types
 
 // eslint-disable-next-line react/prop-types
-const UpdateOilModal = ({ isOpen, onClose, data }) => {
+const UpdateGasModal = ({ isOpen, onClose, data }) => {
   // eslint-disable-next-line no-unused-vars
-
+  //   const {
+  //     picture,
+  //     Brand,
+  //     name,
+  //     offer,
+  //     price,
+  //     quantity,
+  //     valveSize,
+  //     use,
+  //     valveType,
+  //   } = data;
+  console.log(data);
   const [name, setName] = useState(data?.name);
-  const [brandName, setbrandName] = useState(data?.brandName);
+  const [brand, setbrand] = useState(data?.brand);
   const [quantity, setquantity] = useState(data.quantity);
   const [price, setprice] = useState(data?.price);
-  const [offerPrice, setofferPrice] = useState(data?.offer?.lessPrice);
   const [image, setimage] = useState(data?.picture);
+  const [offerPrice, setofferPrice] = useState(data?.offer?.lessPrice);
   const [isOffer, setisoffer] = useState(data?.offer?.isOffer);
+  const [use, setuse] = useState(data?.offer?.use);
+  const [valveSize, setvalveSize] = useState(data?.valvaSize);
+  const [valveType, setvalveType] = useState(data.valveType);
   const handleSubmit = (e) => {
     e.preventDefault();
     const newData = {
       name,
-      brandName,
+      brand,
       quantity,
       price,
       offer: { isOffer, lessPrice: offerPrice },
       image,
     };
 
-    AxiosBaseURL.post("/oil/:id", newData)
-      .then((data) => {
-        console.log(data.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    // AxiosBaseURL.post("/internetpack/:id", newData)
+    //   .then((data) => {
+    //     console.log(data.data);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
 
     console.log(newData);
     onClose();
@@ -108,8 +122,8 @@ const UpdateOilModal = ({ isOpen, onClose, data }) => {
               <input
                 type="text"
                 name="brandName"
-                defaultValue={brandName}
-                onChange={(e) => setbrandName(e.target.value)}
+                defaultValue={brand}
+                onChange={(e) => setbrand(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
@@ -174,6 +188,60 @@ const UpdateOilModal = ({ isOpen, onClose, data }) => {
               />
             </div>
 
+            {/* use */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="name"
+              >
+                UsingType
+              </label>
+              <input
+                type="text"
+                name="name"
+                defaultValue={price}
+                onChange={(e) => setprice(e.target.value)}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Name"
+              />
+            </div>
+
+            {/* valve size */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="name"
+              >
+                UsingType
+              </label>
+              <input
+                type="text"
+                name="name"
+                defaultValue={use}
+                onChange={(e) => setuse(e.target.value)}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Name"
+              />
+            </div>
+
+            {/* valve type */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="name"
+              >
+                Valva Type
+              </label>
+              <input
+                type="text"
+                name="name"
+                defaultValue={valveType}
+                onChange={(e) => setprice(e.target.value)}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Name"
+              />
+            </div>
+
             <div className="flex justify-end pt-2">
               <button
                 type="submit"
@@ -189,4 +257,4 @@ const UpdateOilModal = ({ isOpen, onClose, data }) => {
   );
 };
 
-export default UpdateOilModal;
+export default UpdateGasModal;

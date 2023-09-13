@@ -2,12 +2,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 
-import { useLocation } from "react-router-dom";
 import UpdateOilModal from "./UpdateOilModal";
 
-// eslint-disable-next-line react/prop-types
 const DashOilProduct = ({ data }) => {
-  // eslint-disable-next-line react/prop-types
   const { picture, name, brandName, quantity, price, offer } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
@@ -18,9 +15,9 @@ const DashOilProduct = ({ data }) => {
     setIsModalOpen(false);
   };
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card  bg-base-100 shadow-xl">
       <figure>
-        <img src={picture} alt="Shoes" />
+        <img className="w-full h-80" src={picture} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">
@@ -29,7 +26,7 @@ const DashOilProduct = ({ data }) => {
           {offer?.isOffer && <div className="badge badge-secondary">Offer</div>}
         </h2>
         <p>
-          Quantity : <span>{quantity}</span>
+          Quantity : <span>{quantity}</span>Liter
         </p>
 
         <p>
@@ -43,10 +40,11 @@ const DashOilProduct = ({ data }) => {
             Offer Price : <span>{price - offer.lessPrice}</span>
           </p>
         )}
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-1">
           <button onClick={openModal} className="btn btn-sm btn-secondary">
-            Buy Now
+            Update
           </button>
+          <button className="btn btn-sm btn-secondary">Delete</button>
         </div>
         <UpdateOilModal data={data} isOpen={isModalOpen} onClose={closeModal} />
       </div>

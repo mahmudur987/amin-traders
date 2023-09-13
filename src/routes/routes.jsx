@@ -11,6 +11,8 @@ import NotFound from "../components/shared/NotFound/NotFound";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Profile from "../pages/DashboardPage/Profile";
 import Internet from "../pages/DashboardPage/Internet";
+import Oil from "../pages/DashboardPage/Oil";
+import Gas from "../pages/DashboardPage/Gas";
 
 export const router = createBrowserRouter([
   {
@@ -71,16 +73,16 @@ export const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "/dashboard/Internet",
+        path: "/dashboard/internet",
         element: <Internet />,
       },
       {
         path: "/dashboard/gas",
-        element: <Profile />,
+        element: <Gas />,
       },
       {
         path: "/dashboard/oil",
-        element: <Profile />,
+        element: <Oil />,
       },
       {
         path: "/dashboard/users",
