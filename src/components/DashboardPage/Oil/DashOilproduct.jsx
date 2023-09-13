@@ -7,7 +7,6 @@ import UpdateOilModal from "./UpdateOilModal";
 const DashOilProduct = ({ data }) => {
   const { picture, name, brandName, quantity, price, offer } = data;
 
-  console.log(data);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);

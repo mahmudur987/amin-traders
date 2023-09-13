@@ -5,6 +5,7 @@ import AxiosBaseURL from "../../../axios/AxiosConfig";
 import LoadingSpinner from "../../shared/loading/Loading";
 import AddOilModal from "./AddOilModal";
 import { AiFillPlusSquare } from "react-icons/ai";
+import { useState } from "react";
 const DashOilProducts = () => {
   const {
     data: OilData,
@@ -41,7 +42,7 @@ const DashOilProducts = () => {
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">Oil</h1>
         <div className="w-full flex justify-end">
           <button onClick={openModal} className="btn btn-outline ">
-            ADD A New GAS{" "}
+            ADD A New Oil{" "}
             <span className="text-3xl">
               <AiFillPlusSquare />
             </span>{" "}

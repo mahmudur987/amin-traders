@@ -120,7 +120,7 @@ const UpdateInternetPackModal = ({ isOpen, onClose, data }) => {
               </label>
               <textarea
                 name="address"
-                defaultValue={condition[0]}
+                defaultValue={condition ? condition[0] : ""}
                 onChange={(e) => setCondition([e.target.value])}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 rows="4"

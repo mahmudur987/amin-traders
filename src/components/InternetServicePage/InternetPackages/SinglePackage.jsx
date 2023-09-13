@@ -1,13 +1,21 @@
 /* eslint-disable react/prop-types */
 import { BsFillHouseCheckFill } from "react-icons/bs";
 import Modal from "./Modal";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { authContext } from "../../../context/UserContext";
+import toast from "react-hot-toast";
 const SinglePackage = ({ data }) => {
   const { name, speed, price, condition } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { pathname } = useLocation();
+  const { user } = useContext(authContext);
   const openModal = () => {
+    if (!user) {
+      return toast.error("please Log In first", {
+        id: "50",
+      });
+    }
     setIsModalOpen(true);
   };
 
@@ -50,7 +58,7 @@ const SinglePackage = ({ data }) => {
 
       <div className="flex justify-end">
         <button onClick={openModal} className="btn btn-sm btn-secondary">
-          BooK Now
+          Order Now
         </button>
       </div>
       <Modal data={data} isOpen={isModalOpen} onClose={closeModal} />

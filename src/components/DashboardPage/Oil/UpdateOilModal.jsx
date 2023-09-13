@@ -1,41 +1,72 @@
 /* eslint-disable react/prop-types */
 // Modal.js
+
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
-// eslint-disable-next-line react/prop-types
 
-// eslint-disable-next-line react/prop-types
 const UpdateOilModal = ({ isOpen, onClose, data }) => {
-  // eslint-disable-next-line no-unused-vars
-
   const [name, setName] = useState(data?.name);
   const [brandName, setbrandName] = useState(data?.brandName);
   const [quantity, setquantity] = useState(data.quantity);
   const [price, setprice] = useState(data?.price);
   const [offerPrice, setofferPrice] = useState(data?.offer?.lessPrice);
-  const [image, setimage] = useState(data?.picture);
+  const [image, setimage] = useState(null);
   const [isOffer, setisoffer] = useState(data?.offer?.isOffer);
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (image) {
+      const imageData = new FormData();
+      imageData.append("image", image);
+
+      const url = `https://api.imgbb.com/1/upload?key=d8359aaef7717cdf56ff9bb7b30b6225`;
+      fetch(url, {
+        method: "POST",
+        body: imageData,
+      })
+        .then((res) => res.json())
+        .then((imagedata) => {
+          console.log(imagedata.data.display_url);
+          if (imagedata.data) {
+            const Data = {
+              name,
+              brandName,
+              quantity,
+              price,
+              offer: { isOffer, lessPrice: offerPrice },
+              image: imagedata.data.display_url,
+            };
+            console.log("Data", Data);
+            // AxiosBaseURL.post("/gas/:id", Data)
+            //   .then((data) => {
+            //     console.log(data.data);
+            //   })
+            //   .catch((err) => {
+            //     console.error(err);
+            //   });
+          }
+        })
+        .catch((err) => {
+          console.error("imagebb error", err);
+        });
+    }
     const newData = {
       name,
       brandName,
       quantity,
       price,
       offer: { isOffer, lessPrice: offerPrice },
-      image,
     };
 
-    AxiosBaseURL.post("/oil/:id", newData)
-      .then((data) => {
-        console.log(data.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    // AxiosBaseURL.post("/oil/:id", newData)
+    //   .then((data) => {
+    //     console.log(data.data);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
 
-    console.log(newData);
+    console.log("new data", newData);
     onClose();
   };
 
@@ -87,10 +118,10 @@ const UpdateOilModal = ({ isOpen, onClose, data }) => {
                 Image
               </label>
               <input
-                type="text"
-                name="name"
+                type="file"
+                name="image"
                 defaultValue={image}
-                onChange={(e) => setimage(e.target.value)}
+                onChange={(e) => setimage(e.target.files[0])}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
               />

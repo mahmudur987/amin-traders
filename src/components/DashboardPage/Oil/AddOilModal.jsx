@@ -42,15 +42,14 @@ const AddOilModal = ({ isOpen, onClose }) => {
         }
       });
 
-    AxiosBaseURL.post("/oil/:id", newData)
-      .then((data) => {
-        console.log(data.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    // AxiosBaseURL.post("/oil/:id", newData)
+    //   .then((data) => {
+    //     console.log(data.data);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
 
-    console.log(newData);
     onClose();
   };
 
@@ -65,7 +64,7 @@ const AddOilModal = ({ isOpen, onClose }) => {
       <div className="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
         <div className="modal-content py-4 text-left px-6">
           <div className="flex justify-between items-center pb-3">
-            <p className="text-xl font-bold"> Update Internet Package </p>
+            <p className="text-xl font-bold"> Add a New Oil Package </p>
             <div
               className="modal-close text-2xl cursor-pointer z-50"
               onClick={onClose}
@@ -97,13 +96,13 @@ const AddOilModal = ({ isOpen, onClose }) => {
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="name"
+                htmlFor="image"
               >
                 Image
               </label>
               <input
-                type="text"
-                name="name"
+                type="file"
+                name="image"
                 onChange={(e) => setimage(e.target.files[0])}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"

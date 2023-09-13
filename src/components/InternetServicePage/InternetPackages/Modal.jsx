@@ -1,26 +1,32 @@
+/* eslint-disable react/prop-types */
 // Modal.js
-import React, { useState } from "react";
+import { useContext, useState } from "react";
+import { authContext } from "../../../context/UserContext";
 // eslint-disable-next-line react/prop-types
 
 // eslint-disable-next-line react/prop-types
 const Modal = ({ isOpen, onClose, data }) => {
+  const { user } = useContext(authContext);
+
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
+    userName: user?.displayName,
+    userEmail: user?.email,
+    userPhoneNumber: "",
+    userAddress: "",
     // eslint-disable-next-line react/prop-types
     packageName: `${data?.name}`,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can handle the form submission logic here
+
     console.log(formData);
     onClose();
   };
@@ -49,11 +55,7 @@ const Modal = ({ isOpen, onClose, data }) => {
                 height="18"
                 viewBox="0 0 18 18"
               >
-                <path
-                  d="M6.293 6.293a1 1 0 011.414 0L9 7.586l1.293-1.293a1 1 0 111.414 1.414L10.414 9l1.293 1.293a1 1 0 11-1.414 1.414L9 10.414l-1.293 1.293a1 1 0 01-1.414-1.414L7.586 9 6.293 7.707a1 1 0 010-1.414z"
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                ></path>
+                <path d="M6.293 6.293a1 1 0 011.414 0L9 7.586l1.293-1.293a1 1 0 111.414 1.414L10.414 9l1.293 1.293a1 1 0 11-1.414 1.414L9 10.414l-1.293 1.293a1 1 0 01-1.414-1.414L7.586 9 6.293 7.707a1 1 0 010-1.414z"></path>
               </svg>
             </div>
           </div>
@@ -69,7 +71,7 @@ const Modal = ({ isOpen, onClose, data }) => {
               <input
                 type="text"
                 name="name"
-                value={formData.name}
+                defaultValue={user?.displayName}
                 onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
@@ -85,7 +87,8 @@ const Modal = ({ isOpen, onClose, data }) => {
               <input
                 type="email"
                 name="email"
-                value={formData.email}
+                value={user?.email}
+                readOnly
                 onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Email"
