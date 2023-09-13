@@ -3,7 +3,8 @@ import toast from "react-hot-toast";
 import DashOilProduct from "./DashOilproduct";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import LoadingSpinner from "../../shared/loading/Loading";
-
+import AddOilModal from "./AddOilModal";
+import { AiFillPlusSquare } from "react-icons/ai";
 const DashOilProducts = () => {
   const {
     data: OilData,
@@ -17,7 +18,14 @@ const DashOilProducts = () => {
       return data.data.data;
     },
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -28,19 +36,30 @@ const DashOilProducts = () => {
   }
 
   return (
-    <div className="my-20 flex flex-col gap-10 items-center">
-      <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">Oil</h1>
-
-      {/* packages */}
-
-      {OilData && (
-        <div className="w-full p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-          {OilData?.map((data, i) => (
-            <DashOilProduct data={data} key={i}></DashOilProduct>
-          ))}
+    <>
+      <div className="my-20 flex flex-col gap-10 items-center">
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">Oil</h1>
+        <div className="w-full flex justify-end">
+          <button onClick={openModal} className="btn btn-outline ">
+            ADD A New GAS{" "}
+            <span className="text-3xl">
+              <AiFillPlusSquare />
+            </span>{" "}
+          </button>
         </div>
-      )}
-    </div>
+
+        {/* packages */}
+
+        {OilData && (
+          <div className="w-full p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
+            {OilData?.map((data, i) => (
+              <DashOilProduct data={data} key={i}></DashOilProduct>
+            ))}
+          </div>
+        )}
+      </div>
+      <AddOilModal isOpen={isModalOpen} onClose={closeModal} />
+    </>
   );
 };
 

@@ -3,11 +3,13 @@ import { BsFillHouseCheckFill } from "react-icons/bs";
 
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import InternetPackModal from "./InternetPackUpdatewModal";
-const SinglePack = ({ data }) => {
+
+import UpdateInternetPackModal from "./UpdateInternetPackModal";
+const DashIntPackage = ({ data }) => {
   const { name, speed, price, condition, vat } = data;
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { pathname } = useLocation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -29,7 +31,7 @@ const SinglePack = ({ data }) => {
           <span className="text-3xl font-semibold">{speed}</span>
           <span>Mbps</span>
         </p>
-        <p className="w-1/2 ">
+        <div className="w-1/2 ">
           <span className="text-xl">BDT</span>
           <span className="text-3xl font-bold">{price}</span>
           <p className="text-lg">PerMonth</p>
@@ -43,10 +45,10 @@ const SinglePack = ({ data }) => {
               <span>Excluding Vat</span>
             </>
           )}
-        </p>
+        </div>
       </div>
       <div className="divider"></div>
-      <p>
+      <div>
         {condition?.map((x, i) => (
           <p key={i} className="flex gap-3 items-center">
             <span>
@@ -56,15 +58,15 @@ const SinglePack = ({ data }) => {
             <span>{x}</span>
           </p>
         ))}
-      </p>
+      </div>
 
-      <div className="flex justify-end gap-3">
+      <div className="flex justify-end flex-wrap gap-3">
         <button onClick={openModal} className="btn btn-sm btn-secondary">
           Update
         </button>
         <button className="btn btn-sm btn-secondary">Delete</button>
       </div>
-      <InternetPackModal
+      <UpdateInternetPackModal
         data={data}
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -73,4 +75,4 @@ const SinglePack = ({ data }) => {
   );
 };
 
-export default SinglePack;
+export default DashIntPackage;

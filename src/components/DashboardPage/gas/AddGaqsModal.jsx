@@ -1,74 +1,53 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
-// Modal.js
+
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
-import AxiosBaseURL from "../../../axios/AxiosConfig";
 
-const UpdateGasModal = ({ isOpen, onClose, data }) => {
-  const [name, setName] = useState(data?.name);
-  const [Brand, setbrand] = useState(data?.Brand);
-  const [quantity, setquantity] = useState(data.quantity);
-  const [price, setprice] = useState(data?.price);
-  const [image, setimage] = useState(null);
-  const [offerPrice, setofferPrice] = useState(data?.offer?.lessPrice);
-  const [isOffer, setisoffer] = useState(data?.offer?.isOffer);
-  const [use, setuse] = useState(data?.use);
-  const [valveSize, setvalveSize] = useState(data?.valveSize);
-  const [valveType, setvalveType] = useState(data.valveType);
+const AddGasModal = ({ isOpen, onClose }) => {
+  const [name, setName] = useState("");
+  const [Brand, setbrand] = useState("");
+  const [quantity, setquantity] = useState("");
+  const [price, setprice] = useState(0);
+  const [image, setimage] = useState({});
+  const [offerPrice, setofferPrice] = useState(0);
+  const [isOffer, setisoffer] = useState(Boolean);
+  const [use, setuse] = useState("");
+  const [valveSize, setvalveSize] = useState("");
+  const [valveType, setvalveType] = useState("");
+  const [publishDate, setPublishDate] = useState(
+    new Date(Date.now()).toLocaleString()
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (image) {
-      const imageData = new FormData();
-      imageData.append("image", image);
+    const imageData = new FormData();
+    imageData.append("image", image);
 
-      const url = `https://api.imgbb.com/1/upload?key=d8359aaef7717cdf56ff9bb7b30b6225`;
-      fetch(url, {
-        method: "POST",
-        body: imageData,
-      })
-        .then((res) => res.json())
-        .then((imagedata) => {
-          console.log(imagedata.data.display_url);
-          if (imagedata.data) {
-            const Data = {
-              name,
-              Brand,
-              quantity,
-              price,
-              offer: { isOffer, lessPrice: offerPrice },
-              image: imagedata.data.display_url,
-              use,
-              valveSize,
-              valveType,
-            };
-            console.log("Data", Data);
-            // AxiosBaseURL.post("/gas/:id", Data)
-            //   .then((data) => {
-            //     console.log(data.data);
-            //   })
-            //   .catch((err) => {
-            //     console.error(err);
-            //   });
-          }
-        })
-        .catch((err) => {
-          console.error("imagebb error", err);
-        });
-    }
-    const newData = {
-      name,
-      Brand,
-      quantity,
-      price,
-      offer: { isOffer, lessPrice: offerPrice },
-      image: data?.image,
-      use,
-      valveSize,
-      valveType,
-    };
-
-    console.log("newdata", newData);
+    const url = `https://api.imgbb.com/1/upload?key=d8359aaef7717cdf56ff9bb7b30b6225`;
+    fetch(url, {
+      method: "POST",
+      body: imageData,
+    })
+      .then((res) => res.json())
+      .then((imagedata) => {
+        console.log(imagedata.data.display_url);
+        if (imagedata.data) {
+          const newData = {
+            name,
+            Brand,
+            quantity,
+            price,
+            offer: { isOffer, lessPrice: offerPrice },
+            image: imagedata.data.display_url,
+            use,
+            valveSize,
+            valveType,
+            publishDate,
+          };
+          console.log(newData);
+        }
+      });
 
     // AxiosBaseURL.post("/gas/:id", newData)
     //   .then((data) => {
@@ -92,7 +71,7 @@ const UpdateGasModal = ({ isOpen, onClose, data }) => {
       <div className="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
         <div className="modal-content py-4 text-left px-6">
           <div className="flex justify-between items-center pb-3">
-            <p className="text-xl font-bold"> Update {name} </p>
+            <p className="text-xl font-bold"> Add A New Gas </p>
             <div
               className="modal-close text-2xl cursor-pointer z-50"
               onClick={onClose}
@@ -133,7 +112,6 @@ const UpdateGasModal = ({ isOpen, onClose, data }) => {
                 name="image"
                 onChange={(e) => setimage(e.target.files[0])}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Name"
               />
             </div>
 
@@ -150,6 +128,7 @@ const UpdateGasModal = ({ isOpen, onClose, data }) => {
                 type="text"
                 name="brandName"
                 defaultValue={Brand}
+                placeholder="Brand "
                 onChange={(e) => setbrand(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
@@ -165,8 +144,9 @@ const UpdateGasModal = ({ isOpen, onClose, data }) => {
               </label>
               <input
                 type="text"
-                name="name"
+                name="quantity"
                 defaultValue={quantity}
+                placeholder="Quantity"
                 onChange={(e) => setquantity(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
@@ -181,11 +161,11 @@ const UpdateGasModal = ({ isOpen, onClose, data }) => {
               </label>
               <input
                 type="text"
-                name="name"
+                name="price"
                 defaultValue={price}
                 onChange={(e) => setprice(parseInt(e.target.value))}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Name"
+                placeholder="price"
               />
             </div>
 
@@ -210,7 +190,7 @@ const UpdateGasModal = ({ isOpen, onClose, data }) => {
                   }
                 }}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Name"
+                placeholder="offer"
               />
             </div>
 
@@ -220,7 +200,7 @@ const UpdateGasModal = ({ isOpen, onClose, data }) => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="name"
               >
-                UsingType
+                Using Type
               </label>
               <input
                 type="text"
@@ -228,7 +208,7 @@ const UpdateGasModal = ({ isOpen, onClose, data }) => {
                 defaultValue={use}
                 onChange={(e) => setuse(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Name"
+                placeholder=" Using Type"
               />
             </div>
 
@@ -246,7 +226,7 @@ const UpdateGasModal = ({ isOpen, onClose, data }) => {
                 defaultValue={valveSize}
                 onChange={(e) => setvalveSize(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Name"
+                placeholder="valve Size"
               />
             </div>
 
@@ -264,7 +244,23 @@ const UpdateGasModal = ({ isOpen, onClose, data }) => {
                 defaultValue={valveType}
                 onChange={(e) => setvalveType(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Name"
+                placeholder="valve"
+              />
+            </div>
+            {/* Publish date */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="name"
+              >
+                Publish Date
+              </label>
+              <input
+                type="date"
+                name="publishDate"
+                onChange={(e) => setPublishDate(e.target.value)}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="valve"
               />
             </div>
 
@@ -283,4 +279,4 @@ const UpdateGasModal = ({ isOpen, onClose, data }) => {
   );
 };
 
-export default UpdateGasModal;
+export default AddGasModal;

@@ -1,18 +1,16 @@
 /* eslint-disable react/prop-types */
 // Modal.js
+// eslint-disable-next-line react/prop-types
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
-// eslint-disable-next-line react/prop-types
 
-// eslint-disable-next-line react/prop-types
-const InternetPackModal = ({ isOpen, onClose, data }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [name, setName] = useState(data?.name);
-  const [price, setprice] = useState(data.price);
-  const [speed, setspeed] = useState(data.speed);
-  const [condition, setCondition] = useState(data.condition);
-  const [vat, setvat] = useState(data.vat);
+const AddInternetPackModal = ({ isOpen, onClose }) => {
+  const [name, setName] = useState("");
+  const [price, setprice] = useState(0);
+  const [speed, setspeed] = useState("");
+  const [condition, setCondition] = useState("");
+  const [vat, setvat] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     const newData = { name, price, speed, condition, vat };
@@ -120,7 +118,7 @@ const InternetPackModal = ({ isOpen, onClose, data }) => {
               </label>
               <textarea
                 name="address"
-                defaultValue={condition[0]}
+                defaultValue={condition ? condition[0] : ""}
                 onChange={(e) => setCondition([e.target.value])}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 rows="4"
@@ -142,4 +140,4 @@ const InternetPackModal = ({ isOpen, onClose, data }) => {
   );
 };
 
-export default InternetPackModal;
+export default AddInternetPackModal;

@@ -13,6 +13,7 @@ const DashGasProduct = ({ data }) => {
     valveSize,
     use,
     valveType,
+    _id,
   } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -23,6 +24,11 @@ const DashGasProduct = ({ data }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const handleDelete = (id) => {
+    console.log(id);
+  };
+
   return (
     <>
       {data && (
@@ -64,7 +70,14 @@ const DashGasProduct = ({ data }) => {
               <button onClick={openModal} className="btn btn-sm btn-secondary">
                 Update
               </button>
-              <button onClick={openModal} className="btn btn-sm btn-secondary">
+              <button
+                onClick={() => {
+                  openModal();
+
+                  handleDelete(_id);
+                }}
+                className="btn btn-sm btn-secondary"
+              >
                 Delete
               </button>
             </div>

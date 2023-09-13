@@ -1,21 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import DashGasProduct from "./DashGasProduct";
-import AxiosBaseURL from "../../../axios/AxiosConfig";
 import LoadingSpinner from "../../shared/loading/Loading";
+import toast from "react-hot-toast";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import { useQuery } from "@tanstack/react-query";
+import DashIntPackage from "./DashIntPackage";
+import AddInternetPackModal from "./AddInternetPackModal";
 import { AiFillPlusSquare } from "react-icons/ai";
-import AddGasModal from "./AddGaqsModal";
 import { useState } from "react";
-const DashGasProducts = () => {
+
+const DashIntPackages = () => {
   const {
-    data: LpgGasData,
+    data: InternetPackagesData,
     isLoading,
     isError,
     error,
   } = useQuery({
     queryKey: [],
     queryFn: async () => {
-      const data = await AxiosBaseURL.get("/gasservice/allgaspackage");
+      const data = await AxiosBaseURL.get("/internetservice/allpackage");
       return data.data.data;
     },
   });
@@ -28,7 +29,6 @@ const DashGasProducts = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -40,32 +40,31 @@ const DashGasProducts = () => {
 
   return (
     <>
-      <div className="my-20 flex flex-col gap-10 items-center p-2 lg:p-10">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">L P G GAS</h1>
-
+      <div className="my-10 flex flex-col gap-10 items-center p-2 lg:p-10">
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">
+          Internet Packages
+        </h1>
         <div className="w-full flex justify-end">
           <button onClick={openModal} className="btn btn-outline ">
-            ADD A New GAS{" "}
+            ADD A New Internert Packages{" "}
             <span className="text-3xl">
               <AiFillPlusSquare />
             </span>{" "}
           </button>
         </div>
-
         {/* packages */}
 
-        {LpgGasData && (
+        {InternetPackagesData && (
           <div className="w-full p-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-            {LpgGasData?.map((data) => (
-              <DashGasProduct data={data} key={data._id}></DashGasProduct>
+            {InternetPackagesData?.map((data) => (
+              <DashIntPackage data={data} key={data._id}></DashIntPackage>
             ))}
           </div>
         )}
       </div>
-
-      <AddGasModal isOpen={isModalOpen} onClose={closeModal} />
+      <AddInternetPackModal isOpen={isModalOpen} onClose={closeModal} />
     </>
   );
 };
 
-export default DashGasProducts;
+export default DashIntPackages;

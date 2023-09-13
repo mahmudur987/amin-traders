@@ -1,10 +1,9 @@
-import React from "react";
-import AllInternetPackage from "../../components/DashboardPage/Internet/AllPackages";
+import DashIntPackages from "../../components/DashboardPage/Internet/DashIntPackages";
 
 const Internet = () => {
   return (
     <div>
-      <AllInternetPackage />
+      <DashIntPackages />
     </div>
   );
 };

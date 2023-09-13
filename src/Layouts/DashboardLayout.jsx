@@ -39,7 +39,7 @@ const DashboardLayout = () => {
               <Link to={"/dashboard/gas"}> Lpg Gas </Link>
             </li>
             <li>
-              <Link> Oil</Link>
+              <Link to={"/dashboard/oil"}> Oil</Link>
             </li>
             <li>
               <Link>All Users</Link>
