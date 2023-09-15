@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import OilBuyModal from "./OilBuyModal";
 import { useLocation } from "react-router-dom";
 
+import { authContext } from "../../../context/UserContext";
+
 // eslint-disable-next-line react/prop-types
 const OilProduct = ({ data }) => {
-  // eslint-disable-next-line react/prop-types
+  const { user } = useContext(authContext);
+
   const { picture, name, brandName, quantity, price, offer } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { pathname } = useLocation();
@@ -20,7 +23,7 @@ const OilProduct = ({ data }) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
-        <img src={picture} alt="Shoes" />
+        <img className="w-full h-80" src={picture} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">

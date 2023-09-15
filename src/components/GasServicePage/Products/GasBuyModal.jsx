@@ -1,28 +1,42 @@
 /* eslint-disable react/prop-types */
 // Modal.js
-import { useState } from "react";
-// eslint-disable-next-line react/prop-types
+import { useContext } from "react";
+import { authContext } from "../../../context/UserContext";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import { UsedbUser } from "../../Hooks/dbUser";
 
-// eslint-disable-next-line react/prop-types
 const GasBuyModal = ({ isOpen, onClose, data }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    // eslint-disable-next-line react/prop-types
-    packageName: `${data?.name}`,
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
+  const { user } = useContext(authContext);
+  const [dbuser] = UsedbUser(user?.email);
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const from = e.target;
+    const userPhoneNumber = from.userPhoneNumber.value;
+    const userAddress = from.userAddress.value;
+
     // You can handle the form submission logic here
-    console.log(formData);
+    const newOrder = {
+      userName: user?.displayName,
+      userEmail: user?.email,
+      userPhoneNumber,
+      userAddress,
+      packageName: `${data?.name}`,
+      packageId: data?._id,
+      serviceName: "Gas",
+      paymentAmount: parseInt(data?.price),
+      paymentStatus: "pending",
+    };
+    console.log(newOrder);
+
+    AxiosBaseURL.post("/orders", newOrder)
+      .then((data) => {
+        console.log("orderposted", data);
+      })
+      .catch((err) => {
+        console.log("orderpostError", err);
+      });
+
     onClose();
   };
 
@@ -39,8 +53,8 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
           <div className="flex justify-between items-center pb-3">
             <p className="text-xl font-bold">
               {" "}
-              Buying
-              <span className="text-info text-2xl">{data.name}</span> Gas
+              Buying Internet Package{" "}
+              <span className="text-info text-2xl">{data.name}</span>{" "}
             </p>
             <div className="modal-close cursor-pointer z-50" onClick={onClose}>
               <svg
@@ -50,13 +64,7 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
                 height="18"
                 viewBox="0 0 18 18"
               >
-                <path
-                  d="M6.293 6.293a1 1 0 011.414 0L9 7.586l1.293-1.293a1 1 0 111.414 1.414L10.414 9l1.293 1.293a1 1 0 11-1.414 1.414L9 10.414l-1.293 1.293a1 1 0 01-1.414-1.414L7.586 9 6.293 7.707a1 1 0 010-1.414z"
-                  // eslint-disable-next-line react/no-unknown-property
-                  fill-rule="evenodd"
-                  // eslint-disable-next-line react/no-unknown-property
-                  clip-rule="evenodd"
-                ></path>
+                <path d="M6.293 6.293a1 1 0 011.414 0L9 7.586l1.293-1.293a1 1 0 111.414 1.414L10.414 9l1.293 1.293a1 1 0 11-1.414 1.414L9 10.414l-1.293 1.293a1 1 0 01-1.414-1.414L7.586 9 6.293 7.707a1 1 0 010-1.414z"></path>
               </svg>
             </div>
           </div>
@@ -71,9 +79,8 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
               </label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
+                name="userName"
+                defaultValue={user?.displayName}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
               />
@@ -87,9 +94,9 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
               </label>
               <input
                 type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
+                name="userEmail"
+                value={user?.email}
+                readOnly
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Email"
               />
@@ -103,9 +110,8 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
               </label>
               <input
                 type="tel"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleChange}
+                name="userPhoneNumber"
+                defaultValue={dbuser?.phoneNumber}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Phone Number"
               />
@@ -118,9 +124,8 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
                 Address
               </label>
               <textarea
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
+                name="userAddress"
+                defaultValue={dbuser?.address}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 rows="4"
                 placeholder="Address"

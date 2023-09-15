@@ -1,28 +1,39 @@
 /* eslint-disable react/prop-types */
 // Modal.js
-import { useState } from "react";
-// eslint-disable-next-line react/prop-types
+import { useContext } from "react";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import { authContext } from "../../../context/UserContext";
+import { UsedbUser } from "../../Hooks/dbUser";
 
-// eslint-disable-next-line react/prop-types
 const OilBuyModal = ({ isOpen, onClose, data }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    // eslint-disable-next-line react/prop-types
-    packageName: `${data?.name}`,
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
+  const { user } = useContext(authContext);
+  const [dbuser] = UsedbUser(user?.email);
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can handle the form submission logic here
-    console.log(formData);
+    const from = e.target;
+    const userPhoneNumber = from.userPhoneNumber.value;
+    const userAddress = from.userAddress.value;
+    const newOrder = {
+      userName: user?.displayName,
+      userEmail: user?.email,
+      userPhoneNumber,
+      userAddress,
+      packageName: `${data?.name}`,
+      packageId: data?._id,
+      serviceName: "Oil",
+      paymentAmount: parseInt(data?.price),
+      paymentStatus: "pending",
+    };
+    console.log(newOrder);
+
+    AxiosBaseURL.post("/orders", newOrder)
+      .then((data) => {
+        console.log("orderposted", data);
+      })
+      .catch((err) => {
+        console.log("orderpostError", err);
+      });
+
     onClose();
   };
 
@@ -66,9 +77,8 @@ const OilBuyModal = ({ isOpen, onClose, data }) => {
               </label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
+                name="userName"
+                defaultValue={user?.displayName}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
               />
@@ -82,9 +92,9 @@ const OilBuyModal = ({ isOpen, onClose, data }) => {
               </label>
               <input
                 type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
+                name="userEmail"
+                value={user?.email}
+                readOnly
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Email"
               />
@@ -97,10 +107,9 @@ const OilBuyModal = ({ isOpen, onClose, data }) => {
                 Phone Number
               </label>
               <input
+                defaultValue={dbuser?.phoneNumber}
                 type="tel"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleChange}
+                name="userPhoneNumber"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Phone Number"
               />
@@ -113,9 +122,8 @@ const OilBuyModal = ({ isOpen, onClose, data }) => {
                 Address
               </label>
               <textarea
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
+                name="userAddress"
+                defaultValue={dbuser?.address}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 rows="4"
                 placeholder="Address"

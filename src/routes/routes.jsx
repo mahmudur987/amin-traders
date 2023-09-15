@@ -13,6 +13,7 @@ import Profile from "../pages/DashboardPage/Profile";
 import Internet from "../pages/DashboardPage/Internet";
 import Oil from "../pages/DashboardPage/Oil";
 import Gas from "../pages/DashboardPage/Gas";
+import AllOrder from "../pages/DashboardPage/AllOrder";
 
 export const router = createBrowserRouter([
   {
@@ -70,7 +71,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/order",
-        element: <Profile />,
+        element: <AllOrder />,
       },
       {
         path: "/dashboard/internet",

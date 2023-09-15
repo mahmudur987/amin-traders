@@ -2,32 +2,41 @@
 // Modal.js
 import { useContext, useState } from "react";
 import { authContext } from "../../../context/UserContext";
-// eslint-disable-next-line react/prop-types
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import { UsedbUser } from "../../Hooks/dbUser";
 
-// eslint-disable-next-line react/prop-types
 const Modal = ({ isOpen, onClose, data }) => {
   const { user } = useContext(authContext);
-
-  const [formData, setFormData] = useState({
-    userName: user?.displayName,
-    userEmail: user?.email,
-    userPhoneNumber: "",
-    userAddress: "",
-    // eslint-disable-next-line react/prop-types
-    packageName: `${data?.name}`,
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData({ ...formData, [name]: value });
-  };
-
+  const [dbuser] = UsedbUser(user?.email);
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can handle the form submission logic here
 
-    console.log(formData);
+    const from = e.target;
+    const userPhoneNumber = from.userPhoneNumber.value;
+    const userAddress = from.userAddress.value;
+
+    // You can handle the form submission logic here
+    const newOrder = {
+      userName: user?.displayName,
+      userEmail: user?.email,
+      userPhoneNumber,
+      userAddress,
+      packageName: `${data?.name}`,
+      packageId: data?._id,
+      serviceName: "Internet",
+      paymentAmount: parseInt(data?.price),
+      paymentStatus: "pending",
+    };
+    console.log(newOrder);
+
+    AxiosBaseURL.post("/orders", newOrder)
+      .then((data) => {
+        console.log("orderposted", data);
+      })
+      .catch((err) => {
+        console.log("orderpostError", err);
+      });
+
     onClose();
   };
 
@@ -70,9 +79,8 @@ const Modal = ({ isOpen, onClose, data }) => {
               </label>
               <input
                 type="text"
-                name="name"
+                name="userName"
                 defaultValue={user?.displayName}
-                onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
               />
@@ -86,10 +94,9 @@ const Modal = ({ isOpen, onClose, data }) => {
               </label>
               <input
                 type="email"
-                name="email"
+                name="userEmail"
                 value={user?.email}
                 readOnly
-                onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Email"
               />
@@ -102,10 +109,9 @@ const Modal = ({ isOpen, onClose, data }) => {
                 Phone Number
               </label>
               <input
+                defaultValue={dbuser?.phoneNumber}
                 type="tel"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleChange}
+                name="userPhoneNumber"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Phone Number"
               />
@@ -118,9 +124,8 @@ const Modal = ({ isOpen, onClose, data }) => {
                 Address
               </label>
               <textarea
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
+                name="userAddress"
+                defaultValue={dbuser?.address}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 rows="4"
                 placeholder="Address"
