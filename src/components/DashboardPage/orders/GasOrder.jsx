@@ -28,7 +28,7 @@ const GasOrder = ({ index, order, refetch }) => {
   };
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl border">
+    <div className="card  bg-base-100 shadow-xl border">
       <div className="card-body">
         <p className="text-xl">Order No :{index + 1}</p>
         <h2 className="card-title">Name: {userName}</h2>

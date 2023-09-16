@@ -1,12 +1,11 @@
 import toast from "react-hot-toast";
-
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../shared/loading/Loading";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
-
 import InternetOrder from "./InternetOrder";
 import GasOrder from "./GasOrder";
 import OilOrder from "./OilOrder";
+import { AiFillCaretDown } from "react-icons/ai";
 
 const Ordrs = () => {
   const {
@@ -23,11 +22,33 @@ const Ordrs = () => {
     },
   });
 
-  const InternetOrders = orders?.filter((x) => x.serviceName === "Internet");
-  const GasOrders = orders?.filter((x) => x.serviceName === "Gas");
-  const OilOrders = orders?.filter((x) => x.serviceName === "Oil");
+  const InternetOrders = orders
+    ?.filter((x) => x.serviceName === "Internet")
+    .slice()
+    .sort((a, b) => {
+      const statusA = a.delivery.status ? 1 : 0;
+      const statusB = b.delivery.status ? 1 : 0;
 
-  console.log(GasOrders);
+      return statusA - statusB;
+    });
+  const GasOrders = orders
+    ?.filter((x) => x.serviceName === "Gas")
+    .slice()
+    .sort((a, b) => {
+      const statusA = a.delivery.status ? 1 : 0;
+      const statusB = b.delivery.status ? 1 : 0;
+
+      return statusA - statusB;
+    });
+  const OilOrders = orders
+    ?.filter((x) => x.serviceName === "Oil")
+    .slice()
+    .sort((a, b) => {
+      const statusA = a.delivery.status ? 1 : 0;
+      const statusB = b.delivery.status ? 1 : 0;
+      return statusA - statusB;
+    });
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -44,7 +65,9 @@ const Ordrs = () => {
       <div className="w-full flex justify-end">
         <button className="btn btn-outline ">
           sort
-          <span className="text-3xl">v</span>{" "}
+          <span className="text-xl">
+            <AiFillCaretDown />
+          </span>
         </button>
       </div>
       {/* internet order */}

@@ -15,9 +15,21 @@ const InternetOrder = ({ index, order, refetch }) => {
     paymentStatus,
     orderDate,
     orderStatus,
-  } = order;
+    delivery,
+  } = order || {};
+  console.log(order);
   const handleOrderrecived = (id) => {
     AxiosBaseURL.post(`/orders/orderrecive/${id}`)
+      .then((data) => {
+        console.log("orderrecived", data.data.data);
+        refetch();
+      })
+      .catch((err) => {
+        console.error("orderReciveEroor", err);
+      });
+  };
+  const handleOrderDelever = (id) => {
+    AxiosBaseURL.post(`/orders/orderdeliver/${id}`)
       .then((data) => {
         console.log("orderrecived", data);
         refetch();
@@ -28,7 +40,7 @@ const InternetOrder = ({ index, order, refetch }) => {
   };
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl border">
+    <div className="card bg-base-100 shadow-xl border">
       <div className="card-body">
         <p className="text-xl">Order No :{index + 1}</p>
         <h2 className="card-title">Name: {userName}</h2>
@@ -40,6 +52,11 @@ const InternetOrder = ({ index, order, refetch }) => {
         <p>Payment Status :{paymentStatus} </p>
         <p>Order Status :{orderStatus ? orderStatus : "N/A"} </p>
         <p>Order Date :{orderDate.slice(0, 10)} </p>
+
+        {orderStatus === "delivered" && (
+          <p>Delivery Date :{delivery?.deliveryDate.slice(0, 10)} </p>
+        )}
+
         <div className="card-actions justify-end">
           {!orderStatus && (
             <button
@@ -49,7 +66,15 @@ const InternetOrder = ({ index, order, refetch }) => {
               Recived
             </button>
           )}
-          <button className="btn btn-outline btn-sm">Delevered</button>
+
+          {orderStatus !== "delivered" && (
+            <button
+              onClick={() => handleOrderDelever(_id)}
+              className="btn btn-outline btn-sm"
+            >
+              Delivered
+            </button>
+          )}
         </div>
       </div>
     </div>

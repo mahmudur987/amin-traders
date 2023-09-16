@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import AxiosBaseURL from "../../axios/AxiosConfig";
+import { useQuery } from "@tanstack/react-query";
 
 export const UsedbUser = (email) => {
-  const [dbuser, setDbuser] = useState(null);
+  const {
+    data: dbuser,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: [email],
+    queryFn: async () => {
+      const data = await AxiosBaseURL.get(`/users/${email}`);
 
-  useEffect(() => {
-    if (email) {
-      AxiosBaseURL.get(`/users/${email}`)
-        .then((data) => {
-          setDbuser(data.data.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [email]);
-
-  return [dbuser];
+      return data.data.data;
+    },
+  });
+  return [dbuser, isLoading, isError, error, refetch];
 };

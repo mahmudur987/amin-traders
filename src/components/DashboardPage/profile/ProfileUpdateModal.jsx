@@ -5,10 +5,13 @@ import { useContext } from "react";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import { UsedbUser } from "../../Hooks/dbUser";
 import { authContext } from "../../../context/UserContext";
+import LoadingSpinner from "../../shared/loading/Loading";
+import toast from "react-hot-toast";
 
 const ProfileUpdateModal = ({ isOpen, onClose, data }) => {
-  const { user } = useContext(authContext);
-  const [dbuser] = UsedbUser(user?.email);
+  const { user, updateUserProfile } = useContext(authContext);
+  const [dbuser, isLoading, isError, error, refetch] = UsedbUser(user?.email);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -16,21 +19,71 @@ const ProfileUpdateModal = ({ isOpen, onClose, data }) => {
     const name = from.userName.value;
     const phoneNumber = from.userPhoneNumber.value;
     const address = from.userAddress.value;
-    const updateUser = { name, phoneNumber, address, email: user?.email };
+    const image = from.photo.files[0];
+    if (image) {
+      const imageData = new FormData();
+      imageData.append("image", image);
 
-    console.log(updateUser);
+      const url = `https://api.imgbb.com/1/upload?key=d8359aaef7717cdf56ff9bb7b30b6225`;
+      fetch(url, {
+        method: "POST",
+        body: imageData,
+      })
+        .then((res) => res.json())
+        .then((imagedata) => {
+          console.log(imagedata.data);
+          if (imagedata.success) {
+            const photoURL = imagedata.data.display_url;
+            const updateUser = {
+              name,
+              phoneNumber,
+              address,
+              email: user?.email,
+              photoUrl: photoURL,
+            };
 
-    // AxiosBaseURL.post("/orders", newOrder)
-    //   .then((data) => {
-    //     console.log("orderposted", data);
-    //   })
-    //   .catch((err) => {
-    //     console.log("orderpostError", err);
-    //   });
+            updateUserProfile({ displayName: name, photoURL })
+              .then(() => {
+                AxiosBaseURL.post(`/users/${user?.email}`, updateUser)
+                  .then((data) => {
+                    console.log("update User", data.data.data);
+                    refetch();
+                  })
+                  .catch((err) => {
+                    console.log("update User", err);
+                  });
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+          }
+        });
+    } else {
+      const updateUser = {
+        name,
+        phoneNumber,
+        address,
+        email: user?.email,
+      };
+      AxiosBaseURL.post(`/users/${user?.email}`, updateUser)
+        .then((data) => {
+          console.log("update User", data.data.data);
+        })
+        .catch((err) => {
+          console.log("update User", err);
+        });
+    }
 
     onClose();
   };
-
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (isError) {
+    return toast.error(error.message, {
+      id: "clipboard",
+    });
+  }
   return (
     <div
       className={`${
@@ -66,16 +119,33 @@ const ProfileUpdateModal = ({ isOpen, onClose, data }) => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="name"
               >
+                Photo
+              </label>
+              <input
+                type="file"
+                name="photo"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
+
+            {/* name */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="name"
+              >
                 Name
               </label>
               <input
                 type="text"
                 name="userName"
-                defaultValue={user?.displayName}
+                defaultValue={dbuser?.name}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
               />
             </div>
+
+            {/* email */}
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -86,7 +156,7 @@ const ProfileUpdateModal = ({ isOpen, onClose, data }) => {
               <input
                 type="email"
                 name="userEmail"
-                value={user?.email}
+                value={dbuser?.email}
                 readOnly
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Email"

@@ -3,10 +3,13 @@ import { useContext, useState } from "react";
 import { authContext } from "../../context/UserContext";
 import { UsedbUser } from "../../components/Hooks/dbUser";
 import ProfileUpdateModal from "../../components/DashboardPage/profile/ProfileUpdateModal";
+import { useRevalidator } from "react-router-dom";
+import LoadingSpinner from "../../components/shared/loading/Loading";
+import toast from "react-hot-toast";
 
 const Profile = () => {
   const { user } = useContext(authContext);
-  const [dbuser] = UsedbUser(user?.email);
+  const [dbuser, isLoading, isError, error, refetch] = UsedbUser(user?.email);
 
   const { name, email, phoneNumber, address, photoUrl } = dbuser || {};
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,8 +19,18 @@ const Profile = () => {
   };
 
   const closeModal = () => {
+    refetch();
     setIsModalOpen(false);
   };
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (isError) {
+    return toast.error(error.message, {
+      id: "clipboard",
+    });
+  }
+
   return (
     <>
       {dbuser && (

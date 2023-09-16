@@ -3,9 +3,9 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { authContext } from "../../Context/UserContext";
 import LoadingSpinner from "../../components/shared/loading/Loading";
 import AxiosBaseURL from "../../axios/AxiosConfig";
+import { authContext } from "../../context/UserContext";
 
 const SignUpPage = () => {
   const {
