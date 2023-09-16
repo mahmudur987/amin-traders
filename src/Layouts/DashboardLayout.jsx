@@ -24,10 +24,10 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+          <ul className="menu p-4 w-64 min-h-full bg-base-200 text-base-content font-bold">
             {/* Sidebar content here */}
             <li>
-              <Link to={'"/dashboard'}> Profile</Link>
+              <Link to={"/dashboard"}> Profile</Link>
             </li>
             <li>
               <Link to={"/dashboard/order"}> All Order</Link>

@@ -14,6 +14,7 @@ import Internet from "../pages/DashboardPage/Internet";
 import Oil from "../pages/DashboardPage/Oil";
 import Gas from "../pages/DashboardPage/Gas";
 import AllOrder from "../pages/DashboardPage/AllOrder";
+import Allusers from "../pages/DashboardPage/Allusers";
 
 export const router = createBrowserRouter([
   {
@@ -87,7 +88,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/users",
-        element: <Profile />,
+        element: <Allusers />,
       },
     ],
   },
