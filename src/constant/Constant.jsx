@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 export const InternetPackagesData = [
   {
     name: "Basic",
@@ -418,5 +419,172 @@ export const OilData = [
       isOffer: true,
       lessPrice: 50,
     },
+  },
+];
+
+export const internetUsers = [
+  {
+    name: "mahmud",
+    phoneNumber: "01671706882",
+    email: "mahmud@gmail.com",
+    address: "21/2,meradia,khilgaon,dhaka",
+    serviceName: "internet",
+    packageName: "Basic",
+    PaymentInfo: [
+      {
+        MonthName: "January",
+        status: true,
+        billAmount: 500,
+        DateOfBill: "16/9/2023",
+      },
+      {
+        MonthName: "February",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "March",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "April",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "May",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "June",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "July",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "August",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "September",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "October",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "November",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "December",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+    ],
+  },
+  {
+    name: "polash",
+    phoneNumber: "01671706882",
+    email: "polash@gmail.com",
+    address: "21/2,meradia,khilgaon,dhaka",
+    serviceName: "internet",
+    packageName: "Basic",
+    PaymentInfo: [
+      {
+        MonthName: "January",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "February",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "March",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "April",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "May",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "June",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "July",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "August",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "September",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "October",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "November",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+      {
+        MonthName: "December",
+        status: false,
+        billAmount: 0,
+        DateOfBill: "",
+      },
+    ],
   },
 ];

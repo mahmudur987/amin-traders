@@ -1,7 +1,11 @@
-import React from "react";
+import Users from "../../components/DashboardPage/AllUsers/Users";
 
-const Allusers = () => {
-  return <div>this is all usersPage</div>;
+const AllUsers = () => {
+  return (
+    <div>
+      <Users />
+    </div>
+  );
 };
 
-export default Allusers;
+export default AllUsers;

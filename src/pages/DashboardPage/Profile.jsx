@@ -1,10 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
-
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 
 import { authContext } from "../../context/UserContext";
 import { UsedbUser } from "../../components/Hooks/dbUser";
-import { useLocation } from "react-router-dom";
 import ProfileUpdateModal from "../../components/DashboardPage/profile/ProfileUpdateModal";
 
 const Profile = () => {
@@ -13,7 +10,7 @@ const Profile = () => {
 
   const { name, email, phoneNumber, address, photoUrl } = dbuser || {};
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { pathname } = useLocation();
+
   const openModal = () => {
     setIsModalOpen(true);
   };

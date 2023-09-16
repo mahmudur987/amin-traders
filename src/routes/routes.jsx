@@ -14,7 +14,10 @@ import Internet from "../pages/DashboardPage/Internet";
 import Oil from "../pages/DashboardPage/Oil";
 import Gas from "../pages/DashboardPage/Gas";
 import AllOrder from "../pages/DashboardPage/AllOrder";
-import Allusers from "../pages/DashboardPage/Allusers";
+import AllUsers from "../pages/DashboardPage/Allusers";
+import InternetUsers from "../pages/DashboardPage/InternetUsers";
+import InternetUserDetails from "../components/DashboardPage/InternetUsers/InternetUserDetails";
+import AxiosBaseURL from "../axios/AxiosConfig";
 
 export const router = createBrowserRouter([
   {
@@ -88,7 +91,18 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/users",
-        element: <Allusers />,
+        element: <AllUsers />,
+      },
+      {
+        path: "/dashboard/internetusers",
+        element: <InternetUsers />,
+      },
+      {
+        path: "/dashboard/internetuser/:id",
+        loader: async ({ params }) => {
+          return AxiosBaseURL.get(`/internetusers/${params.id}`);
+        },
+        element: <InternetUserDetails />,
       },
     ],
   },
