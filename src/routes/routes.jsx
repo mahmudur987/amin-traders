@@ -20,6 +20,7 @@ import InternetUserDetails from "../components/DashboardPage/InternetUsers/Inter
 import AxiosBaseURL from "../axios/AxiosConfig";
 import PrivatRoutes from "./PrivetRoutes";
 import MyBookings from "../pages/DashboardPage/MyBookings";
+import Bags from "../pages/Bags/Bags";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: "/service/oilpage",
         element: <OilPages />,
+      },
+      {
+        path: "/service/bags",
+        element: <Bags />,
       },
       {
         path: "/service/signup",

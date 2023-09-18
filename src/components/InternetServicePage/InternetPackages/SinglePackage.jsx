@@ -2,13 +2,12 @@
 import { BsFillHouseCheckFill } from "react-icons/bs";
 import Modal from "./Modal";
 import { useContext, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { authContext } from "../../../context/UserContext";
 import toast from "react-hot-toast";
 const SinglePackage = ({ data }) => {
-  const { name, speed, price, condition } = data;
+  const { name, speed, price, condition, bestDeals } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { pathname } = useLocation();
+  console.log(data);
   const { user } = useContext(authContext);
   const openModal = () => {
     if (!user) {
@@ -25,21 +24,19 @@ const SinglePackage = ({ data }) => {
 
   return (
     <div
-      className={`flex flex-col gap-5 border p-2 lg:p-10 rounded-xl shadow-xl ${
-        pathname === "/" ? "bg-base-100 text-primary" : ""
-      }`}
+      className={`flex max-w-xs flex-col gap-5 border p-5  rounded-xl shadow-xl`}
     >
       <h1 className="text-lg font-bold">{name}</h1>
-
+      {bestDeals && <div className="badge badge-secondary">Offer</div>}
       <div className="flex gap-5 justify-center">
-        <p className="w-1/2 flex justify-center items-center  border-r-4">
-          <span className="text-3xl font-semibold">{speed}</span>
+        <p className="w-1/2 flex  items-center  border-r-4">
+          <span className="text-2xl font-semibold">{speed}</span>
           <span>Mbps</span>
         </p>
         <p className="w-1/2 ">
           <span className="text-xl">BDT</span>
-          <span className="text-3xl font-bold">{price}</span>
-          <p className="text-lg">PerMonth</p>
+          <span className="text-2xl font-bold">{price}</span>
+          <p className="">PerMonth</p>
           <span>Excluding Vat</span>
         </p>
       </div>

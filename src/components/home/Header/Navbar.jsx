@@ -1,8 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineCaretDown, AiOutlineMenuUnfold } from "react-icons/ai";
 import { useContext, useState } from "react";
-import { authContext } from "../../../Context/UserContext";
+
 import toast from "react-hot-toast";
+import { authContext } from "../../../context/UserContext";
 const Navbar = () => {
   const { pathname } = useLocation();
   const [showMenu, setShowMenu] = useState(false);
@@ -44,6 +45,9 @@ const Navbar = () => {
               </li>
               <li>
                 <Link to={"/service/oilpage"}>Food Oil</Link>
+              </li>
+              <li>
+                <Link to={"/service/bags"}>Bags</Link>
               </li>
             </ul>
           )}

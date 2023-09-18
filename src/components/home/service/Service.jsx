@@ -9,15 +9,14 @@ const Service = ({ service }) => {
 
   return (
     <Link to={link}>
-      <div className="card  shadow-xl">
+      <div className="card w-52 h-72 flex flex-col justify-around shadow-xl">
         <figure>
           <img className="h-52 w-full" src={imageUrl} alt="Shoes" />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            <p>{name}</p>
+        <div className="p-2 w-full">
+          <h2 className="card-title w-full">
+            <p className="text-center w-full">{name}</p>
           </h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
         </div>
       </div>
     </Link>

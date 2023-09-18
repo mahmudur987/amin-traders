@@ -17,6 +17,9 @@ const AddOilModal = ({ isOpen, onClose, refetch }) => {
   const [image, setimage] = useState({});
   const [isOffer, setisoffer] = useState(Boolean);
   const [bestDeals, setBestDeals] = useState(false);
+  const [publishDate, setPublishDate] = useState(
+    new Date(Date.now()).toLocaleString()
+  );
   const handleSubmit = (e) => {
     e.preventDefault();
     const imageData = new FormData();
@@ -39,6 +42,7 @@ const AddOilModal = ({ isOpen, onClose, refetch }) => {
             offer: { isOffer, lessPrice: offerPrice },
             picture: imagedata.data.display_url,
             bestDeals,
+            publishDate,
           };
           console.log(newData);
 
@@ -189,6 +193,24 @@ const AddOilModal = ({ isOpen, onClose, refetch }) => {
                 placeholder="Name"
               />
             </div>
+
+            {/* Publish date */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="name"
+              >
+                Publish Date
+              </label>
+              <input
+                type="date"
+                name="publishDate"
+                onChange={(e) => setPublishDate(e.target.value)}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="valve"
+              />
+            </div>
+
             {/* best deals */}
 
             <div className="mb-4  flex gap-10 items-center">

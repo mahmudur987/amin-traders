@@ -45,7 +45,7 @@ const InternetUsers = () => {
       </div>
       {/* internet order */}
       <div className="w-full flex flex-col  gap-10">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 ">
+        <div className="w-full flex justify-around   flex-wrap ">
           {internetUsers?.map((user, i) => (
             <InternetUser refetch={refetch} key={i} index={i} user={user} />
           ))}

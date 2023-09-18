@@ -6,17 +6,18 @@ const HomeAboutUs = () => {
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2 p-8 grid items-center  ">
           <p className="mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            feugiat, urna eu vulputate iaculis, mauris mauris fringilla est,
-            vitae volutpat est nunc sed massa. Sed interdum risus ut pharetra
-            commodo.
+            At AMIN_TRADERS, we ve taken the hassle out of shopping for your
+            everyday essentials. Whether you re looking for high-speed broadband
+            internet to stay connected, cylinder gas for cooking, or quality
+            food oil and woven bags, we have you covered. Welcome to a world of
+            convenience, where your needs are our top priority
           </p>
           <p className="mb-4">
-            Aliquam finibus ex vitae est congue auctor. Praesent volutpat nisi
-            eget tortor vulputate, sed tincidunt urna pharetra. Fusce finibus
-            quam purus, ac eleifend nibh mattis at. Sed a fermentum urna. Sed
-            iaculis consectetur nisi, in elementum felis consequat in. Fusce
-            eget libero non leo finibus eleifend.
+            Discover a new level of convenience and quality at Amin Traders. We
+            offer a range of essential services, including high-speed broadband
+            internet, cylinder gas, and everyday necessities like food oil and
+            woven bags. Step into a shopping experience thats tailored to your
+            needs, and let us simplify your life.
           </p>
         </div>
         <div className="md:w-1/2 p-8">

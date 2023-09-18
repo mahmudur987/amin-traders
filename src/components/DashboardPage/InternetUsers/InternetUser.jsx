@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 const InternetUser = ({ user }) => {
   return (
-    <div className="card  bg-base-100 shadow-xl">
+    <div className="card w-52  bg-base-100 shadow-xl">
       <div className="card-body">
         <h2 className="card-title">{user?.name}</h2>
         <p>{user?.phoneNumber}</p>

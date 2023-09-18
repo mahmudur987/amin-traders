@@ -25,6 +25,14 @@ const Services = () => {
       imageUrl:
         "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1318&q=80",
     },
+    {
+      name: "Bags",
+      link: "/service/bags",
+
+      description: "weqfrefrqwher  khqwbrgkhwqb wqhbrwq  q3jhgbiq3w",
+      imageUrl:
+        "https://bagworkshop.com/wp-content/uploads/2021/03/The-5-Best-Promotional-Bags-for-Your-Brand_v1-1.jpg",
+    },
   ];
   return (
     <div className="container my-10">
@@ -32,7 +40,7 @@ const Services = () => {
         our services
       </h1>
 
-      <div className="w-full lg:w-9/12 mx-auto grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-10 my-10">
+      <div className="w-full flex  justify-around flex-wrap md:p-5 ">
         {servicesData.map((data, i) => (
           <Service key={i} service={data} />
         ))}

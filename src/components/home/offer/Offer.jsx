@@ -3,7 +3,9 @@ import AxiosBaseURL from "../../../axios/AxiosConfig";
 import SinglePackage from "../../InternetServicePage/InternetPackages/SinglePackage";
 import LoadingSpinner from "../../shared/loading/Loading";
 import toast from "react-hot-toast";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 const Offer = () => {
   const {
     data: InternetPackagesData,
@@ -17,7 +19,16 @@ const Offer = () => {
       return data.data.data;
     },
   });
-
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 3,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -27,18 +38,46 @@ const Offer = () => {
     });
   }
   return (
-    <div className="my-10 ">
+    <div className="my-10 flex flex-col items-center ">
       <h1 className="text-center font-bold text-secondary text-xl md:text-2xl lg:text-4xl">
         Todays Exclusive Offer
       </h1>
 
-      {InternetPackagesData && (
-        <div className="w-full p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
-          {InternetPackagesData?.slice(0, 4).map((data) => (
-            <SinglePackage data={data} key={data._id}></SinglePackage>
-          ))}
-        </div>
-      )}
+      <div className="w-full  flex justify-around flex-wrap">
+        {InternetPackagesData && (
+          <div className="w-full md:w-1/2 lg:1/3  p-5 ">
+            <Slider {...settings}>
+              {InternetPackagesData?.filter((x) => x.bestDeals === true)
+                .slice(0, 4)
+                .map((data) => (
+                  <SinglePackage data={data} key={data._id}></SinglePackage>
+                ))}
+            </Slider>
+          </div>
+        )}
+        {/* {InternetPackagesData && (
+          <div className="w-full md:w-1/2 lg:1/3   p-5 ">
+            <Slider {...settings}>
+              {InternetPackagesData?.filter((x) => x.bestDeals === true)
+                .slice(0, 4)
+                .map((data) => (
+                  <SinglePackage data={data} key={data._id}></SinglePackage>
+                ))}
+            </Slider>
+          </div>
+        )}
+        {InternetPackagesData && (
+          <div className="w-full md:w-1/2 lg:1/3   p-5 ">
+            <Slider {...settings}>
+              {InternetPackagesData?.filter((x) => x.bestDeals === true)
+                .slice(0, 4)
+                .map((data) => (
+                  <SinglePackage data={data} key={data._id}></SinglePackage>
+                ))}
+            </Slider>
+          </div>
+        )} */}
+      </div>
     </div>
   );
 };

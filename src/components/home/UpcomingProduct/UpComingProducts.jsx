@@ -1,49 +1,43 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import SinglePackage from "../../InternetServicePage/InternetPackages/SinglePackage";
-import { useQuery } from "@tanstack/react-query";
+
 import AxiosBaseURL from "../../../axios/AxiosConfig";
-import LoadingSpinner from "../../shared/loading/Loading";
-import toast from "react-hot-toast";
+// import LoadingSpinner from "../../shared/loading/Loading";
+// import toast from "react-hot-toast";
 import Product from "../../GasServicePage/Products/product";
 import OilProduct from "../../Oilpage/oilProducts/OilProduct";
+import UgI from "./Ugi";
+import UGP from "./UGP";
+import UOP from "./UOP";
 
 const UpComingProducts = () => {
-  const {
-    data: Internet,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: [],
-    queryFn: async () => {
-      const data = await AxiosBaseURL.get("/internetservice/allpackage");
-      return data.data.data;
-    },
-  });
-  const {
-    data: Gas,
-    isLoading: gasisLoading,
-    isError: isgasError,
-    error: gasError,
-  } = useQuery({
-    queryKey: [],
-    queryFn: async () => {
-      const data = await AxiosBaseURL.get("/gasservice/allgaspackage");
-      return data.data.data;
-    },
-  });
-  const {
-    data: Oil,
-    isLoading: oilisLoading,
-    isError: oilisError,
-    error: oilError,
-  } = useQuery({
-    queryKey: [],
-    queryFn: async () => {
-      const data = await AxiosBaseURL.get("/oilservice/alloilpackage");
-      return data.data.data;
-    },
-  });
+  const [Internet, setInternet] = useState(null);
+  const [Gas, setGas] = useState(null);
+  const [Oil, setOil] = useState(null);
+
+  useEffect(() => {
+    AxiosBaseURL.get("/internetservice/allpackage")
+      .then((data) => {
+        setInternet(data.data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    AxiosBaseURL.get("/gasservice/allgaspackage")
+      .then((data) => {
+        setGas(data.data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    AxiosBaseURL.get("/oilservice/alloilpackage")
+      .then((data) => {
+        setOil(data.data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   // Assuming your data is stored in a variable called 'data'
   const currentDate = new Date();
@@ -59,15 +53,10 @@ const UpComingProducts = () => {
   const futureOilData = Oil?.filter(
     (item) => new Date(item.publishDate) > currentDate
   );
-  console.log(Internet);
-  console.log(Gas);
-  console.log(Oil);
 
-  console.log(futureGasData);
-
-  if (isLoading || gasisLoading || oilisLoading) {
-    return <LoadingSpinner />;
-  }
+  // if (isLoading || gasisLoading || oilisLoading) {
+  //   return <LoadingSpinner />;
+  // }
   //   if (isError || gasisError || oilisError) {
   //     return toast.error(error.message, {
   //       id: "clipboard",
@@ -78,43 +67,49 @@ const UpComingProducts = () => {
       <h1 className="text-center font-bold text-secondary text-xl md:text-2xl lg:text-4xl">
         Upcoming Products
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="w-full  flex flex-wrap justify-around gap-3">
         {/* internet */}
-        <div>
-          <h1>Internet</h1>
-          {futureInternetData && (
-            <div className="w-full  ">
+
+        {futureInternetData && (
+          <div className="flex flex-col items-center">
+            <h1 className="text-2xl font-bold my-5 md:my-10">Internet</h1>
+            <div className="">
               {futureInternetData?.slice(0, 2).map((data) => (
-                <SinglePackage data={data} key={data._id}></SinglePackage>
+                <UgI data={data} key={data._id} />
               ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
         {/* gas */}
 
-        <div>
-          <h1>Lpg Gas</h1>
-          {futureGasData && (
-            <div className="w-full   ">
-              {futureGasData?.slice(0, 2).map((data) => (
-                <Product data={data} key={data._id}></Product>
-              ))}
-            </div>
-          )}
-        </div>
+        {futureGasData && (
+          <div className="flex flex-col items-center">
+            <h1 className="text-2xl font-bold my-5 md:my-10">Lpg Gas</h1>
+            {futureGasData && (
+              <div className="   ">
+                {futureGasData?.slice(0, 2).map((data) => (
+                  <UGP data={data} key={data._id}></UGP>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Food Oil */}
 
-        <div>
-          <h1>Food Oil</h1>
-          {futureOilData && (
-            <div className="w-full   ">
-              {futureOilData?.slice(0, 2).map((data) => (
-                <OilProduct data={data} key={data._id}></OilProduct>
-              ))}
-            </div>
-          )}
-        </div>
+        {futureOilData && (
+          <div className="flex flex-col items-center">
+            <h1 className="text-2xl font-bold my-5 md:my-10">Food Oil</h1>
+            {futureOilData && (
+              <div className="  ">
+                {futureOilData?.slice(0, 2).map((data) => (
+                  <UOP data={data} key={data._id}></UOP>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
