@@ -4,13 +4,14 @@ import { useContext } from "react";
 import { authContext } from "../../../context/UserContext";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import { UsedbUser } from "../../Hooks/dbUser";
+import toast from "react-hot-toast";
 
 const GasBuyModal = ({ isOpen, onClose, data }) => {
   const { user } = useContext(authContext);
   const [dbuser] = UsedbUser(user?.email);
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (!user) return toast.error("please LogIn first");
     const from = e.target;
     const userPhoneNumber = from.userPhoneNumber.value;
     const userAddress = from.userAddress.value;

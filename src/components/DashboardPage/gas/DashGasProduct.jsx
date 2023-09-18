@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import UpdateGasModal from "./UpdateGasModal";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import { authContext } from "../../../context/UserContext";
+import LoadingSpinner from "../../shared/loading/Loading";
 
-const DashGasProduct = ({ data }) => {
+const DashGasProduct = ({ data, refetch }) => {
+  const { loading, Setloading } = useContext(authContext);
   const {
     picture,
     Brand,
@@ -23,11 +27,24 @@ const DashGasProduct = ({ data }) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    refetch();
   };
 
   const handleDelete = (id) => {
-    console.log(id);
+    Setloading(true);
+    AxiosBaseURL.delete(`/gasservice/${id}`)
+      .then((data) => {
+        console.log(data.data);
+        refetch();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    Setloading(false);
   };
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <>
@@ -72,9 +89,7 @@ const DashGasProduct = ({ data }) => {
               </button>
               <button
                 onClick={() => {
-                  openModal();
-
-                  handleDelete(_id);
+                  handleDelete(data._id);
                 }}
                 className="btn btn-sm btn-secondary"
               >
@@ -82,6 +97,7 @@ const DashGasProduct = ({ data }) => {
               </button>
             </div>
             <UpdateGasModal
+              refetch={refetch}
               data={data}
               isOpen={isModalOpen}
               onClose={closeModal}

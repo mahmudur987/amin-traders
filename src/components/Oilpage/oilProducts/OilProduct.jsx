@@ -5,6 +5,7 @@ import OilBuyModal from "./OilBuyModal";
 import { useLocation } from "react-router-dom";
 
 import { authContext } from "../../../context/UserContext";
+import toast from "react-hot-toast";
 
 // eslint-disable-next-line react/prop-types
 const OilProduct = ({ data }) => {
@@ -12,8 +13,10 @@ const OilProduct = ({ data }) => {
 
   const { picture, name, brandName, quantity, price, offer } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { pathname } = useLocation();
+
   const openModal = () => {
+    if (!user) return toast.error("please LogIn first");
+
     setIsModalOpen(true);
   };
 

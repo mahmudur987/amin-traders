@@ -42,9 +42,13 @@ const InternetPackages = () => {
 
       {InternetPackagesData && (
         <div className="w-full p-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-          {InternetPackagesData?.slice(0, count).map((data) => (
-            <SinglePackage data={data} key={data._id}></SinglePackage>
-          ))}
+          {InternetPackagesData?.filter(
+            (item) => new Date(item.date) < new Date()
+          )
+            .slice(0, count)
+            .map((data) => (
+              <SinglePackage data={data} key={data._id}></SinglePackage>
+            ))}
         </div>
       )}
 

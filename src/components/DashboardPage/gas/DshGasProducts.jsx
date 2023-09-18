@@ -12,6 +12,7 @@ const DashGasProducts = () => {
     isLoading,
     isError,
     error,
+    refetch,
   } = useQuery({
     queryKey: [],
     queryFn: async () => {
@@ -27,6 +28,7 @@ const DashGasProducts = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    refetch();
   };
 
   if (isLoading) {
@@ -57,7 +59,11 @@ const DashGasProducts = () => {
         {LpgGasData && (
           <div className="w-full p-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
             {LpgGasData?.map((data) => (
-              <DashGasProduct data={data} key={data._id}></DashGasProduct>
+              <DashGasProduct
+                refetch={refetch}
+                data={data}
+                key={data._id}
+              ></DashGasProduct>
             ))}
           </div>
         )}

@@ -50,14 +50,13 @@ const LoginPage = () => {
           address: "",
         };
         AxiosBaseURL.post(`/users`, fullprofile)
-          // eslint-disable-next-line no-unused-vars
           .then((data) => {
-            // console.log("Save user", data);
+            navigate(from, { replace: true });
+
             toast.success("user login successfully");
           })
           .catch((error) => {
             toast.error(error.message);
-            navigate(from, { replace: true });
 
             console.error("Error:", error);
           });

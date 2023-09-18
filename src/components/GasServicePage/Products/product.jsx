@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import GasBuyModal from "./GasBuyModal";
 import { useLocation } from "react-router-dom";
+import { authContext } from "../../../context/UserContext";
+import toast from "react-hot-toast";
 
 const Product = ({ data }) => {
+  const { user } = useContext(authContext);
   const {
     picture,
     Brand,
@@ -16,9 +19,12 @@ const Product = ({ data }) => {
     use,
     valveType,
   } = data;
+  console.log(data);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { pathname } = useLocation();
   const openModal = () => {
+    if (!user) return toast.error("please LogIn first");
+
     setIsModalOpen(true);
   };
 

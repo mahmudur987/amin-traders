@@ -18,6 +18,8 @@ import AllUsers from "../pages/DashboardPage/Allusers";
 import InternetUsers from "../pages/DashboardPage/InternetUsers";
 import InternetUserDetails from "../components/DashboardPage/InternetUsers/InternetUserDetails";
 import AxiosBaseURL from "../axios/AxiosConfig";
+import PrivatRoutes from "./PrivetRoutes";
+import MyBookings from "../pages/DashboardPage/MyBookings";
 
 export const router = createBrowserRouter([
   {
@@ -67,7 +69,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivatRoutes>
+        <DashboardLayout />
+      </PrivatRoutes>
+    ),
     children: [
       {
         path: "/dashboard",
@@ -96,6 +102,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/internetusers",
         element: <InternetUsers />,
+      },
+      {
+        path: "/dashboard/mybooking",
+        element: <MyBookings />,
       },
       {
         path: "/dashboard/internetuser/:id",

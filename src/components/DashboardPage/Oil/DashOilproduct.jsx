@@ -1,20 +1,41 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import UpdateOilModal from "./UpdateOilModal";
+import { authContext } from "../../../context/UserContext";
+import LoadingSpinner from "../../shared/loading/Loading";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
 
-const DashOilProduct = ({ data }) => {
+const DashOilProduct = ({ data, refetch }) => {
   const { picture, name, brandName, quantity, price, offer } = data;
-
+  const { loading, Setloading } = useContext(authContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDelete = (id) => {
+    Setloading(true);
+    AxiosBaseURL.delete(`/oilservice/${id}`)
+      .then((data) => {
+        console.log(data.data);
+        refetch();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    Setloading(false);
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
+    refetch();
     setIsModalOpen(false);
   };
+  if (loading) {
+    <LoadingSpinner />;
+  }
   return (
     <div className="card  bg-base-100 shadow-xl">
       <figure>
@@ -45,9 +66,19 @@ const DashOilProduct = ({ data }) => {
           <button onClick={openModal} className="btn btn-sm btn-secondary">
             Update
           </button>
-          <button className="btn btn-sm btn-secondary">Delete</button>
+          <button
+            onClick={() => handleDelete(data?._id)}
+            className="btn btn-sm btn-secondary"
+          >
+            Delete
+          </button>
         </div>
-        <UpdateOilModal data={data} isOpen={isModalOpen} onClose={closeModal} />
+        <UpdateOilModal
+          refetch={refetch}
+          data={data}
+          isOpen={isModalOpen}
+          onClose={closeModal}
+        />
       </div>
     </div>
   );

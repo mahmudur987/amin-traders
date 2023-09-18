@@ -7,17 +7,17 @@ import AxiosBaseURL from "../../../axios/AxiosConfig";
 
 // eslint-disable-next-line react/prop-types
 const UpdateInternetPackModal = ({ isOpen, onClose, data }) => {
-  // eslint-disable-next-line no-unused-vars
   const [name, setName] = useState(data?.name);
   const [price, setprice] = useState(data?.price);
   const [speed, setspeed] = useState(data?.speed);
   const [condition, setCondition] = useState(data?.condition);
   const [vat, setvat] = useState(data?.vat);
+  const [bestDeals, setBestDeals] = useState(false);
+  // console.log(data);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newData = { name, price, speed, condition, vat };
-
-    AxiosBaseURL.post("/internetpack/:id", newData)
+    const newData = { name, price, speed, condition, vat, bestDeals };
+    AxiosBaseURL.post(`/internetservice/${data?._id}`, newData)
       .then((data) => {
         console.log(data.data);
       })
@@ -109,6 +109,19 @@ const UpdateInternetPackModal = ({ isOpen, onClose, data }) => {
                 type="checkbox"
                 name="vat"
                 onChange={(e) => setvat(e.target.checked)}
+              />
+            </div>
+            <div className="mb-4  flex gap-10 items-center">
+              <label
+                className="block text-gray-700 text-sm font-bold "
+                htmlFor="phoneNumber"
+              >
+                Best Deals
+              </label>
+              <input
+                type="checkbox"
+                name="vat"
+                onChange={(e) => setBestDeals(e.target.checked)}
               />
             </div>
             <div className="mb-4">

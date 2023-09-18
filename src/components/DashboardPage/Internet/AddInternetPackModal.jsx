@@ -11,11 +11,13 @@ const AddInternetPackModal = ({ isOpen, onClose }) => {
   const [speed, setspeed] = useState("");
   const [condition, setCondition] = useState("");
   const [vat, setvat] = useState(false);
+  const [bestDeals, setBestDeals] = useState(false);
+  const [date, setdate] = useState(new Date());
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newData = { name, price, speed, condition, vat };
+    const newData = { name, price, speed, condition, vat, date };
 
-    AxiosBaseURL.post("/internetpack/:id", newData)
+    AxiosBaseURL.post("/internetservice/allpackage", newData)
       .then((data) => {
         console.log(data.data);
       })
@@ -93,7 +95,22 @@ const AddInternetPackModal = ({ isOpen, onClose }) => {
                 defaultValue={speed}
                 onChange={(e) => setspeed(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Phone Number"
+                placeholder="speed"
+              />
+            </div>
+            {/* publish date */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="phoneNumber"
+              >
+                publish Date
+              </label>
+              <input
+                type="date"
+                name="publish date"
+                onChange={(e) => setdate(e.target.value)}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
             <div className="mb-4  flex gap-10 items-center">
@@ -109,6 +126,22 @@ const AddInternetPackModal = ({ isOpen, onClose }) => {
                 onChange={(e) => setvat(e.target.checked)}
               />
             </div>
+
+            {/* ?best deals  */}
+            <div className="mb-4  flex gap-10 items-center">
+              <label
+                className="block text-gray-700 text-sm font-bold "
+                htmlFor="phoneNumber"
+              >
+                Best Deals
+              </label>
+              <input
+                type="checkbox"
+                name="vat"
+                onChange={(e) => setBestDeals(e.target.checked)}
+              />
+            </div>
+
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -122,7 +155,7 @@ const AddInternetPackModal = ({ isOpen, onClose }) => {
                 onChange={(e) => setCondition([e.target.value])}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 rows="4"
-                placeholder="Address"
+                placeholder="condition"
               ></textarea>
             </div>
             <div className="flex justify-end pt-2">

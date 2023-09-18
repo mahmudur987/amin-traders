@@ -2,7 +2,13 @@ import Header from "../components/home/Header/Header";
 import { Link, Outlet } from "react-router-dom";
 import Footer from "../components/shared/footer/Footer";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useContext } from "react";
+import { authContext } from "../Context/UserContext";
+import { UsedbUser } from "../components/Hooks/dbUser";
 const DashboardLayout = () => {
+  const { user } = useContext(authContext);
+  const [dbuser] = UsedbUser(user?.email);
+
   return (
     <div>
       <Header />
@@ -30,23 +36,30 @@ const DashboardLayout = () => {
               <Link to={"/dashboard"}> Profile</Link>
             </li>
             <li>
-              <Link to={"/dashboard/order"}> All Order</Link>
+              <Link to={"/dashboard/mybooking"}> My Bookings</Link>
             </li>
-            <li>
-              <Link to={"/dashboard/internet"}> Internet Packages</Link>
-            </li>
-            <li>
-              <Link to={"/dashboard/gas"}> Lpg Gas </Link>
-            </li>
-            <li>
-              <Link to={"/dashboard/oil"}> Oil</Link>
-            </li>
-            <li>
-              <Link to={"/dashboard/users"}>All Users</Link>
-            </li>
-            <li>
-              <Link to={"/dashboard/internetusers"}>Internet Users</Link>
-            </li>
+            {dbuser?.role === "admin" && (
+              <>
+                <li>
+                  <Link to={"/dashboard/order"}> All Order</Link>
+                </li>
+                <li>
+                  <Link to={"/dashboard/internet"}> Internet Packages</Link>
+                </li>
+                <li>
+                  <Link to={"/dashboard/gas"}> Lpg Gas </Link>
+                </li>
+                <li>
+                  <Link to={"/dashboard/oil"}> Oil</Link>
+                </li>
+                <li>
+                  <Link to={"/dashboard/users"}>All Users</Link>
+                </li>
+                <li>
+                  <Link to={"/dashboard/internetusers"}>Internet Users</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

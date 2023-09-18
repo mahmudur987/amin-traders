@@ -30,7 +30,7 @@ const Users = () => {
 
   return (
     <div className="my-10 flex flex-col gap-10 items-center p-2 lg:p-10">
-      <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">All orders</h1>
+      <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">All USERS</h1>
 
       <div className="w-full flex justify-end">
         <button className="btn btn-outline ">

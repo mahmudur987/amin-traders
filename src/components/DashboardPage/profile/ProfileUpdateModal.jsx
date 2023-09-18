@@ -67,6 +67,7 @@ const ProfileUpdateModal = ({ isOpen, onClose, data }) => {
       };
       AxiosBaseURL.post(`/users/${user?.email}`, updateUser)
         .then((data) => {
+          refetch();
           console.log("update User", data.data.data);
         })
         .catch((err) => {

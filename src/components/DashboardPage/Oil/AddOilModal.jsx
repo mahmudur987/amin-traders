@@ -6,7 +6,7 @@ import AxiosBaseURL from "../../../axios/AxiosConfig";
 // eslint-disable-next-line react/prop-types
 
 // eslint-disable-next-line react/prop-types
-const AddOilModal = ({ isOpen, onClose }) => {
+const AddOilModal = ({ isOpen, onClose, refetch }) => {
   // eslint-disable-next-line no-unused-vars
 
   const [name, setName] = useState("");
@@ -16,6 +16,7 @@ const AddOilModal = ({ isOpen, onClose }) => {
   const [offerPrice, setofferPrice] = useState(0);
   const [image, setimage] = useState({});
   const [isOffer, setisoffer] = useState(Boolean);
+  const [bestDeals, setBestDeals] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     const imageData = new FormData();
@@ -36,19 +37,21 @@ const AddOilModal = ({ isOpen, onClose }) => {
             quantity,
             price,
             offer: { isOffer, lessPrice: offerPrice },
-            image: imagedata.data.display_url,
+            picture: imagedata.data.display_url,
+            bestDeals,
           };
           console.log(newData);
+
+          AxiosBaseURL.post("/oilservice/alloilpackage", newData)
+            .then((data) => {
+              console.log(data.data);
+              refetch();
+            })
+            .catch((err) => {
+              console.error(err);
+            });
         }
       });
-
-    // AxiosBaseURL.post("/oil/:id", newData)
-    //   .then((data) => {
-    //     console.log(data.data);
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
 
     onClose();
   };
@@ -184,6 +187,21 @@ const AddOilModal = ({ isOpen, onClose }) => {
                 }}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
+              />
+            </div>
+            {/* best deals */}
+
+            <div className="mb-4  flex gap-10 items-center">
+              <label
+                className="block text-gray-700 text-sm font-bold "
+                htmlFor="phoneNumber"
+              >
+                Best Deals
+              </label>
+              <input
+                type="checkbox"
+                name="vat"
+                onChange={(e) => setBestDeals(e.target.checked)}
               />
             </div>
 

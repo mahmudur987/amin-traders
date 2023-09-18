@@ -12,6 +12,7 @@ const DashOilProducts = () => {
     isLoading,
     isError,
     error,
+    refetch,
   } = useQuery({
     queryKey: [],
     queryFn: async () => {
@@ -26,6 +27,7 @@ const DashOilProducts = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    refetch();
   };
   if (isLoading) {
     return <LoadingSpinner />;
@@ -54,12 +56,20 @@ const DashOilProducts = () => {
         {OilData && (
           <div className="w-full p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
             {OilData?.map((data, i) => (
-              <DashOilProduct data={data} key={i}></DashOilProduct>
+              <DashOilProduct
+                refetch={refetch}
+                data={data}
+                key={i}
+              ></DashOilProduct>
             ))}
           </div>
         )}
       </div>
-      <AddOilModal isOpen={isModalOpen} onClose={closeModal} />
+      <AddOilModal
+        refetch={refetch}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </>
   );
 };

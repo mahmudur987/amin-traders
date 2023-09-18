@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 // Modal.js
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
+import { authContext } from "../../../context/UserContext";
 
-const UpdateOilModal = ({ isOpen, onClose, data }) => {
+const UpdateOilModal = ({ isOpen, onClose, data, refetch }) => {
+  const { loading, Setloading } = useContext(authContext);
   const [name, setName] = useState(data?.name);
   const [brandName, setbrandName] = useState(data?.brandName);
   const [quantity, setquantity] = useState(data.quantity);
@@ -13,8 +15,10 @@ const UpdateOilModal = ({ isOpen, onClose, data }) => {
   const [offerPrice, setofferPrice] = useState(data?.offer?.lessPrice);
   const [image, setimage] = useState(null);
   const [isOffer, setisoffer] = useState(data?.offer?.isOffer);
+  const [bestDeals, setBestDeals] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    Setloading(true);
     if (image) {
       const imageData = new FormData();
       imageData.append("image", image);
@@ -34,16 +38,20 @@ const UpdateOilModal = ({ isOpen, onClose, data }) => {
               quantity,
               price,
               offer: { isOffer, lessPrice: offerPrice },
-              image: imagedata.data.display_url,
+              picture: imagedata.data.display_url,
+              bestDeals,
             };
             console.log("Data", Data);
-            // AxiosBaseURL.post("/gas/:id", Data)
-            //   .then((data) => {
-            //     console.log(data.data);
-            //   })
-            //   .catch((err) => {
-            //     console.error(err);
-            //   });
+            AxiosBaseURL.post(`/oilservice/${data?._id}`, Data)
+              .then((data) => {
+                Setloading(false);
+
+                refetch();
+                console.log(data.data);
+              })
+              .catch((err) => {
+                console.error(err);
+              });
           }
         })
         .catch((err) => {
@@ -56,17 +64,22 @@ const UpdateOilModal = ({ isOpen, onClose, data }) => {
       quantity,
       price,
       offer: { isOffer, lessPrice: offerPrice },
+      bestDeals,
     };
 
-    // AxiosBaseURL.post("/oil/:id", newData)
-    //   .then((data) => {
-    //     console.log(data.data);
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
+    AxiosBaseURL.post(`/oilservice/${data?._id}`, newData)
+      .then((data) => {
+        Setloading(false);
+        refetch();
+        console.log(data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
 
     console.log("new data", newData);
+    Setloading(false);
+
     onClose();
   };
 
@@ -202,6 +215,22 @@ const UpdateOilModal = ({ isOpen, onClose, data }) => {
                 }}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
+              />
+            </div>
+
+            {/* best deals */}
+
+            <div className="mb-4  flex gap-10 items-center">
+              <label
+                className="block text-gray-700 text-sm font-bold "
+                htmlFor="phoneNumber"
+              >
+                Best Deals
+              </label>
+              <input
+                type="checkbox"
+                name="vat"
+                onChange={(e) => setBestDeals(e.target.checked)}
               />
             </div>
 

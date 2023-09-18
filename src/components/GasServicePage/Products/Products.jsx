@@ -41,9 +41,11 @@ const Products = () => {
 
       {LpgGasData && (
         <div className="w-full p-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-          {LpgGasData?.slice(0, count).map((data) => (
-            <Product data={data} key={data._id}></Product>
-          ))}
+          {LpgGasData?.filter((item) => new Date(item.publishDate) < new Date())
+            .slice(0, count)
+            .map((data) => (
+              <Product data={data} key={data._id}></Product>
+            ))}
         </div>
       )}
 

@@ -18,7 +18,7 @@ const InternetUserDetails = () => {
   return (
     <div>
       {" "}
-      <UserInfo user={user} />
+      <UserInfo revalidator={revalidator} user={user} />
       <div className="flex justify-end gap-3 p-2">
         <button onClick={openModal} className="btn btn-outline">
           Add Bill

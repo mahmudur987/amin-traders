@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
 
 const AddGasModal = ({ isOpen, onClose }) => {
   const [name, setName] = useState("");
@@ -18,7 +19,7 @@ const AddGasModal = ({ isOpen, onClose }) => {
   const [publishDate, setPublishDate] = useState(
     new Date(Date.now()).toLocaleString()
   );
-
+  const [bestDeals, setBestDeals] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     const imageData = new FormData();
@@ -39,23 +40,23 @@ const AddGasModal = ({ isOpen, onClose }) => {
             quantity,
             price,
             offer: { isOffer, lessPrice: offerPrice },
-            image: imagedata.data.display_url,
+            picture: imagedata.data.display_url,
             use,
             valveSize,
             valveType,
             publishDate,
+            bestDeals,
           };
           console.log(newData);
+          AxiosBaseURL.post("/gasservice/allgaspackage", newData)
+            .then((data) => {
+              console.log(data.data);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
         }
       });
-
-    // AxiosBaseURL.post("/gas/:id", newData)
-    //   .then((data) => {
-    //     console.log(data.data);
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
 
     onClose();
   };
@@ -80,7 +81,7 @@ const AddGasModal = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="grid lg:grid-cols-2 gap-4">
             {/* name */}
             <div className="mb-4">
               <label
@@ -191,6 +192,21 @@ const AddGasModal = ({ isOpen, onClose }) => {
                 }}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="offer"
+              />
+            </div>
+
+            {/* best deals */}
+            <div className="mb-4  flex gap-10 items-center">
+              <label
+                className="block text-gray-700 text-sm font-bold "
+                htmlFor="phoneNumber"
+              >
+                Best Deals
+              </label>
+              <input
+                type="checkbox"
+                name="vat"
+                onChange={(e) => setBestDeals(e.target.checked)}
               />
             </div>
 

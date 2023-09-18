@@ -13,6 +13,7 @@ const DashIntPackages = () => {
     isLoading,
     isError,
     error,
+    refetch,
   } = useQuery({
     queryKey: [],
     queryFn: async () => {
@@ -28,6 +29,7 @@ const DashIntPackages = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    refetch();
   };
   if (isLoading) {
     return <LoadingSpinner />;
@@ -57,7 +59,11 @@ const DashIntPackages = () => {
         {InternetPackagesData && (
           <div className="w-full p-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
             {InternetPackagesData?.map((data) => (
-              <DashIntPackage data={data} key={data._id}></DashIntPackage>
+              <DashIntPackage
+                refetch={refetch}
+                data={data}
+                key={data._id}
+              ></DashIntPackage>
             ))}
           </div>
         )}

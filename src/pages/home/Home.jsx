@@ -1,5 +1,6 @@
 import ContactUs from "../../components/home/ConntacUs/ContactUs";
 import Galarry from "../../components/home/Gallary/Galarry";
+import UpComingProducts from "../../components/home/UpcomingProduct/UpComingProducts";
 import BannerSlider from "../../components/home/banner/BannerSlider";
 import FeedbackForm from "../../components/home/feedbackFrom/FeedBackFrom";
 import HomeAboutUs from "../../components/home/homeAboutUs/HomeAboutUs";
@@ -12,6 +13,9 @@ const Home = () => {
       <BannerSlider />
       <Services />
       <Offer />
+
+      <UpComingProducts />
+
       <HomeAboutUs />
       <Galarry />
       <ContactUs />

@@ -5,7 +5,8 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import UpdateInternetPackModal from "./UpdateInternetPackModal";
-const DashIntPackage = ({ data }) => {
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+const DashIntPackage = ({ data, refetch }) => {
   const { name, speed, price, condition, vat } = data;
   const { pathname } = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,8 +17,18 @@ const DashIntPackage = ({ data }) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    refetch();
   };
-
+  const handleDelete = (id) => {
+    AxiosBaseURL.delete(`/internetservice/${id}`)
+      .then((data) => {
+        console.log(data.data);
+        refetch();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
   return (
     <div
       className={`flex flex-col gap-5 border p-2 lg:p-10 rounded-xl shadow-xl ${
@@ -64,7 +75,12 @@ const DashIntPackage = ({ data }) => {
         <button onClick={openModal} className="btn btn-sm btn-secondary">
           Update
         </button>
-        <button className="btn btn-sm btn-secondary">Delete</button>
+        <button
+          onClick={() => handleDelete(data._id)}
+          className="btn btn-sm btn-secondary"
+        >
+          Delete
+        </button>
       </div>
       <UpdateInternetPackModal
         data={data}
