@@ -1,12 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import SinglePackage from "../../InternetServicePage/InternetPackages/SinglePackage";
-
 import AxiosBaseURL from "../../../axios/AxiosConfig";
-// import LoadingSpinner from "../../shared/loading/Loading";
-// import toast from "react-hot-toast";
-import Product from "../../GasServicePage/Products/product";
-import OilProduct from "../../Oilpage/oilProducts/OilProduct";
-import UgI from "./Ugi";
+import UIP from "./UIP";
 import UGP from "./UGP";
 import UOP from "./UOP";
 import { authContext } from "../../../context/UserContext";
@@ -41,7 +35,7 @@ const UpComingProducts = () => {
         console.error(err);
       });
     Setloading(false);
-  }, []);
+  }, [loading, Setloading]);
 
   const currentDate = new Date();
 
@@ -74,7 +68,7 @@ const UpComingProducts = () => {
             <h1 className="text-2xl font-bold my-5 md:my-10">Internet</h1>
             <div className="">
               {futureInternetData?.slice(0, 2).map((data) => (
-                <UgI data={data} key={data._id} />
+                <UIP data={data} key={data._id} />
               ))}
             </div>
           </div>
