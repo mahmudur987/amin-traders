@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/home/Header/Header";
 import Footer from "../components/shared/footer/Footer";
-import { authContext } from "../context/UserContext";
 import { useContext } from "react";
+import { authContext } from "../context/UserContext";
 
 const MainLayout = () => {
   const { theme } = useContext(authContext);

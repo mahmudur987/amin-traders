@@ -3,8 +3,9 @@ import { Link, Outlet } from "react-router-dom";
 import Footer from "../components/shared/footer/Footer";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useContext } from "react";
-import { authContext } from "../Context/UserContext";
+
 import { UsedbUser } from "../components/Hooks/dbUser";
+import { authContext } from "../context/UserContext";
 const DashboardLayout = () => {
   const { user } = useContext(authContext);
   const [dbuser] = UsedbUser(user?.email);
