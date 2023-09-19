@@ -96,7 +96,7 @@ const SignUpPage = () => {
   }
 
   return (
-    <div className=" flex justify-center items-center gap-5 m-2 lg:mx-10 ">
+    <div className=" flex flex-col md:flex-row justify-center items-center gap-5 m-2 lg:mx-10 ">
       <div className="w-1/2 p-5">
         <img
           className="rounded-md"

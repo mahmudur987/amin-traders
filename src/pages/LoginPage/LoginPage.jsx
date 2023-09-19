@@ -52,7 +52,7 @@ const LoginPage = () => {
           address: "",
         };
         AxiosBaseURL.post(`/users`, fullprofile)
-          .then((data) => {
+          .then(() => {
             navigate(from, { replace: true });
 
             toast.success("user login successfully");
