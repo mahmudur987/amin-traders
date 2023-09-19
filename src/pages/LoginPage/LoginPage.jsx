@@ -3,10 +3,13 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { authContext } from "../../Context/UserContext";
+
 import AxiosBaseURL from "../../axios/AxiosConfig";
+import { authContext } from "../../Context/UserContext";
 
 const LoginPage = () => {
+  const { login, googleLogIn, user, passwordResset } = useContext(authContext);
+
   const {
     register,
     formState: { errors },
@@ -15,7 +18,6 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const { login, googleLogIn, user, passwordResset } = useContext(authContext);
   const [Email, setEmail] = useState("");
 
   const handleLogin = (data) => {
