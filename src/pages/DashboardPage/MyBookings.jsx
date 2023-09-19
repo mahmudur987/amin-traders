@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import LoadingSpinner from "../../components/shared/loading/Loading";
 import toast from "react-hot-toast";
-import { authContext } from "../../Context/UserContext";
+import { authContext } from "../../context/UserContext";
 import { useQuery } from "@tanstack/react-query";
 import AxiosBaseURL from "../../axios/AxiosConfig";
 import MyBooked from "../../components/DashboardPage/MyBookings/MyBooked";

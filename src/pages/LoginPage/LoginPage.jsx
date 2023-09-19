@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import AxiosBaseURL from "../../axios/AxiosConfig";
-import { authContext } from "../../Context/UserContext";
+import { authContext } from "../../context/UserContext";
 
 const LoginPage = () => {
   const { login, googleLogIn, user, passwordResset } = useContext(authContext);
