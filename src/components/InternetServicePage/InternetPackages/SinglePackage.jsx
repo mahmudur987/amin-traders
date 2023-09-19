@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 const SinglePackage = ({ data }) => {
   const { name, speed, price, condition, bestDeals } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log(data);
+
   const { user } = useContext(authContext);
   const openModal = () => {
     if (!user) {

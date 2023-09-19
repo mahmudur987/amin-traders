@@ -21,6 +21,7 @@ import AxiosBaseURL from "../axios/AxiosConfig";
 import PrivatRoutes from "./PrivetRoutes";
 import MyBookings from "../pages/DashboardPage/MyBookings";
 import Bags from "../pages/Bags/Bags";
+import EditBanner from "../pages/DashboardPage/EditBanner";
 
 export const router = createBrowserRouter([
   {
@@ -111,6 +112,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/mybooking",
         element: <MyBookings />,
+      },
+      {
+        path: "/dashboard/editbanner",
+        element: <EditBanner />,
       },
       {
         path: "/dashboard/internetuser/:id",

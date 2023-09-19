@@ -24,7 +24,7 @@ const OilProduct = ({ data }) => {
     setIsModalOpen(false);
   };
   return (
-    <div className="card  bg-base-100 shadow-xl">
+    <div className="card max-w-sm  bg-base-100 shadow-xl">
       <figure>
         <img className="w-full h-80" src={picture} alt="Shoes" />
       </figure>

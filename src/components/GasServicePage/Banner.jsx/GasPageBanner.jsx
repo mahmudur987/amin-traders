@@ -3,29 +3,31 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useQuery } from "@tanstack/react-query";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import LoadingSpinner from "../../shared/loading/Loading";
+import toast from "react-hot-toast";
 // Import your images
 
 const GasPageBanner = () => {
-  const sliderData = [
-    {
-      ImageUrl:
-        "https://bhowmickgasagency.weebly.com/uploads/7/7/3/5/77351913/94e5a3ffca3d6d4_orig.jpg",
-      heading: "Banner 1 Heading",
-      text: "Some text describing Banner 1.",
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: [],
+    queryFn: async () => {
+      const data = await AxiosBaseURL.get("/banner");
+      return data.data.data;
     },
-    {
-      ImageUrl:
-        "https://bdbusinessfinder.com/wp-content/uploads/2019/12/top-lp-gas-in-Bangladesh-1.jpg",
-      heading: "Banner 2 Heading",
-      text: "Some text describing Banner 2.",
-    },
-    {
-      ImageUrl:
-        "https://www.bangladeshyp.com/img/bd/b/1668447067-18-jamuna-l-p-gas.jpg",
-      heading: "Banner 3 Heading",
-      text: "Some text describing Banner 3.",
-    },
-  ];
+  });
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (isError) {
+    return toast.error(error.message, {
+      id: "clipboard",
+    });
+  }
+
+  const sliderData = data?.filter((x) => x.bannerFor === "gasPage");
 
   const settings = {
     dots: true,

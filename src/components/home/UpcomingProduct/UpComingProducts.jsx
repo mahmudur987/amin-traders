@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SinglePackage from "../../InternetServicePage/InternetPackages/SinglePackage";
 
 import AxiosBaseURL from "../../../axios/AxiosConfig";
@@ -9,13 +9,16 @@ import OilProduct from "../../Oilpage/oilProducts/OilProduct";
 import UgI from "./Ugi";
 import UGP from "./UGP";
 import UOP from "./UOP";
+import { authContext } from "../../../context/UserContext";
+import LoadingSpinner from "../../shared/loading/Loading";
 
 const UpComingProducts = () => {
   const [Internet, setInternet] = useState(null);
   const [Gas, setGas] = useState(null);
   const [Oil, setOil] = useState(null);
-
+  const { loading, Setloading } = useContext(authContext);
   useEffect(() => {
+    Setloading(true);
     AxiosBaseURL.get("/internetservice/allpackage")
       .then((data) => {
         setInternet(data.data.data);
@@ -37,9 +40,9 @@ const UpComingProducts = () => {
       .catch((err) => {
         console.error(err);
       });
+    Setloading(false);
   }, []);
 
-  // Assuming your data is stored in a variable called 'data'
   const currentDate = new Date();
 
   const futureInternetData = Internet?.filter(
@@ -54,14 +57,10 @@ const UpComingProducts = () => {
     (item) => new Date(item.publishDate) > currentDate
   );
 
-  // if (isLoading || gasisLoading || oilisLoading) {
-  //   return <LoadingSpinner />;
-  // }
-  //   if (isError || gasisError || oilisError) {
-  //     return toast.error(error.message, {
-  //       id: "clipboard",
-  //     });
-  //   }
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <div className="my-10 ">
       <h1 className="text-center font-bold text-secondary text-xl md:text-2xl lg:text-4xl">

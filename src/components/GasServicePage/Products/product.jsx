@@ -19,7 +19,7 @@ const Product = ({ data }) => {
     use,
     valveType,
   } = data;
-  console.log(data);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { pathname } = useLocation();
   const openModal = () => {
@@ -34,7 +34,7 @@ const Product = ({ data }) => {
   return (
     <>
       {data && (
-        <div className="card  bg-base-100 shadow-xl">
+        <div className="card max-w-sm bg-base-100 shadow-xl">
           <figure>
             <img className="w-full h-80" src={picture} alt="Shoes" />
           </figure>

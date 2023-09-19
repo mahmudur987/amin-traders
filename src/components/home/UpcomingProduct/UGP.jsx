@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
 const UGP = ({ data }) => {
-  console.log(data);
   return (
     <div className="flex flex-col items-center  w-64 h-[300px]  shadow-xl">
       <figure className=" h-3/5">

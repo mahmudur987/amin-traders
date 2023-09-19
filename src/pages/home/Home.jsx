@@ -13,9 +13,7 @@ const Home = () => {
       <BannerSlider />
       <Services />
       <Offer />
-
       <UpComingProducts />
-
       <HomeAboutUs />
       <Galarry />
       <ContactUs />

@@ -6,48 +6,65 @@ import toast from "react-hot-toast";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { useContext, useEffect, useState } from "react";
+import { authContext } from "../../../context/UserContext";
+import Product from "../../GasServicePage/Products/product";
+import OilProduct from "../../Oilpage/oilProducts/OilProduct";
 const Offer = () => {
-  const {
-    data: InternetPackagesData,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: [],
-    queryFn: async () => {
-      const data = await AxiosBaseURL.get("/internetservice/allpackage");
-      return data.data.data;
-    },
-  });
+  const [Internet, setInternet] = useState(null);
+  const [Gas, setGas] = useState(null);
+  const [Oil, setOil] = useState(null);
+  const { loading, Setloading } = useContext(authContext);
+  useEffect(() => {
+    Setloading(true);
+    AxiosBaseURL.get("/internetservice/allpackage")
+      .then((data) => {
+        setInternet(data.data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    AxiosBaseURL.get("/gasservice/allgaspackage")
+      .then((data) => {
+        setGas(data.data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    AxiosBaseURL.get("/oilservice/alloilpackage")
+      .then((data) => {
+        setOil(data.data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    Setloading(false);
+  }, []);
   const settings = {
     dots: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 3,
     autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
+    speed: 20000,
+    autoplaySpeed: 200,
     cssEase: "linear",
   };
-  if (isLoading) {
+  if (loading) {
     return <LoadingSpinner />;
   }
-  if (isError) {
-    return toast.error(error.message, {
-      id: "clipboard",
-    });
-  }
+
   return (
     <div className="my-10 flex flex-col items-center ">
       <h1 className="text-center font-bold text-secondary text-xl md:text-2xl lg:text-4xl">
         Todays Exclusive Offer
       </h1>
 
-      <div className="w-full  flex justify-around flex-wrap">
-        {InternetPackagesData && (
-          <div className="w-full md:w-1/2 lg:1/3  p-5 ">
+      <div className="w-full  flex justify-around flex-wrap ">
+        {Internet && (
+          <div className="w-full max-w-xl p-5 ">
             <Slider {...settings}>
-              {InternetPackagesData?.filter((x) => x.bestDeals === true)
+              {Internet?.filter((x) => x.bestDeals === true)
                 .slice(0, 4)
                 .map((data) => (
                   <SinglePackage data={data} key={data._id}></SinglePackage>
@@ -55,28 +72,28 @@ const Offer = () => {
             </Slider>
           </div>
         )}
-        {/* {InternetPackagesData && (
-          <div className="w-full md:w-1/2 lg:1/3   p-5 ">
+        {Gas && (
+          <div className="w-full max-w-xl  p-5 ">
             <Slider {...settings}>
-              {InternetPackagesData?.filter((x) => x.bestDeals === true)
+              {Gas?.filter((x) => x.bestDeals === true)
                 .slice(0, 4)
                 .map((data) => (
-                  <SinglePackage data={data} key={data._id}></SinglePackage>
+                  <Product data={data} key={data._id} />
                 ))}
             </Slider>
           </div>
         )}
-        {InternetPackagesData && (
-          <div className="w-full md:w-1/2 lg:1/3   p-5 ">
+        {Oil && (
+          <div className="w-full max-w-xl   p-5 ">
             <Slider {...settings}>
-              {InternetPackagesData?.filter((x) => x.bestDeals === true)
+              {Oil?.filter((x) => x.bestDeals === true)
                 .slice(0, 4)
                 .map((data) => (
-                  <SinglePackage data={data} key={data._id}></SinglePackage>
+                  <OilProduct data={data} key={data._id} />
                 ))}
             </Slider>
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );
