@@ -1,8 +1,10 @@
-import { React, useContext } from "react";
+/* eslint-disable react/prop-types */
+import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { authContext } from "../Context/UserContext";
+
 import LoadingSpinner from "../components/shared/loading/Loading";
 import toast from "react-hot-toast";
+import { authContext } from "../context/UserContext";
 
 const PrivatRoutes = ({ children }) => {
   const location = useLocation();
