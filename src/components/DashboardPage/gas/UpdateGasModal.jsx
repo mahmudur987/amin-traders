@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import { authContext } from "../../../context/UserContext";
+import toast from "react-hot-toast";
 
 const UpdateGasModal = ({ isOpen, onClose, data, refetch }) => {
   const { Setloading } = useContext(authContext);
@@ -18,8 +19,6 @@ const UpdateGasModal = ({ isOpen, onClose, data, refetch }) => {
   const [valveSize, setvalveSize] = useState(data?.valveSize);
   const [valveType, setvalveType] = useState(data.valveType);
   const [bestDeals, setBestDeals] = useState(false);
-
-  console.log(data);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,12 +81,13 @@ const UpdateGasModal = ({ isOpen, onClose, data, refetch }) => {
       console.log("newdata", newData);
 
       AxiosBaseURL.post(`/gasservice/${data?._id}`, newData)
-        .then((data) => {
+        .then(() => {
           refetch();
           Setloading(false);
         })
         .catch((err) => {
           Setloading(false);
+          toast.error(err.message);
         });
     }
 

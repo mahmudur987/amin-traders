@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import { authContext } from "../../../context/UserContext";
+import LoadingSpinner from "../../shared/loading/Loading";
 
 const UpdateOilModal = ({ isOpen, onClose, data, refetch }) => {
   const { loading, Setloading } = useContext(authContext);
@@ -82,7 +83,9 @@ const UpdateOilModal = ({ isOpen, onClose, data, refetch }) => {
 
     onClose();
   };
-
+  if (loading) {
+    return <LoadingSpinner />;
+  }
   return (
     <div
       className={`${

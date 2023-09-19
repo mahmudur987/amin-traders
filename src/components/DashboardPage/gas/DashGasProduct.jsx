@@ -17,7 +17,6 @@ const DashGasProduct = ({ data, refetch }) => {
     valveSize,
     use,
     valveType,
-    _id,
   } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
