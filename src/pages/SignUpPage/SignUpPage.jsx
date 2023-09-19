@@ -5,17 +5,17 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../components/shared/loading/Loading";
 import AxiosBaseURL from "../../axios/AxiosConfig";
-import { authContext } from "../../Context/UserContext";
+import { authContext } from "../../context/UserContext";
 
 const SignUpPage = () => {
+  const { signUp, updateUserProfile, Setloading, loading, Setuser } =
+    useContext(authContext);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const { signUp, updateUserProfile, Setloading, loading, Setuser } =
-    useContext(authContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
