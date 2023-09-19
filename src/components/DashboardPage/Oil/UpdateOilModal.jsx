@@ -103,7 +103,7 @@ const UpdateOilModal = ({ isOpen, onClose, data, refetch }) => {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="grid lg:grid-cols-2 gap-4">
             {/* name */}
             <div className="mb-4">
               <label

@@ -41,29 +41,31 @@ const BannerSlider = () => {
   };
 
   return (
-    <Slider {...settings}>
-      {sliderData.map((x, i) => (
-        <div className="mx-auto" key={i}>
-          <div
-            className="hero min-h-[650px]"
-            style={{
-              backgroundImage: `url(${x.ImageUrl})`,
-            }}
-          >
-            <div className="hero-overlay bg-opacity-60"></div>
-            <div className="flex lg:justify-start text-center text-white">
-              <div className="w-full lg:w-2/3">
-                <h1 className="mb-5 text-2xl lg:text-4xl font-bold uppercase">
-                  {x.heading}
-                </h1>
-                <p className="mb-5">{x.text}</p>
-                <button className="btn btn-primary">Get Started</button>
+    <div>
+      <Slider {...settings}>
+        {sliderData.map((x, i) => (
+          <div className="mx-auto" key={i}>
+            <div
+              className="hero min-h-[650px]"
+              style={{
+                backgroundImage: `url(${x.ImageUrl})`,
+              }}
+            >
+              <div className="hero-overlay bg-opacity-60"></div>
+              <div className="flex lg:justify-start text-center text-white">
+                <div className="w-full lg:w-2/3">
+                  <h1 className="mb-5 text-2xl lg:text-4xl font-bold uppercase">
+                    {x.heading}
+                  </h1>
+                  <p className="mb-5">{x.text}</p>
+                  <button className="btn btn-primary">Get Started</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
-    </Slider>
+        ))}
+      </Slider>
+    </div>
   );
 };
 

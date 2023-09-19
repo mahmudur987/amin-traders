@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import toast from "react-hot-toast";
 
 const BannerCard = ({ banner, refetch }) => {
   const { ImageUrl, heading, bannerFor, text, _id } = banner;
-  console.log(_id);
+
   const handleDelete = (id) => {
     AxiosBaseURL.delete(`/banner/${id}`)
       .then((data) => {

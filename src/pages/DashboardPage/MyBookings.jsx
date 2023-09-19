@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import LoadingSpinner from "../../components/shared/loading/Loading";
 import toast from "react-hot-toast";
 import { authContext } from "../../Context/UserContext";
@@ -24,7 +24,7 @@ const MyBookings = () => {
   });
 
   const myorder = orders?.filter((x) => x.userEmail === user?.email);
-  console.log(myorder);
+
   if (isLoading) {
     return <LoadingSpinner />;
   }

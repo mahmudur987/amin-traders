@@ -3,18 +3,15 @@
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
+import toast from "react-hot-toast";
 
 const AddBannerModal = ({ isOpen, onClose, refetch }) => {
   // eslint-disable-next-line no-unused-vars
 
   const [heading, setheading] = useState("");
   const [text, settext] = useState("");
-  const [bannerFor, setbannerFor] = useState("");
+  const [bannerFor, setbannerFor] = useState("homePage");
   const [image, setimage] = useState({});
-
-  const [publishDate, setPublishDate] = useState(
-    new Date(Date.now()).toLocaleString()
-  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,19 +32,25 @@ const AddBannerModal = ({ isOpen, onClose, refetch }) => {
             text,
             bannerFor,
             ImageUrl: imagedata.data.display_url,
-            publishDate,
+            publishDate: new Date(Date.now()).toLocaleString(),
           };
           console.log(newData);
 
           AxiosBaseURL.post("/banner", newData)
             .then((data) => {
               console.log(data.data);
+              toast.success("banner added successfully");
               refetch();
             })
             .catch((err) => {
               console.error(err);
+              toast.error("some erroe happen");
             });
         }
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("some erroe happen");
       });
 
     onClose();
@@ -86,13 +89,14 @@ const AddBannerModal = ({ isOpen, onClose, refetch }) => {
               <input
                 type="file"
                 name="image"
+                required
                 onChange={(e) => setimage(e.target.files[0])}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
               />
             </div>
 
-            {/* name */}
+            {/* Heading*/}
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -110,7 +114,7 @@ const AddBannerModal = ({ isOpen, onClose, refetch }) => {
               />
             </div>
 
-            {/* brand name */}
+            {/* inside text */}
 
             <div className="mb-4">
               <label
@@ -127,7 +131,7 @@ const AddBannerModal = ({ isOpen, onClose, refetch }) => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
-            {/* quantity */}
+            {/* Banner for */}
 
             <div className="mb-4">
               <label
@@ -139,11 +143,16 @@ const AddBannerModal = ({ isOpen, onClose, refetch }) => {
               <select
                 className="w-full border rounded-lg py-2 px-3"
                 value={bannerFor}
+                required
                 onChange={(e) => setbannerFor(e.target.value)}
               >
-                <option key={index} value={"homePage"}>
-                  Home Page
+                <option disabled value={"homePage"}>
+                  please select
                 </option>
+                <option value={"homePage"}>Home Page</option>
+                <option value={"internetPage"}>Home Page</option>
+                <option value={"gasPage"}>L P G Gas</option>
+                <option value={"oilPage"}>Food Oil</option>
               </select>
             </div>
 

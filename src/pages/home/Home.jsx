@@ -10,7 +10,10 @@ import Services from "../../components/home/service/Services";
 const Home = () => {
   return (
     <div className=" mx-auto ">
-      <BannerSlider />
+      <div className="min-h-[650px] bg-gray-700">
+        <BannerSlider />
+      </div>
+
       <Services />
       <Offer />
       <UpComingProducts />

@@ -1,4 +1,4 @@
-import InternetServiceBanner from "../../components/InternetServicePage/Banner/InternetServiceBanner";
+import InternetserviceBanner from "../../components/InternetServicePage/Banner/InternetServiceBanner";
 import ConnectionSupport from "../../components/InternetServicePage/ConnectionAndSupport/ConnectionSupport";
 import HotOffer from "../../components/InternetServicePage/HotOffer/HotOffer";
 import HowToConnect from "../../components/InternetServicePage/HowtoConnect/HowToConnect";
@@ -7,7 +7,7 @@ import InternetPackages from "../../components/InternetServicePage/InternetPacka
 const InternetService = () => {
   return (
     <div className="flex flex-col gap-20">
-      <InternetServiceBanner />
+      <InternetserviceBanner />
       <HowToConnect />
       <InternetPackages />
       <HotOffer />

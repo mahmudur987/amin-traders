@@ -3,29 +3,31 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import toast from "react-hot-toast";
+import LoadingSpinner from "../../shared/loading/Loading";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import { useQuery } from "@tanstack/react-query";
 // Import your images
 
-const serviceBanner = () => {
-  const sliderData = [
-    {
-      ImageUrl:
-        "https://images.unsplash.com/photo-1597733336794-12d05021d510?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-      heading: "Connecting the World. Internet Service Providers Explained",
-      text: "Customer Support and Satisfaction: A Critical Factor in ISP Choice",
+const InternetserviceBanner = () => {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: [],
+    queryFn: async () => {
+      const data = await AxiosBaseURL.get("/banner");
+      return data.data.data;
     },
-    {
-      ImageUrl:
-        "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGludGVybmV0fGVufDB8fDB8fHww&auto=format&fit=crop&w=400&q=60",
-      heading: "Choosing the Right Internet Service Provider for Your Needs",
-      text: "Broadband vs. DSL vs. Fiber: Understanding Internet Technologies",
-    },
-    {
-      ImageUrl:
-        "https://images.unsplash.com/photo-1564760290292-23341e4df6ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fGludGVybmV0fGVufDB8fDB8fHww&auto=format&fit=crop&w=400&q=60",
-      heading: "High-Speed Internet, A Necessity in the Digital Age",
-      text: "Comparing Internet Service Plans: Finding the Best Fit for You",
-    },
-  ];
+  });
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (isError) {
+    return toast.error(error.message, {
+      id: "clipboard",
+    });
+  }
+
+  const sliderData = data?.filter((x) => x.bannerFor === "internetPage");
 
   const settings = {
     dots: true,
@@ -66,4 +68,4 @@ const serviceBanner = () => {
   );
 };
 
-export default serviceBanner;
+export default InternetserviceBanner;

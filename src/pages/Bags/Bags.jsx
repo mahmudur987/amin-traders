@@ -67,7 +67,7 @@ const nonWovenBags = [
 
 const Bags = () => {
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-5 p-2 lg:p-8">
       <h1 className="text-3xl font-semibold mb-4">Woven Bags</h1>
       <BagDisplay bags={wovenBags} />
 
