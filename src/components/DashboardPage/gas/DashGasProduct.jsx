@@ -17,6 +17,7 @@ const DashGasProduct = ({ data, refetch }) => {
     valveSize,
     use,
     valveType,
+    bestDeals,
   } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -58,6 +59,7 @@ const DashGasProduct = ({ data, refetch }) => {
               {offer?.isOffer && (
                 <div className="badge badge-secondary">Offer</div>
               )}
+              {bestDeals && <div className="badge badge-info">Best Deals</div>}
             </h2>
             <p>
               Quantity : <span>{quantity}</span>

@@ -6,6 +6,7 @@ import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import { authContext } from "../../../context/UserContext";
 import LoadingSpinner from "../../shared/loading/Loading";
+import toast from "react-hot-toast";
 
 const UpdateOilModal = ({ isOpen, onClose, data, refetch }) => {
   const { loading, Setloading } = useContext(authContext);
@@ -42,16 +43,18 @@ const UpdateOilModal = ({ isOpen, onClose, data, refetch }) => {
               picture: imagedata.data.display_url,
               bestDeals,
             };
-            console.log("Data", Data);
+
             AxiosBaseURL.post(`/oilservice/${data?._id}`, Data)
               .then((data) => {
                 Setloading(false);
+                toast.success("product Added successfully");
 
                 refetch();
                 console.log(data.data);
               })
               .catch((err) => {
                 console.error(err);
+                toast.error("Error Hapen");
               });
           }
         })
@@ -72,10 +75,13 @@ const UpdateOilModal = ({ isOpen, onClose, data, refetch }) => {
       .then((data) => {
         Setloading(false);
         refetch();
+        toast.success("product Added successfully");
+
         console.log(data.data);
       })
       .catch((err) => {
         console.error(err);
+        toast.error("Error Happened");
       });
 
     console.log("new data", newData);

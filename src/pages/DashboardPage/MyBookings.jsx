@@ -16,7 +16,7 @@ const MyBookings = () => {
     error,
     refetch,
   } = useQuery({
-    queryKey: [],
+    queryKey: ["/orders"],
     queryFn: async () => {
       const data = await AxiosBaseURL.get("/orders");
       return data.data.data;

@@ -23,6 +23,7 @@ const Offer = () => {
       })
       .catch((err) => {
         console.error(err);
+        toast.error("some Error happen");
       });
     AxiosBaseURL.get("/gasservice/allgaspackage")
       .then((data) => {
@@ -30,6 +31,7 @@ const Offer = () => {
       })
       .catch((err) => {
         console.error(err);
+        toast.error("some Error happen");
       });
     AxiosBaseURL.get("/oilservice/alloilpackage")
       .then((data) => {
@@ -37,6 +39,7 @@ const Offer = () => {
       })
       .catch((err) => {
         console.error(err);
+        toast.error("some Error happen");
       });
     Setloading(false);
   }, []);

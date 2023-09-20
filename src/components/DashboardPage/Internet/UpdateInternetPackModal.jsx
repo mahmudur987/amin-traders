@@ -6,26 +6,26 @@ import AxiosBaseURL from "../../../axios/AxiosConfig";
 // eslint-disable-next-line react/prop-types
 
 // eslint-disable-next-line react/prop-types
-const UpdateInternetPackModal = ({ isOpen, onClose, data }) => {
+const UpdateInternetPackModal = ({ isOpen, onClose, data, refetch }) => {
   const [name, setName] = useState(data?.name);
   const [price, setprice] = useState(data?.price);
   const [speed, setspeed] = useState(data?.speed);
   const [condition, setCondition] = useState(data?.condition);
   const [vat, setvat] = useState(data?.vat);
-  const [bestDeals, setBestDeals] = useState(false);
+  const [bestDeals, setBestDeals] = useState(data?.bestDeals);
   // console.log(data);
   const handleSubmit = (e) => {
     e.preventDefault();
     const newData = { name, price, speed, condition, vat, bestDeals };
     AxiosBaseURL.post(`/internetservice/${data?._id}`, newData)
       .then((data) => {
+        refetch();
         console.log(data.data);
       })
       .catch((err) => {
         console.error(err);
       });
 
-    console.log(newData);
     onClose();
   };
 
@@ -119,6 +119,7 @@ const UpdateInternetPackModal = ({ isOpen, onClose, data }) => {
                 Best Deals
               </label>
               <input
+                checked={bestDeals}
                 type="checkbox"
                 name="vat"
                 onChange={(e) => setBestDeals(e.target.checked)}

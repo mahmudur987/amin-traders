@@ -22,15 +22,13 @@ const Navbar = () => {
 
   const menuItems = (
     <>
-      <li className=" btn btn-ghost">
-        <Link to={"/"}>Home</Link>
+      <li>
+        <Link className=" btn btn-ghost" to={"/"}>
+          Home
+        </Link>
       </li>
-      <li className="dropdown ">
-        <label
-          onClick={() => setShowMenu(!showMenu)}
-          tabIndex={1}
-          className="btn btn-ghost"
-        >
+      <li onClick={() => setShowMenu(!showMenu)} className="dropdown ">
+        <label tabIndex={1} className="btn btn-ghost">
           <span> Services</span>{" "}
           <span>
             <AiOutlineCaretDown />
@@ -43,12 +41,16 @@ const Navbar = () => {
         >
           {showMenu && (
             <ul className="flex flex-col bg-base-200 text-black items-start w-40 rounded-md pl-2 ">
-              <li className=" btn btn-ghost">
-                <Link to={"/service"}>Internet </Link>
+              <li>
+                <Link className=" btn btn-ghost" to={"/service"}>
+                  Internet{" "}
+                </Link>
               </li>
 
-              <li className=" btn btn-ghost">
-                <Link to={"/service/gasservice"}>LPG gas</Link>
+              <li>
+                <Link className=" btn btn-ghost" to={"/service/gasservice"}>
+                  LPG gas
+                </Link>
               </li>
               <li className=" btn btn-ghost">
                 <Link to={"/service/oilpage"}>Food Oil</Link>
@@ -60,27 +62,35 @@ const Navbar = () => {
           )}
         </ul>
       </li>
-      <li className=" btn btn-ghost">
-        <Link to={"/dashboard"}>Dashboard</Link>
+      <li>
+        <Link className=" btn btn-ghost" to={"/dashboard"}>
+          Dashboard
+        </Link>
       </li>
 
       {user ? (
         <>
-          <li className=" btn btn-ghost" onClick={handleLogOut}>
-            <Link>LogOut</Link>
+          <li onClick={handleLogOut}>
+            <Link className=" btn btn-ghost">LogOut</Link>
           </li>
 
-          <li className=" btn btn-ghost">
-            <Link to={"/dashboard"}>{user.displayName}</Link>
+          <li>
+            <Link className=" btn btn-ghost" to={"/dashboard"}>
+              {user.displayName}
+            </Link>
           </li>
         </>
       ) : (
         <>
-          <li className=" btn btn-ghost">
-            <Link to={"/service/signup"}>SignUp</Link>
+          <li>
+            <Link className=" btn btn-ghost" to={"/service/signup"}>
+              SignUp
+            </Link>
           </li>
-          <li className=" btn btn-ghost">
-            <Link to={"/service/login"}>Log In</Link>
+          <li>
+            <Link className=" btn btn-ghost" to={"/service/login"}>
+              Log In
+            </Link>
           </li>
         </>
       )}

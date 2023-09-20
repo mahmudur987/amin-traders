@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
+import toast from "react-hot-toast";
 // eslint-disable-next-line react/prop-types
 
 // eslint-disable-next-line react/prop-types
@@ -49,9 +50,11 @@ const AddOilModal = ({ isOpen, onClose, refetch }) => {
           AxiosBaseURL.post("/oilservice/alloilpackage", newData)
             .then((data) => {
               console.log(data.data);
+              toast.success("product Added successfully");
               refetch();
             })
             .catch((err) => {
+              toast.error(" Error Happend");
               console.error(err);
             });
         }

@@ -14,10 +14,10 @@ const DashOilProducts = () => {
     error,
     refetch,
   } = useQuery({
-    queryKey: [],
+    queryKey: ["alloilpackage"],
     queryFn: async () => {
       const data = await AxiosBaseURL.get("/oilservice/alloilpackage");
-      return data.data.data;
+      return data.data.data.sort((a, b) => new Date(a.date) - new Date(b.date));
     },
   });
   const [isModalOpen, setIsModalOpen] = useState(false);

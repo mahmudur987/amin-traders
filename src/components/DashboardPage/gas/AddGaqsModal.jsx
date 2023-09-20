@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 
-const AddGasModal = ({ isOpen, onClose }) => {
+const AddGasModal = ({ isOpen, onClose, refetch }) => {
   const [name, setName] = useState("");
   const [Brand, setbrand] = useState("");
   const [quantity, setquantity] = useState("");
@@ -50,6 +50,7 @@ const AddGasModal = ({ isOpen, onClose }) => {
           console.log(newData);
           AxiosBaseURL.post("/gasservice/allgaspackage", newData)
             .then((data) => {
+              refetch();
               console.log(data.data);
             })
             .catch((err) => {

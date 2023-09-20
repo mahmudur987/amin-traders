@@ -8,7 +8,8 @@ import LoadingSpinner from "../../shared/loading/Loading";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 
 const DashOilProduct = ({ data, refetch }) => {
-  const { picture, name, brandName, quantity, price, offer } = data;
+  const { picture, name, brandName, quantity, price, offer, bestDeals } =
+    data || {};
   const { loading, Setloading } = useContext(authContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -16,8 +17,8 @@ const DashOilProduct = ({ data, refetch }) => {
     Setloading(true);
     AxiosBaseURL.delete(`/oilservice/${id}`)
       .then((data) => {
-        console.log(data.data);
         refetch();
+        console.log(data.data);
       })
       .catch((err) => {
         console.error(err);
@@ -46,6 +47,7 @@ const DashOilProduct = ({ data, refetch }) => {
           {name}
 
           {offer?.isOffer && <div className="badge badge-secondary">Offer</div>}
+          {bestDeals && <div className="badge badge-info">Best Deals</div>}
         </h2>
         <p>
           Quantity : <span>{quantity}</span>Liter

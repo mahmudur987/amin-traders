@@ -4,9 +4,11 @@ import Modal from "./Modal";
 import { useContext, useState } from "react";
 import { authContext } from "../../../context/UserContext";
 import toast from "react-hot-toast";
+import { Link, useLocation } from "react-router-dom";
 const SinglePackage = ({ data }) => {
   const { name, speed, price, condition, bestDeals } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { pathname } = useLocation();
 
   const { user } = useContext(authContext);
   const openModal = () => {
@@ -54,9 +56,16 @@ const SinglePackage = ({ data }) => {
       </p>
 
       <div className="flex justify-end">
-        <button onClick={openModal} className="btn btn-sm btn-secondary">
-          Order Now
-        </button>
+        {pathname === "/" ? (
+          <Link to={"/service"}>
+            {" "}
+            <button className="btn btn-sm btn-secondary">Order Now</button>
+          </Link>
+        ) : (
+          <button onClick={openModal} className="btn btn-sm btn-secondary">
+            Order Now
+          </button>
+        )}
       </div>
       <Modal data={data} isOpen={isModalOpen} onClose={closeModal} />
     </div>

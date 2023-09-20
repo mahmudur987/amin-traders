@@ -14,10 +14,10 @@ const DashGasProducts = () => {
     error,
     refetch,
   } = useQuery({
-    queryKey: [],
+    queryKey: ["allgaspackage "],
     queryFn: async () => {
       const data = await AxiosBaseURL.get("/gasservice/allgaspackage");
-      return data.data.data;
+      return data.data.data.sort((a, b) => new Date(a.date) - new Date(b.date));
     },
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -69,7 +69,11 @@ const DashGasProducts = () => {
         )}
       </div>
 
-      <AddGasModal isOpen={isModalOpen} onClose={closeModal} />
+      <AddGasModal
+        refetch={refetch}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </>
   );
 };

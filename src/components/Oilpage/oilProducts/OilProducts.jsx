@@ -15,10 +15,12 @@ const OilProducts = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: [],
+    queryKey: ["alloilpackage"],
     queryFn: async () => {
       const data = await AxiosBaseURL.get("/oilservice/alloilpackage");
-      return data.data.data;
+      return data.data.data.filter(
+        (item) => new Date(item.publishDate) < new Date()
+      );
     },
   });
 
@@ -30,7 +32,7 @@ const OilProducts = () => {
       id: "clipboard",
     });
   }
-
+  console.log(OilData);
   return (
     <div className="my-20 flex flex-col gap-10 items-center">
       <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">
@@ -41,11 +43,9 @@ const OilProducts = () => {
 
       {OilData && (
         <div className="w-full p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-          {OilData?.filter((item) => new Date(item.publishDate) < new Date())
-            .slice(0, count)
-            .map((data, i) => (
-              <OilProduct data={data} key={i}></OilProduct>
-            ))}
+          {OilData?.slice(0, count).map((data, i) => (
+            <OilProduct data={data} key={i}></OilProduct>
+          ))}
         </div>
       )}
 

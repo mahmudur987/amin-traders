@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import UpdateInternetPackModal from "./UpdateInternetPackModal";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 const DashIntPackage = ({ data, refetch }) => {
-  const { name, speed, price, condition, vat } = data;
+  const { name, speed, price, condition, vat, bestDeals, date } = data;
   const { pathname } = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -16,8 +16,8 @@ const DashIntPackage = ({ data, refetch }) => {
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
     refetch();
+    setIsModalOpen(false);
   };
   const handleDelete = (id) => {
     AxiosBaseURL.delete(`/internetservice/${id}`)
@@ -36,7 +36,7 @@ const DashIntPackage = ({ data, refetch }) => {
       }`}
     >
       <h1 className="text-lg font-bold">{name}</h1>
-
+      {bestDeals && <div className="badge badge-info">Best Deals</div>}
       <div className="flex gap-5 justify-center">
         <p className="w-1/2 flex justify-center items-center  border-r-4">
           <span className="text-3xl font-semibold">{speed}</span>
@@ -70,7 +70,7 @@ const DashIntPackage = ({ data, refetch }) => {
           </p>
         ))}
       </div>
-
+      <p>publish Date : {date.slice(0, 10)}</p>
       <div className="flex justify-end flex-wrap gap-3">
         <button onClick={openModal} className="btn btn-sm btn-secondary">
           Update
@@ -83,6 +83,7 @@ const DashIntPackage = ({ data, refetch }) => {
         </button>
       </div>
       <UpdateInternetPackModal
+        refetch={refetch}
         data={data}
         isOpen={isModalOpen}
         onClose={closeModal}

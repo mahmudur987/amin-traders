@@ -12,7 +12,7 @@ const Users = () => {
     error,
     refetch,
   } = useQuery({
-    queryKey: [],
+    queryKey: ["/users"],
     queryFn: async () => {
       const data = await AxiosBaseURL.get("/users");
       return data.data.data;

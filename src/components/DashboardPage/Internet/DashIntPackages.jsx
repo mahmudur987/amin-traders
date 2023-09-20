@@ -15,10 +15,10 @@ const DashIntPackages = () => {
     error,
     refetch,
   } = useQuery({
-    queryKey: [],
+    queryKey: ["allpackage"],
     queryFn: async () => {
       const data = await AxiosBaseURL.get("/internetservice/allpackage");
-      return data.data.data;
+      return data.data.data.sort((a, b) => new Date(a.date) - new Date(b.date));
     },
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -68,7 +68,11 @@ const DashIntPackages = () => {
           </div>
         )}
       </div>
-      <AddInternetPackModal isOpen={isModalOpen} onClose={closeModal} />
+      <AddInternetPackModal
+        refetch={refetch}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </>
   );
 };

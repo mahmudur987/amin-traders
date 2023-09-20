@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
 import OilBuyModal from "./OilBuyModal";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { authContext } from "../../../context/UserContext";
 import toast from "react-hot-toast";
@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 // eslint-disable-next-line react/prop-types
 const OilProduct = ({ data }) => {
   const { user } = useContext(authContext);
-
+  const { pathname } = useLocation();
   const { picture, name, brandName, quantity, price, offer } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -50,9 +50,16 @@ const OilProduct = ({ data }) => {
           </p>
         )}
         <div className="flex justify-end">
-          <button onClick={openModal} className="btn btn-sm btn-secondary">
-            Buy Now
-          </button>
+          {pathname === "/" ? (
+            <Link to={"/service/oilpage"}>
+              {" "}
+              <button className="btn btn-sm btn-secondary">Order Now</button>
+            </Link>
+          ) : (
+            <button onClick={openModal} className="btn btn-sm btn-secondary">
+              Order Now
+            </button>
+          )}
         </div>
         <OilBuyModal data={data} isOpen={isModalOpen} onClose={closeModal} />
       </div>

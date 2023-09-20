@@ -5,20 +5,23 @@ import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 
-const AddInternetPackModal = ({ isOpen, onClose }) => {
+const AddInternetPackModal = ({ isOpen, onClose, refetch }) => {
   const [name, setName] = useState("");
   const [price, setprice] = useState(0);
   const [speed, setspeed] = useState("");
-  const [condition, setCondition] = useState("");
+  const [condition, setCondition] = useState([
+    "No Security Deposit Required (for Any packages)",
+  ]);
   const [vat, setvat] = useState(false);
   const [bestDeals, setBestDeals] = useState(false);
   const [date, setdate] = useState(new Date());
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newData = { name, price, speed, condition, vat, date };
+    const newData = { name, price, speed, condition, vat, date, bestDeals };
 
     AxiosBaseURL.post("/internetservice/allpackage", newData)
       .then((data) => {
+        refetch();
         console.log(data.data);
       })
       .catch((err) => {

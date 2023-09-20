@@ -18,7 +18,7 @@ const UpdateGasModal = ({ isOpen, onClose, data, refetch }) => {
   const [use, setuse] = useState(data?.use);
   const [valveSize, setvalveSize] = useState(data?.valveSize);
   const [valveType, setvalveType] = useState(data.valveType);
-  const [bestDeals, setBestDeals] = useState(false);
+  const [bestDeals, setBestDeals] = useState(data?.bestDeals);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -236,6 +236,7 @@ const UpdateGasModal = ({ isOpen, onClose, data, refetch }) => {
                 Best Deals
               </label>
               <input
+                checked={bestDeals}
                 type="checkbox"
                 name="vat"
                 onChange={(e) => setBestDeals(e.target.checked)}

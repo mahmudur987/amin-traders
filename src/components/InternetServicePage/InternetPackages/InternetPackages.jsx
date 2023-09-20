@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SinglePackage from "./SinglePackage";
 import LoadingSpinner from "../../shared/loading/Loading";
 import toast from "react-hot-toast";
@@ -8,16 +8,17 @@ import AxiosBaseURL from "../../../axios/AxiosConfig";
 const InternetPackages = () => {
   const [count, setCount] = useState(3);
   const [showAll, setShowAll] = useState(false);
+
   const {
     data: InternetPackagesData,
     isLoading,
     isError,
     error,
   } = useQuery({
-    queryKey: [],
+    queryKey: ["allpackage"],
     queryFn: async () => {
       const data = await AxiosBaseURL.get("/internetservice/allpackage");
-      return data.data.data;
+      return data.data.data.filter((item) => new Date(item.date) < new Date());
     },
   });
 
@@ -42,13 +43,9 @@ const InternetPackages = () => {
 
       {InternetPackagesData && (
         <div className="w-full p-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-          {InternetPackagesData?.filter(
-            (item) => new Date(item.date) < new Date()
-          )
-            .slice(0, count)
-            .map((data) => (
-              <SinglePackage data={data} key={data._id}></SinglePackage>
-            ))}
+          {InternetPackagesData?.slice(0, count).map((data) => (
+            <SinglePackage data={data} key={data._id}></SinglePackage>
+          ))}
         </div>
       )}
 

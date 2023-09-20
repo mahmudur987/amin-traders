@@ -2,12 +2,13 @@
 
 import { useContext, useState } from "react";
 import GasBuyModal from "./GasBuyModal";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { authContext } from "../../../context/UserContext";
 import toast from "react-hot-toast";
 
 const Product = ({ data }) => {
   const { user } = useContext(authContext);
+  const { pathname } = useLocation();
   const {
     picture,
     Brand,
@@ -21,7 +22,7 @@ const Product = ({ data }) => {
   } = data;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { pathname } = useLocation();
+
   const openModal = () => {
     if (!user) return toast.error("please LogIn first");
 
@@ -69,9 +70,21 @@ const Product = ({ data }) => {
               </p>
             )}
             <div className="flex justify-end">
-              <button onClick={openModal} className="btn btn-sm btn-secondary">
-                Buy Now
-              </button>
+              {pathname === "/" ? (
+                <Link to={"/service/gasservice"}>
+                  {" "}
+                  <button className="btn btn-sm btn-secondary">
+                    Order Now
+                  </button>
+                </Link>
+              ) : (
+                <button
+                  onClick={openModal}
+                  className="btn btn-sm btn-secondary"
+                >
+                  Order Now
+                </button>
+              )}
             </div>
             <GasBuyModal
               data={data}
