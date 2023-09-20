@@ -11,6 +11,7 @@ const wovenBags = [
     price: 15.99,
     image:
       "https://www.remodelista.com/wp-content/uploads/2018/05/hand-woven-jute-tote-bag-natural-future-kept.jpg",
+    bagtype: "wovenBag",
   },
   {
     id: 2,

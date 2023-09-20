@@ -43,12 +43,9 @@ const DashOilProduct = ({ data, refetch }) => {
         <img className="w-full h-80" src={picture} alt="Shoes" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">
-          {name}
-
-          {offer?.isOffer && <div className="badge badge-secondary">Offer</div>}
-          {bestDeals && <div className="badge badge-info">Best Deals</div>}
-        </h2>
+        <h2 className="card-title">{name}</h2>
+        {offer?.isOffer && <div className="badge badge-secondary">Offer</div>}
+        {bestDeals && <div className="badge badge-info">Best Deals</div>}
         <p>
           Quantity : <span>{quantity}</span>Liter
         </p>

@@ -64,9 +64,9 @@ const UpComingProducts = () => {
         {/* internet */}
 
         {futureInternetData && (
-          <div className="flex flex-col items-center">
+          <div className="w-full flex flex-col items-center">
             <h1 className="text-2xl font-bold my-5 md:my-10">Internet</h1>
-            <div className="">
+            <div className="w-full">
               {futureInternetData?.slice(0, 2).map((data) => (
                 <UIP data={data} key={data._id} />
               ))}

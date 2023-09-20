@@ -4,24 +4,26 @@ import toast from "react-hot-toast";
 import { authContext } from "../../context/UserContext";
 import { useQuery } from "@tanstack/react-query";
 import AxiosBaseURL from "../../axios/AxiosConfig";
-import MyBooked from "../../components/DashboardPage/MyBookings/MyBooked";
+
 import { AiFillCaretDown } from "react-icons/ai";
+import Cart from "../../components/DashboardPage/Mycart/Cart";
 const MyBookings = () => {
   const { user } = useContext(authContext);
   const {
-    data: orders,
+    data: carts,
     isLoading,
     isError,
     error,
+    refetch,
   } = useQuery({
-    queryKey: ["/orders"],
+    queryKey: ["/cart"],
     queryFn: async () => {
-      const data = await AxiosBaseURL.get("/orders");
+      const data = await AxiosBaseURL.get("/cart");
       return data.data.data;
     },
   });
 
-  const myorder = orders?.filter((x) => x.userEmail === user?.email);
+  const mycart = carts?.filter((x) => x.userEmail === user?.email);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -34,7 +36,9 @@ const MyBookings = () => {
 
   return (
     <div className="my-10 flex flex-col gap-10 items-center p-2 lg:p-10">
-      <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">My Bookings</h1>
+      <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">
+        My Shopping Cart
+      </h1>
 
       <div className="w-full flex justify-end">
         <button className="btn btn-outline ">
@@ -46,12 +50,31 @@ const MyBookings = () => {
       </div>
 
       <div className="w-full flex flex-col  gap-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-          {myorder.length > 0 &&
-            myorder?.map((order, i) => (
-              <MyBooked key={i} index={i} order={order} />
-            ))}
-          {myorder.length <= 0 && (
+        <div className="grid ">
+          {mycart.length > 0 && (
+            <div className="overflow-x-auto">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Si</th>
+                    <th>Catagory</th>
+                    <th>Package</th>
+                    <th>Price</th>
+                    <th>Order Now</th>
+                    <th>Remove </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {mycart.map((cart, i) => (
+                    <Cart key={i} index={i} cart={cart} refetch={refetch} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {/* agsdhaGBDHSG */}
+          {mycart.length <= 0 && (
             <div className=" w-full flex  justify-center">
               {" "}
               <p className="text-xl font-bold text-secondary text-center">

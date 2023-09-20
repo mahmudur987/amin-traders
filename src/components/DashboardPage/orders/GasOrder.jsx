@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 
 const GasOrder = ({ index, order, refetch }) => {
@@ -26,7 +26,16 @@ const GasOrder = ({ index, order, refetch }) => {
         console.error("orderReciveEroor", err);
       });
   };
-
+  const handleOrderDelever = (id) => {
+    AxiosBaseURL.post(`/orders/orderdeliver/${id}`)
+      .then((data) => {
+        console.log("orderrecived", data);
+        refetch();
+      })
+      .catch((err) => {
+        console.error("orderReciveEroor", err);
+      });
+  };
   return (
     <div className="card  bg-base-100 shadow-xl border">
       <div className="card-body">
@@ -49,7 +58,14 @@ const GasOrder = ({ index, order, refetch }) => {
               Recived
             </button>
           )}
-          <button className="btn btn-outline btn-sm">Delevered</button>
+          {orderStatus !== "delivered" && (
+            <button
+              onClick={() => handleOrderDelever(_id)}
+              className="btn btn-outline btn-sm"
+            >
+              Delivered
+            </button>
+          )}
         </div>
       </div>
     </div>

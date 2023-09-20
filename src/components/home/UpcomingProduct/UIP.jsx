@@ -1,9 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
+
+import TimeDifference from "./TimeDifference";
+
 /* eslint-disable react/prop-types */
 const UIP = ({ data }) => {
   return (
-    <div className=" w-64 h-[300px]  bg-base-100 shadow-xl ">
-      <div className=" w-full h-full flex flex-col justify-around font-bold  items-center">
+    <div className=" w-full  bg-red-50 h-[300px] flex flex-wrap justify-around items-center ">
+      <div className=" w-64 h-2/3 flex flex-col justify-around font-bold  items-center  bg-base-100 shadow-xl">
         <h2 className="card-title">
           {data.name}
           <div className="badge badge-secondary">upcoming</div>
@@ -11,6 +14,8 @@ const UIP = ({ data }) => {
         <p>Speed : {data.speed}</p>
         <p>Price : {data.price}</p>
       </div>
+
+      <TimeDifference fDate={data?.date} />
     </div>
   );
 };

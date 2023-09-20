@@ -1,20 +1,27 @@
 /* eslint-disable react/prop-types */
 // Modal.js
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { authContext } from "../../../context/UserContext";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import { UsedbUser } from "../../Hooks/dbUser";
 import toast from "react-hot-toast";
-
+import { FaPlus, FaMinus } from "react-icons/fa";
 const GasBuyModal = ({ isOpen, onClose, data }) => {
+  const { name, offer, price, quantity } = data || {};
   const { user } = useContext(authContext);
   const [dbuser] = UsedbUser(user?.email);
+  const [orderQuantity, setOrderQuantity] = useState(1);
+  const [initialprice, setInitialPrice] = useState(
+    parseInt(offer.isOffer ? price - offer?.lessPrice : data?.price)
+  );
+  const [totalPrice, setTotalPrice] = useState(initialprice);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!user) return toast.error("please LogIn first");
     const from = e.target;
-    const userPhoneNumber = from.userPhoneNumber.value;
-    const userAddress = from.userAddress.value;
+    const userPhoneNumber = from?.userPhoneNumber?.value;
+    const userAddress = from?.userAddress?.value;
 
     // You can handle the form submission logic here
     const newOrder = {
@@ -25,7 +32,8 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
       packageName: `${data?.name}`,
       packageId: data?._id,
       serviceName: "Gas",
-      paymentAmount: parseInt(data?.price),
+      paymentAmount: totalPrice,
+      orderQuantity: orderQuantity,
       paymentStatus: "pending",
     };
     console.log(newOrder);
@@ -69,7 +77,49 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
               </svg>
             </div>
           </div>
+          <div>
+            <h2 className="card-title">
+              {name}
+              {offer?.isOffer && (
+                <div className="badge badge-secondary">Offer</div>
+              )}
+            </h2>
+            <p>
+              Quantity : <span>{quantity}</span>
+            </p>
 
+            <p>
+              Price : <span>{totalPrice}</span>
+            </p>
+            <div className="flex justify-between items-center">
+              <p>Order Quantity:</p>
+              <p className="flex justify-end gap-1 items-center">
+                <button
+                  onClick={() => {
+                    if (orderQuantity <= 0) {
+                      return;
+                    }
+                    setOrderQuantity(orderQuantity - 1);
+                    setTotalPrice(totalPrice - initialprice);
+                  }}
+                  className="btn btn-outline btn-sm"
+                >
+                  <FaMinus />
+                </button>
+
+                <span className="btn">{orderQuantity}</span>
+                <button
+                  onClick={() => {
+                    setOrderQuantity(orderQuantity + 1);
+                    setTotalPrice(initialprice * (orderQuantity + 1));
+                  }}
+                  className="btn btn-outline btn-sm"
+                >
+                  <FaPlus />
+                </button>
+              </p>
+            </div>
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label

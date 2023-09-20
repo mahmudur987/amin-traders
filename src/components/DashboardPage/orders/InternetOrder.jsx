@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 
 const InternetOrder = ({ index, order, refetch }) => {

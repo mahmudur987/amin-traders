@@ -20,9 +20,10 @@ import InternetUserDetails from "../components/DashboardPage/InternetUsers/Inter
 import AxiosBaseURL from "../axios/AxiosConfig";
 import PrivatRoutes from "./PrivetRoutes";
 import MyBookings from "../pages/DashboardPage/MyBookings";
+import MyCart from "../pages/DashboardPage/MyCart";
 import Bags from "../pages/Bags/Bags";
 import EditBanner from "../pages/DashboardPage/EditBanner";
-
+import ProductDetails from "../components/GasServicePage/Products/productDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -45,6 +46,13 @@ export const router = createBrowserRouter([
       {
         path: "/service/gasservice",
         element: <GasServicePage />,
+      },
+      {
+        path: "/service/gasservice/:id",
+        element: <ProductDetails />,
+        loader: async ({ params }) => {
+          return AxiosBaseURL.get(`/gasservice/${params.id}`);
+        },
       },
       {
         path: "/service/oilpage",
@@ -112,6 +120,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/mybooking",
         element: <MyBookings />,
+      },
+      {
+        path: "/dashboard/cart",
+        element: <MyCart />,
       },
       {
         path: "/dashboard/editbanner",

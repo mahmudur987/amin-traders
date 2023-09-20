@@ -26,9 +26,9 @@ const OilProduct = ({ data }) => {
   return (
     <div className="card max-w-sm  bg-base-100 shadow-xl">
       <figure>
-        <img className="w-full h-80" src={picture} alt="Shoes" />
+        <img className="w-full h-52" src={picture} alt="Shoes" />
       </figure>
-      <div className="card-body">
+      <div className="card-body p-3">
         <h2 className="card-title">
           {name}
 

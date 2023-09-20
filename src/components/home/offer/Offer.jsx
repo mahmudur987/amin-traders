@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import SinglePackage from "../../InternetServicePage/InternetPackages/SinglePackage";
 import LoadingSpinner from "../../shared/loading/Loading";
@@ -59,13 +58,13 @@ const Offer = () => {
 
   return (
     <div className="my-10 flex flex-col items-center ">
-      <h1 className="text-center font-bold text-secondary text-xl md:text-2xl lg:text-4xl">
+      <h1 className="text-center font-bold text-secondary text-xl md:text-2xl lg:text-4xl md:my-8">
         Todays Exclusive Offer
       </h1>
 
-      <div className="w-full  flex justify-around flex-wrap ">
+      <div className="w-full  flex justify-around flex-wrap gap-5 ">
         {Internet && (
-          <div className="w-full max-w-xl p-5 ">
+          <div className="w-full max-w-lg h-[500px] border p-5 ">
             <Slider {...settings}>
               {Internet?.filter((x) => x.bestDeals === true)
                 .slice(0, 4)
@@ -76,7 +75,7 @@ const Offer = () => {
           </div>
         )}
         {Gas && (
-          <div className="w-full max-w-xl  p-5 ">
+          <div className="w-full max-w-lg  h-[500px] border  p-5 ">
             <Slider {...settings}>
               {Gas?.filter((x) => x.bestDeals === true)
                 .slice(0, 4)
@@ -87,7 +86,7 @@ const Offer = () => {
           </div>
         )}
         {Oil && (
-          <div className="w-full max-w-xl   p-5 ">
+          <div className="w-full max-w-lg  h-[500px] border    p-5 ">
             <Slider {...settings}>
               {Oil?.filter((x) => x.bestDeals === true)
                 .slice(0, 4)

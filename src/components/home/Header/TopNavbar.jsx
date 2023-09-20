@@ -16,7 +16,7 @@ const TopNavbar = () => {
   return (
     <div
       className={`hidden lg:flex justify-between p-1 ${
-        pathname === "/" ? "text-white" : ""
+        pathname === "/" ? "text-white" : "bg-base-100"
       }`}
     >
       <div className="flex items-center gap-2">

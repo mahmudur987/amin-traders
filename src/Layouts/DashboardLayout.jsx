@@ -39,6 +39,9 @@ const DashboardLayout = () => {
             <li>
               <Link to={"/dashboard/mybooking"}> My Bookings</Link>
             </li>
+            <li>
+              <Link to={"/dashboard/cart"}> My Shopping Cart</Link>
+            </li>
             {dbuser?.role === "admin" && (
               <>
                 <li>

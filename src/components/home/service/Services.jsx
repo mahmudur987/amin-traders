@@ -37,7 +37,7 @@ const Services = () => {
   return (
     <div className="container my-10">
       <h1 className="uppercase font-bold text-2xl md:text-3xl lg:text-4xl text-center my-5">
-        our services
+        services categories
       </h1>
 
       <div className="w-full flex  justify-around flex-wrap md:p-5 ">

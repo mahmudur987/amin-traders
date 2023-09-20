@@ -9,11 +9,17 @@ const MainLayout = () => {
   return (
     <main
       data-theme={`${theme ? "bumblebee" : "forest"}`}
-      className="flex flex-col gap-5"
+      className="flex flex-col gap-5 relative"
     >
-      <Header />
-      <Outlet />
-      <Footer />
+      <div className="fixed top-0 z-20 w-full">
+        <Header />
+      </div>
+      <div className=" mt-40 w-full">
+        <Outlet />
+      </div>
+      <div className=" w-full">
+        <Footer />
+      </div>
     </main>
   );
 };
