@@ -23,7 +23,8 @@ import MyBookings from "../pages/DashboardPage/MyBookings";
 import MyCart from "../pages/DashboardPage/MyCart";
 import Bags from "../pages/Bags/Bags";
 import EditBanner from "../pages/DashboardPage/EditBanner";
-import ProductDetails from "../components/GasServicePage/Products/productDetails";
+import ProductDetails from "../components/GasServicePage/Products/ProductDetails";
+import OilProductDetails from "../components/Oilpage/oilProducts/OilProductDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -59,9 +60,13 @@ export const router = createBrowserRouter([
         element: <OilPages />,
       },
       {
-        path: "/service/oilpage",
-        element: <OilPages />,
+        path: "/service/oilpage/:id",
+        element: <OilProductDetails />,
+        loader: async ({ params }) => {
+          return AxiosBaseURL.get(`/oilservice/${params.id}`);
+        },
       },
+
       {
         path: "/service/bags",
         element: <Bags />,

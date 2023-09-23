@@ -1,34 +1,15 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React, { useContext, useState } from "react";
-import OilBuyModal from "./OilBuyModal";
-import { Link, useLocation } from "react-router-dom";
-
-import { authContext } from "../../../context/UserContext";
-import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const OilProduct = ({ data }) => {
-  const { user } = useContext(authContext);
-  const { pathname } = useLocation();
-  const { picture, name, brandName, quantity, price, offer } = data;
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { picture, name, brandName, quantity, price, offer, _id } = data || {};
 
-  const openModal = () => {
-    if (!user) return toast.error("please LogIn first");
-
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
   return (
-    <div className="card max-w-sm  bg-base-100 shadow-xl">
-      <figure>
-        <img className="w-full h-52" src={picture} alt="Shoes" />
+    <div className="card w-full max-w-xs h-96  bg-base-100 shadow-xl mx-auto">
+      <figure className="h-52">
+        <img className="w-full h-full  " src={picture} alt="Shoes" />
       </figure>
-      <div className="card-body p-3">
+      <div className="card-body p-2 gap-1">
         <h2 className="card-title">
           {name}
 
@@ -41,27 +22,22 @@ const OilProduct = ({ data }) => {
         <p>
           Brand : <span>{brandName}</span>
         </p>
-        <p>
-          Price : <span>{price}</span>
-        </p>
-        {offer?.isOffer && (
+
+        {offer?.isOffer ? (
           <p>
-            Offer Price : <span>{price - offer.lessPrice}</span>
+            Offer Price : <span className="line-through">{price}</span>{" "}
+            <span>{price - offer.lessPrice}</span>
+          </p>
+        ) : (
+          <p>
+            Price : <span>{price}</span>
           </p>
         )}
         <div className="flex justify-end">
-          {pathname === "/" ? (
-            <Link to={"/service/oilpage"}>
-              {" "}
-              <button className="btn btn-sm btn-secondary">Order Now</button>
-            </Link>
-          ) : (
-            <button onClick={openModal} className="btn btn-sm btn-secondary">
-              Order Now
-            </button>
-          )}
+          <Link to={`/service/oilpage/${_id}`}>
+            <button className="btn btn-sm btn-secondary">Details</button>
+          </Link>
         </div>
-        <OilBuyModal data={data} isOpen={isModalOpen} onClose={closeModal} />
       </div>
     </div>
   );

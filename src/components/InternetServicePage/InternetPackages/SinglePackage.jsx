@@ -26,10 +26,12 @@ const SinglePackage = ({ data }) => {
 
   return (
     <div
-      className={`flex max-w-xs flex-col gap-5 border p-5  rounded-xl shadow-xl`}
+      className={`flex max-w-xs max-h-96 h-full flex-col gap-5 border p-5  rounded-xl shadow-xl`}
     >
-      <h1 className="text-lg font-bold">{name}</h1>
-      {bestDeals && <div className="badge badge-secondary">Offer</div>}
+      <div className="flex gap-2">
+        <h1 className="text-lg font-bold">{name}</h1>
+        {bestDeals && <div className="badge badge-secondary">Offer</div>}
+      </div>
       <div className="flex gap-5 justify-center">
         <p className="w-1/2 flex  items-center  border-r-4">
           <span className="text-2xl font-semibold">{speed}</span>

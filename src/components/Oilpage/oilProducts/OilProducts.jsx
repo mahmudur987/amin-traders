@@ -32,7 +32,7 @@ const OilProducts = () => {
       id: "clipboard",
     });
   }
-  console.log(OilData);
+
   return (
     <div className="my-20 flex flex-col gap-10 items-center">
       <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">
