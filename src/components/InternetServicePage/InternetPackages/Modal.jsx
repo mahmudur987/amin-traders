@@ -1,15 +1,19 @@
 /* eslint-disable react/prop-types */
 // Modal.js
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { authContext } from "../../../context/UserContext";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import { UsedbUser } from "../../Hooks/dbUser";
+import toast from "react-hot-toast";
 
 const Modal = ({ isOpen, onClose, data }) => {
   const { user } = useContext(authContext);
   const [dbuser] = UsedbUser(user?.email);
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!dbuser) {
+      return toast.error("Please Log In");
+    }
 
     const from = e.target;
     const userPhoneNumber = from.userPhoneNumber.value;
@@ -17,21 +21,24 @@ const Modal = ({ isOpen, onClose, data }) => {
 
     // You can handle the form submission logic here
     const newOrder = {
-      userName: user?.displayName,
-      userEmail: user?.email,
+      user: dbuser?._id,
+      userName: dbuser?.name,
+      userEmail: dbuser?.email,
       userPhoneNumber,
       userAddress,
       packageName: `${data?.name}`,
-      packageId: data?._id,
+      Internet: data?._id,
       serviceName: "Internet",
       paymentAmount: parseInt(data?.price),
       paymentStatus: "pending",
+      orderStatus: "pending",
     };
     console.log(newOrder);
 
     AxiosBaseURL.post("/orders", newOrder)
       .then((data) => {
         console.log("orderposted", data);
+        toast.success(data?.data?.status);
       })
       .catch((err) => {
         console.log("orderpostError", err);

@@ -6,22 +6,25 @@ import { useQuery } from "@tanstack/react-query";
 import AxiosBaseURL from "../../axios/AxiosConfig";
 import MyBooked from "../../components/DashboardPage/MyBookings/MyBooked";
 import { AiFillCaretDown } from "react-icons/ai";
+import { UsedbUser } from "../../components/Hooks/dbUser";
 const MyBookings = () => {
   const { user } = useContext(authContext);
+  const [dbuser] = UsedbUser(user?.email);
   const {
-    data: orders,
+    data: myorder,
     isLoading,
     isError,
     error,
+    refetch,
   } = useQuery({
-    queryKey: ["/orders"],
+    queryKey: ["/orders", dbuser],
     queryFn: async () => {
-      const data = await AxiosBaseURL.get("/orders");
-      return data.data.data;
+      const data = await AxiosBaseURL.get(`/orders/${dbuser?._id}`);
+      return data.data.data.sort(
+        (a, b) => new Date(a.orderDate) - new Date(b.orderDate)
+      );
     },
   });
-
-  const myorder = orders?.filter((x) => x.userEmail === user?.email);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -46,10 +49,10 @@ const MyBookings = () => {
       </div>
 
       <div className="w-full flex flex-col  gap-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 ">
+        <div className=" flex justify-around flex-wrap  gap-5 ">
           {myorder.length > 0 &&
             myorder?.map((order, i) => (
-              <MyBooked key={i} index={i} order={order} />
+              <MyBooked key={i} index={i} order={order} refetch={refetch} />
             ))}
           {myorder.length <= 0 && (
             <div className=" w-full flex  justify-center">

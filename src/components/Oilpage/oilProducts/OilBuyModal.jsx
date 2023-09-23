@@ -10,16 +10,19 @@ const OilBuyModal = ({ isOpen, onClose, data }) => {
   const [dbuser] = UsedbUser(user?.email);
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!user) return toast.error("please LogIn first");
+
     const from = e.target;
     const userPhoneNumber = from.userPhoneNumber.value;
     const userAddress = from.userAddress.value;
     const newOrder = {
-      userName: user?.displayName,
-      userEmail: user?.email,
+      user: dbuser?._id,
+      userName: dbuser?.name,
+      userEmail: dbuser?.email,
       userPhoneNumber,
       userAddress,
       packageName: `${data?.name}`,
-      packageId: data?._id,
+      Oil: data?._id,
       serviceName: "Oil",
       paymentAmount: parseInt(data?.price),
       paymentStatus: "pending",

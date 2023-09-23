@@ -35,7 +35,7 @@ const MostViewed = () => {
   }
   return (
     <>
-      {mostviews.length > 0 && (
+      {mostviews?.length > 0 && (
         <div className="my-10 md:my-20 lg:my-32 mx-auto px-7 lg:px-20">
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold my-5 md:my-8 lg:my-10">
             Most viewed Product
@@ -43,11 +43,11 @@ const MostViewed = () => {
 
           <div className="w-full flex ">
             {mostviews?.slice(0, 4).map((data, i) => {
-              if (data.oilProduct.length > 0) {
-                return <OilProduct data={data.oilProduct[0]} />;
+              if (data?.oilProduct?.length > 0) {
+                return <OilProduct key={i} data={data.oilProduct[0]} />;
               }
-              if (data.gasProduct.length > 0) {
-                return <Product data={data.gasProduct[0]} />;
+              if (data?.gasProduct?.length > 0) {
+                return <Product key={i} data={data?.gasProduct[0]} />;
               }
             })}
           </div>

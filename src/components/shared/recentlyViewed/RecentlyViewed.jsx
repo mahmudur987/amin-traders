@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { authContext } from "../../../context/UserContext";
 import { UsedbUser } from "../../Hooks/dbUser";
 import LoadingSpinner from "../loading/Loading";
@@ -21,7 +21,7 @@ const RecentlyViewed = () => {
     queryKey: ["recentview", dbuser],
     queryFn: async () => {
       const data = await AxiosBaseURL.get(`/recentview/${dbuser?._id}`);
-      return data.data.data;
+      return data.data;
     },
   });
 
@@ -33,6 +33,7 @@ const RecentlyViewed = () => {
       id: "clipboard",
     });
   }
+
   return (
     <>
       {recentViews.length > 0 && (
@@ -41,15 +42,15 @@ const RecentlyViewed = () => {
             Recently Viewed
           </h1>
 
-          <div className="w-full flex ">
-            {recentViews?.slice(0, 4).map((data, i) => {
+          <div className="w-full flex flex-wrap justify-around gap-3 ">
+            {/* {recentViews?.slice(0, 4).map((data, i) => {
               if (data.oilProduct.length > 0) {
-                return <OilProduct data={data.oilProduct[0]} />;
+                return <OilProduct key={i} data={data.oilProduct[0]} />;
               }
               if (data.gasProduct.length > 0) {
-                return <Product data={data.gasProduct[0]} />;
+                return <Product key={i} data={data.gasProduct[0]} />;
               }
-            })}
+            })} */}
           </div>
         </div>
       )}

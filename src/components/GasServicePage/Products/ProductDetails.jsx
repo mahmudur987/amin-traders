@@ -67,16 +67,20 @@ const ProductDetails = () => {
     if (!user) {
       return;
     }
-    const recentViewedData = { userId: dbuser?._id, gasProduct: data?._id };
-    console.log(recentViewedData);
+    const recentViewedData = {
+      userId: dbuser?._id,
+      gasProductId: data?._id,
+      category: "Gas",
+    };
+    console.log(JSON.stringify(recentViewedData));
     AxiosBaseURL.post("/recentview", recentViewedData)
       .then((data) => {
-        console.log("recentviewdData", data.data);
+        console.log("recentviewdData", data.data.data);
       })
       .catch((err) => {
         console.log("recentviewdData", err);
       });
-  }, [user]);
+  }, [user, data, dbuser]);
 
   return (
     <main>
@@ -148,7 +152,7 @@ const ProductDetails = () => {
 
           {user && <RecentlyViewed />}
 
-          {!user && <MostViewed />}
+          {/* {!user && <MostViewed />} */}
           <SubscriptionForm />
         </>
       )}

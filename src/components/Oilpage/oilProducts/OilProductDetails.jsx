@@ -45,7 +45,7 @@ const OilProductDetails = () => {
       .catch((err) => {
         console.log("recentviewdData", err);
       });
-  }, [user]);
+  }, [user, dbuser, data]);
   return (
     <main>
       <div className="card max-w-5xl w-full mx-auto lg:card-side bg-base-100 shadow-xl">

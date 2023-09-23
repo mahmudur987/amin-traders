@@ -25,12 +25,13 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
 
     // You can handle the form submission logic here
     const newOrder = {
-      userName: user?.displayName,
-      userEmail: user?.email,
+      user: dbuser?._id,
+      userName: dbuser?.name,
+      userEmail: dbuser?.email,
       userPhoneNumber,
       userAddress,
       packageName: `${data?.name}`,
-      packageId: data?._id,
+      Gas: data?._id,
       serviceName: "Gas",
       paymentAmount: totalPrice,
       orderQuantity: orderQuantity,
