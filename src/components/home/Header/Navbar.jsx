@@ -28,7 +28,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li onClick={() => setShowMenu(!showMenu)} className="dropdown ">
-        <label tabIndex={1} className="btn btn-ghost">
+        <label tabIndex={1} className="btn btn-ghost flex-nowrap">
           <span> Services</span>{" "}
           <span>
             <AiOutlineCaretDown />

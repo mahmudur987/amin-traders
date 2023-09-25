@@ -5,8 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import AxiosBaseURL from "../../axios/AxiosConfig";
 import LoadingSpinner from "../../components/shared/loading/Loading";
+import AddInternetUserModal from "../../components/DashboardPage/InternetUsers/AddInternetUserModal";
+import { useState } from "react";
 
 const InternetUsers = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     data: internetUsers,
     isLoading,
@@ -20,6 +23,14 @@ const InternetUsers = () => {
       return data.data.data;
     },
   });
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    refetch();
+    setIsModalOpen(false);
+  };
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -36,21 +47,24 @@ const InternetUsers = () => {
       </h1>
 
       <div className="w-full flex justify-end">
-        <button className="btn btn-outline ">
-          sort
-          <span className="text-xl">
-            <AiFillCaretDown />
-          </span>{" "}
+        <button onClick={openModal} className="btn btn-outline ">
+          ADD A NEW USER{" "}
         </button>
       </div>
       {/* internet order */}
       <div className="w-full flex flex-col  gap-10">
-        <div className="w-full flex justify-around   flex-wrap ">
+        <div className="w-full flex justify-around   flex-wrap gap-5">
           {internetUsers?.map((user, i) => (
             <InternetUser refetch={refetch} key={i} index={i} user={user} />
           ))}
         </div>
       </div>
+
+      <AddInternetUserModal
+        refetch={refetch}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </div>
   );
 };

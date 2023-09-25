@@ -1,37 +1,42 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import LoadingSpinner from "../../shared/loading/Loading";
+import toast from "react-hot-toast";
 
 const Welcome = () => {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["extrah/aboutus"],
+    queryFn: async () => {
+      const data = await AxiosBaseURL.get("/extrah/aboutus");
+      return data.data.data;
+    },
+  });
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (isError) {
+    return toast.error(error.message, {
+      id: "clipboard",
+    });
+  }
+  const { heading, ImageUrl, text1, text2 } = data.find(
+    (x) => x.aboutFor === "gasPage"
+  );
+
   return (
     <div className=" flex flex-col items-center justify-center min-h-[400px] border my-20 p-2 lg:p-10">
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2 p-8 flex flex-col items-center justify-center gap-10   ">
           <h2 className="text-3xl text-center font-bold my-4 text-accent">
             {" "}
-            Welcome
+            {heading}
           </h2>
-          <p className="mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            feugiat, urna eu vulputate iaculis, mauris mauris fringilla est,
-            vitae volutpat est nunc sed massa. Sed interdum risus ut pharetra
-            commodo.
-          </p>
-          <p className="mb-4">
-            Aliquam finibus ex vitae est congue auctor. Praesent volutpat nisi
-            eget tortor vulputate, sed tincidunt urna pharetra. Fusce finibus
-            quam purus, ac eleifend nibh mattis at. Sed a fermentum urna. Sed
-            iaculis consectetur nisi, in elementum felis consequat in. Fusce
-            eget libero non leo finibus eleifend.
-          </p>
-
-          <p>
-            <button className="btn btn-accent">Learn More</button>
-          </p>
+          <p className="mb-4">{text1}</p>
+          <p className="mb-4">{text2}</p>
         </div>
         <div className="md:w-1/2 p-8">
-          <img
-            className="w-full h-full"
-            src="https://bmenergybd.com/wp-content/uploads/2020/07/BM_LP_Cylinder-2.jpg"
-          />
+          <img className="w-full h-full" src={ImageUrl} />
         </div>
       </div>
     </div>

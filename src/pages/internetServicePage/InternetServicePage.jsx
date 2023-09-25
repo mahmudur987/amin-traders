@@ -10,7 +10,7 @@ const InternetService = () => {
       <InternetserviceBanner />
       <HowToConnect />
       <InternetPackages />
-      <HotOffer />
+      {/* <HotOffer /> */}
       <ConnectionSupport />
     </div>
   );

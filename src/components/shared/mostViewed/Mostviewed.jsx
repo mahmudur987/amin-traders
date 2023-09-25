@@ -43,11 +43,11 @@ const MostViewed = () => {
 
           <div className="w-full flex ">
             {mostviews?.slice(0, 4).map((data, i) => {
-              if (data?.oilProduct?.length > 0) {
-                return <OilProduct key={i} data={data.oilProduct[0]} />;
+              if (data.oilProductId) {
+                return <OilProduct key={i} data={data.oilProductId} />;
               }
-              if (data?.gasProduct?.length > 0) {
-                return <Product key={i} data={data?.gasProduct[0]} />;
+              if (data.gasProductId) {
+                return <Product key={i} data={data.gasProductId} />;
               }
             })}
           </div>

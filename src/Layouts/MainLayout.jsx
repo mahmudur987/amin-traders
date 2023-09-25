@@ -14,10 +14,10 @@ const MainLayout = () => {
       <div className="fixed top-0 z-20 w-full">
         <Header />
       </div>
-      <div className=" mt-40 w-full">
+      <div className=" mt-40  container mx-auto">
         <Outlet />
       </div>
-      <div className=" w-full">
+      <div className=" w-full my-20">
         <Footer />
       </div>
     </main>

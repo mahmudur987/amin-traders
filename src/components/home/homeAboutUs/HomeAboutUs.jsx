@@ -1,30 +1,39 @@
+import { useQuery } from "@tanstack/react-query";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import LoadingSpinner from "../../shared/loading/Loading";
+import toast from "react-hot-toast";
+
 const HomeAboutUs = () => {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["extrah/aboutus"],
+    queryFn: async () => {
+      const data = await AxiosBaseURL.get("/extrah/aboutus");
+      return data.data.data;
+    },
+  });
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (isError) {
+    return toast.error(error.message, {
+      id: "clipboard",
+    });
+  }
+  const { heading, ImageUrl, text1, text2 } = data.find(
+    (x) => x.aboutFor === "homePage"
+  );
+
   return (
     <div className=" flex flex-col items-center justify-center min-h-[400px] border my-10">
-      <h2 className="text-3xl text-center font-bold my-4">About Us</h2>
+      <h2 className="text-3xl text-center font-bold my-4">{heading} </h2>
 
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2 p-8 grid items-center  ">
-          <p className="mb-4">
-            At AMIN_TRADERS, we ve taken the hassle out of shopping for your
-            everyday essentials. Whether you re looking for high-speed broadband
-            internet to stay connected, cylinder gas for cooking, or quality
-            food oil and woven bags, we have you covered. Welcome to a world of
-            convenience, where your needs are our top priority
-          </p>
-          <p className="mb-4">
-            Discover a new level of convenience and quality at Amin Traders. We
-            offer a range of essential services, including high-speed broadband
-            internet, cylinder gas, and everyday necessities like food oil and
-            woven bags. Step into a shopping experience thats tailored to your
-            needs, and let us simplify your life.
-          </p>
+          <p className="mb-4">{text1}</p>
+          <p className="mb-4">{text2}</p>
         </div>
         <div className="md:w-1/2 p-8">
-          <img
-            className="w-full h-full"
-            src="https://media.istockphoto.com/id/1304140612/photo/welcome-in-different-language-on-paper-with-world-map-background.jpg?s=2048x2048&w=is&k=20&c=EQ7Sjt5vc7DLzrD8c-55YCp0ldWeBtuzl5472kh4AYc="
-          />
+          <img className="w-full h-full" src={ImageUrl} />
         </div>
       </div>
     </div>

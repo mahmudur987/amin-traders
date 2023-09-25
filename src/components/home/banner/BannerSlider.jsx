@@ -58,7 +58,6 @@ const BannerSlider = () => {
                     {x.heading}
                   </h1>
                   <p className="mb-5">{x.text}</p>
-                  <button className="btn btn-primary">Get Started</button>
                 </div>
               </div>
             </div>

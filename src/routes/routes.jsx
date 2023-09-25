@@ -25,6 +25,9 @@ import Bags from "../pages/Bags/Bags";
 import EditBanner from "../pages/DashboardPage/EditBanner";
 import ProductDetails from "../components/GasServicePage/Products/ProductDetails";
 import OilProductDetails from "../components/Oilpage/oilProducts/OilProductDetails";
+import UpdateContactUsDetails from "../components/DashboardPage/UpdateContactUsDetails/UpdateContactUsDetails";
+import UpdateAboutUs from "../components/DashboardPage/UpdateaboutUs/UpdateAboutUs";
+import UpdateFeedback from "../components/DashboardPage/UpdateFeedbacks/UpdateFeedback";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -133,6 +136,18 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/editbanner",
         element: <EditBanner />,
+      },
+      {
+        path: "/dashboard/updatecontactusdetails",
+        element: <UpdateContactUsDetails />,
+      },
+      {
+        path: "/dashboard/aboutus",
+        element: <UpdateAboutUs />,
+      },
+      {
+        path: "/dashboard/feedback",
+        element: <UpdateFeedback />,
       },
       {
         path: "/dashboard/internetuser/:id",

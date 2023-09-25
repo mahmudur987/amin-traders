@@ -10,9 +10,35 @@ import {
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { authContext } from "../../../context/UserContext";
+import { useQuery } from "@tanstack/react-query";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import LoadingSpinner from "../../shared/loading/Loading";
 const TopNavbar = () => {
   const { pathname } = useLocation();
   const { SetTheme, theme } = useContext(authContext);
+  const {
+    data: AddressDetails,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["extrah"],
+    queryFn: async () => {
+      const data = await AxiosBaseURL.get("/extrah");
+      return data.data.data[0];
+    },
+  });
+
+  if (isLoading) {
+    console.log("loading");
+  }
+  if (isError) {
+    console.log(error);
+  }
+
+  const { email, phoneNumber, facebook, twiter, instagram, youtube } =
+    AddressDetails || {};
+
   return (
     <div
       className={`hidden lg:flex justify-between p-1 ${
@@ -21,40 +47,36 @@ const TopNavbar = () => {
     >
       <div className="flex items-center gap-2">
         <span>
-          <Link>
+          <Link target="_blank" to={facebook}>
             <FaFacebook />
           </Link>
         </span>
         <span>
-          <Link>
+          <Link target="_blank" to={twiter}>
             <FaTwitter />
           </Link>
         </span>
         <span>
-          <Link>
+          <Link target="_blank" to={instagram}>
             <FaInstagram />
           </Link>
         </span>
+
         <span>
-          <Link>
-            <FaPinterest />
-          </Link>
-        </span>
-        <span>
-          <Link>
+          <Link target="_blank" to={youtube}>
             <FaYoutube />
           </Link>
         </span>
         <span>
           <Link className="flex gap-2 items-center">
             <FaPhone />
-            <span href="">015000010000</span>
+            <span href=""> {phoneNumber} </span>
           </Link>
         </span>
         <span>
           <Link className="flex gap-2 items-center">
             <FaSms />
-            <span href="">amintraders9876@gmail.com</span>
+            <span href=""> {email} </span>
           </Link>
         </span>
       </div>

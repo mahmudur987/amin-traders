@@ -1,6 +1,8 @@
 // src/components/FeedbackForm.js
 
 import { useState } from "react";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import toast from "react-hot-toast";
 
 const FeedbackForm = () => {
   const [formData, setFormData] = useState({
@@ -18,13 +20,24 @@ const FeedbackForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can handle the form submission logic here, e.g., send data to an API
+
+    AxiosBaseURL.post("/extrah/feedback", formData)
+      .then((data) => {
+        console.log(data.data.status);
+        toast.success(data.data.status);
+        setFormData({ fullName: "", email: "", phoneNumber: "", message: "" });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+
     console.log(formData);
   };
 
   return (
     <div className="max-w-3xl my-10 mx-auto">
-      <h1 className="text-center text-xl md:text-2xl lg:text-4xl font-bold">
-        Send Us your Feedback
+      <h1 className="text-center uppercase text-xl md:text-2xl lg:text-4xl font-bold">
+        Send Us Your Feedback
       </h1>
       <form
         onSubmit={handleSubmit}

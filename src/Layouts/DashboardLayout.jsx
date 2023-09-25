@@ -65,6 +65,17 @@ const DashboardLayout = () => {
                 <li>
                   <Link to={"/dashboard/editbanner"}>Edit Banner</Link>
                 </li>
+                <li>
+                  <Link to={"/dashboard/updatecontactusdetails"}>
+                    Edit Home Contac Us
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/dashboard/aboutus"}>Update About Us</Link>
+                </li>
+                <li>
+                  <Link to={"/dashboard/feedback"}>Update Feedbacks</Link>
+                </li>
               </>
             )}
           </ul>

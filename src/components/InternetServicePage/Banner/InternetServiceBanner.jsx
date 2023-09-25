@@ -45,12 +45,12 @@ const InternetserviceBanner = () => {
       {sliderData.map((x, i) => (
         <div className="mx-auto" key={i}>
           <div
-            className="hero min-h-[450px]"
+            className="hero min-h-[450px] bg-center"
             style={{
               backgroundImage: `url(${x.ImageUrl})`,
             }}
           >
-            <div className="hero-overlay bg-opacity-60"></div>
+            <div className="hero-overlay bg-opacity-40"></div>
             <div className="flex lg:justify-start text-center text-white">
               <div className="w-full lg:w-1/2">
                 <h1 className="mb-5 text-3xl lg:text-5xl font-bold">
@@ -58,7 +58,6 @@ const InternetserviceBanner = () => {
                   {x.heading}{" "}
                 </h1>
                 <p className="mb-5">{x.text}</p>
-                {/* <button className="btn btn-primary">Get Started</button> */}
               </div>
             </div>
           </div>

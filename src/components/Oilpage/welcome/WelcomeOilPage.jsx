@@ -1,36 +1,42 @@
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import LoadingSpinner from "../../shared/loading/Loading";
+import toast from "react-hot-toast";
+
 const WelcomeOilPage = () => {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["extrah/aboutus"],
+    queryFn: async () => {
+      const data = await AxiosBaseURL.get("/extrah/aboutus");
+      return data.data.data;
+    },
+  });
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (isError) {
+    return toast.error(error.message, {
+      id: "clipboard",
+    });
+  }
+  const { heading, ImageUrl, text1, text2 } = data.find(
+    (x) => x.aboutFor === "gasPage"
+  );
+
   return (
-    <div className=" flex flex-col items-center justify-center min-h-[400px] border my-20 lg:m-5">
-      <div className="flex flex-col-reverse md:flex-row">
+    <div className=" flex flex-col items-center justify-center min-h-[400px] border my-20 p-2 lg:p-10">
+      <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2 p-8 flex flex-col items-center justify-center gap-10   ">
           <h2 className="text-3xl text-center font-bold my-4 text-accent">
             {" "}
-            Welcome
+            {heading}
           </h2>
-          <p className="mb-4">
-            Plus, it’s been linked to several health benefits, especially when
-            it comes to your heart, skin, and bones. However, soybean oil is a
-            highly refined oil rich in omega-6 fats, and some studies suggest
-            that its consumption may be associated with several negative health
-            effects. This article covers 6 potential health benefits of soybean
-            oil, plus possible downsides.
-          </p>
-          <p className="mb-4">
-            1. High smoke point :The smoke point of an oil is the temperature at
-            which fats start to break down and oxidize. This results in the
-            formation of harmful, disease-causing compounds called free
-            radicals, which can cause oxidative stress in the body
-          </p>
-
-          <p>
-            <button className="btn btn-accent">Learn More</button>
-          </p>
+          <p className="mb-4">{text1}</p>
+          <p className="mb-4">{text2}</p>
         </div>
         <div className="md:w-1/2 p-8">
-          <img
-            className="w-full h-full"
-            src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2019/10/soybean-oil-1296x728-header-1296x728.jpg?w=1155&h=1528"
-          />
+          <img className="w-full h-full" src={ImageUrl} />
         </div>
       </div>
     </div>

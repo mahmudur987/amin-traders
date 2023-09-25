@@ -1,7 +1,32 @@
+import { useQuery } from "@tanstack/react-query";
 import { FaRegAddressCard, FaPhone, FaClock } from "react-icons/fa";
 import { HiOutlineMailOpen } from "react-icons/hi";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import LoadingSpinner from "../../shared/loading/Loading";
+import toast from "react-hot-toast";
 
 const ContactUs = () => {
+  const {
+    data: AddressDetails,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["extrah"],
+    queryFn: async () => {
+      const data = await AxiosBaseURL.get("/extrah");
+      return data.data.data[0];
+    },
+  });
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (isError) {
+    return toast.error(error.message, {
+      id: "clipboard",
+    });
+  }
   return (
     <div className=" flex flex-col items-center justify-center min-h-[400px] border my-10">
       <h2 className="text-3xl text-center font-bold my-4">Contact Us</h2>
@@ -15,11 +40,7 @@ const ContactUs = () => {
             </div>
             <div>
               <h2 className="font-bold text-lg">Our OfficeAddress</h2>
-              <p>
-                {" "}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repellendus, aut!
-              </p>
+              <p>{AddressDetails?.address}</p>
             </div>
           </div>
 
@@ -30,7 +51,7 @@ const ContactUs = () => {
             </div>
             <div>
               <h2 className="font-bold text-lg">General Enquirless</h2>
-              <p> lorem@gmail.com</p>
+              <p> {AddressDetails?.email}</p>
             </div>
           </div>
           <div className="flex gap-8 items-center">
@@ -39,7 +60,7 @@ const ContactUs = () => {
             </div>
             <div>
               <h2 className="font-bold text-lg">Call Us</h2>
-              <p> +8801671706882</p>
+              <p>{AddressDetails?.phoneNumber} </p>
             </div>
           </div>
           <div className="flex gap-8 items-center">
@@ -49,14 +70,14 @@ const ContactUs = () => {
             </div>
             <div>
               <h2 className="font-bold text-lg">Our Timing</h2>
-              <p>24/7 ,9.00Am-10.00pm</p>
+              <p> {AddressDetails?.officeTime} </p>
             </div>
           </div>
         </div>
         <div className="md:w-1/2 p-8">
           <img
             className="w-full h-full rounded-3xl"
-            src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=874&q=80"
+            src={AddressDetails?.ImageUrl}
           />
         </div>
       </div>

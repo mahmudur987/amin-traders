@@ -21,7 +21,7 @@ const RecentlyViewed = () => {
     queryKey: ["recentview", dbuser],
     queryFn: async () => {
       const data = await AxiosBaseURL.get(`/recentview/${dbuser?._id}`);
-      return data.data;
+      return data.data.data;
     },
   });
 
@@ -43,14 +43,14 @@ const RecentlyViewed = () => {
           </h1>
 
           <div className="w-full flex flex-wrap justify-around gap-3 ">
-            {/* {recentViews?.slice(0, 4).map((data, i) => {
-              if (data.oilProduct.length > 0) {
-                return <OilProduct key={i} data={data.oilProduct[0]} />;
+            {recentViews?.slice(0, 4).map((data, i) => {
+              if (data.oilProductId) {
+                return <OilProduct key={i} data={data.oilProductId} />;
               }
-              if (data.gasProduct.length > 0) {
-                return <Product key={i} data={data.gasProduct[0]} />;
+              if (data.gasProductId) {
+                return <Product key={i} data={data.gasProductId} />;
               }
-            })} */}
+            })}
           </div>
         </div>
       )}

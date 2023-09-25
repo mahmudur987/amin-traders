@@ -63,8 +63,8 @@ const UpComingProducts = () => {
       <div className="w-full  flex flex-wrap justify-around gap-3">
         {/* internet */}
 
-        {futureInternetData && (
-          <div className="w-full flex flex-col items-center">
+        {futureInternetData?.length > 0 && (
+          <div className="w-full flex flex-col items-center ">
             <h1 className="text-2xl font-bold my-5 md:my-10">Internet</h1>
             <div className="w-full">
               {futureInternetData?.slice(0, 2).map((data) => (
@@ -76,7 +76,7 @@ const UpComingProducts = () => {
 
         {/* gas */}
 
-        {futureGasData && (
+        {futureGasData?.length > 0 && (
           <div className="flex flex-col items-center">
             <h1 className="text-2xl font-bold my-5 md:my-10">Lpg Gas</h1>
             {futureGasData && (
@@ -91,7 +91,7 @@ const UpComingProducts = () => {
 
         {/* Food Oil */}
 
-        {futureOilData && (
+        {futureOilData?.length > 0 && (
           <div className="flex flex-col items-center">
             <h1 className="text-2xl font-bold my-5 md:my-10">Food Oil</h1>
             {futureOilData && (

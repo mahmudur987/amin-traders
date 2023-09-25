@@ -1,6 +1,8 @@
 // src/components/FeedbackForm.js
 import { useState } from "react";
 import { InternetPackagesData } from "../../../constant/Constant";
+import AxiosBaseURL from "../../../axios/AxiosConfig";
+import toast from "react-hot-toast";
 
 const AddressDetailsFrom = () => {
   const [formData, setFormData] = useState({
@@ -17,11 +19,17 @@ const AddressDetailsFrom = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can handle the form submission logic here, e.g., send data to an API
+    const packageName = e.target.package.value;
+    const data = { ...formData, packageName };
 
-    const packagename = e.target.package.value;
-
-    console.log({ ...formData, packagename });
+    AxiosBaseURL.post("/extrah/inter-connection-request", data)
+      .then((data) => {
+        toast.success(data.data.status);
+        setFormData({ fullName: "", email: "", phoneNumber: "", address: "" });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   return (
@@ -41,6 +49,7 @@ const AddressDetailsFrom = () => {
           <input
             type="text"
             name="fullName"
+            required
             value={formData.fullName}
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -76,6 +85,7 @@ const AddressDetailsFrom = () => {
           <input
             type="tel"
             name="phoneNumber"
+            required
             value={formData.phoneNumber}
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -92,6 +102,7 @@ const AddressDetailsFrom = () => {
           </label>
           <textarea
             name="address"
+            required
             value={formData.address}
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -112,7 +123,7 @@ const AddressDetailsFrom = () => {
           <select name="package" className="select select-bordered w-full ">
             {InternetPackagesData.map((x, i) => (
               <option key={i} selected={i === 0}>
-                {x.name} {x.speed} mbps
+                {x.name} {x.speed} mbps {x.price}Taka
               </option>
             ))}
           </select>
