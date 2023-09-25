@@ -10,7 +10,8 @@ import { useQuery } from "@tanstack/react-query";
 
 const UpdateInternetUserModal = ({ isOpen, onClose, user, revalidator }) => {
   const [packageName, setPackageName] = useState("");
-
+  const [address, setAddress] = useState(user?.address);
+  const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber);
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [],
     queryFn: async () => {
@@ -22,13 +23,19 @@ const UpdateInternetUserModal = ({ isOpen, onClose, user, revalidator }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(packageName);
-    AxiosBaseURL.patch(`/internetusers/${user?._id}`, { packageName })
+    AxiosBaseURL.patch(`/internetusers/${user?._id}`, {
+      packageName,
+      address,
+      phoneNumber,
+    })
       .then((data) => {
         console.log("update userInfo", data.data);
+        toast.success("update successfully");
         revalidator.revalidate();
       })
       .catch((err) => {
         console.error("add bill error", err);
+        toast.error(err.message);
       });
 
     onClose();
@@ -71,16 +78,51 @@ const UpdateInternetUserModal = ({ isOpen, onClose, user, revalidator }) => {
               </label>
               <select
                 className="w-full border rounded-lg py-2 px-3"
-                value={packageName}
+                required
                 onChange={(e) => setPackageName(e.target.value)}
               >
-                <option value="">Please select a Package</option>
+                <option value={user?.packageName._id}>
+                  Please select a Package
+                </option>
                 {data.map((x, index) => (
-                  <option key={index} value={x?.name}>
+                  <option key={index} value={x?._id}>
                     {x?.name}
                   </option>
                 ))}
               </select>
+            </div>
+            {/* phone number */}
+            <div className="mb-4">
+              <label htmlFor="phoneNumber" className="block text-gray-600">
+                Phone Number
+              </label>
+              <input
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                required
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                placeholder="555-555-5555"
+              />
+            </div>
+            {/* Address */}
+
+            <div className="mb-4">
+              <label htmlFor="phoneNumber" className="block text-gray-600">
+                Address
+              </label>
+              <input
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                required
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                placeholder="write your full  address"
+              />
             </div>
 
             <div className="flex justify-end pt-2">

@@ -31,7 +31,7 @@ const DashIntPackage = ({ data, refetch }) => {
   };
   return (
     <div
-      className={`flex flex-col gap-5 border p-2 lg:p-10 rounded-xl shadow-xl ${
+      className={`flex flex-col justify-between gap-5 border p-2 lg:p-10 rounded-xl shadow-xl ${
         pathname === "/" ? "bg-base-100 text-primary" : ""
       }`}
     >

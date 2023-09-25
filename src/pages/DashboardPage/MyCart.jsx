@@ -41,12 +41,12 @@ const MyBookings = () => {
       </h1>
 
       <div className="w-full flex justify-end">
-        <button className="btn btn-outline ">
+        {/* <button className="btn btn-outline ">
           sort
           <span className="text-xl">
             <AiFillCaretDown />
           </span>
-        </button>
+        </button> */}
       </div>
 
       <div className="w-full flex flex-col  gap-10">
@@ -58,7 +58,7 @@ const MyBookings = () => {
                   <tr>
                     <th>Si</th>
                     <th>Catagory</th>
-                    <th>Package</th>
+                    <th>Product name</th>
                     <th>Price</th>
                     <th>Order Now</th>
                     <th>Remove </th>
@@ -78,7 +78,7 @@ const MyBookings = () => {
             <div className=" w-full flex  justify-center">
               {" "}
               <p className="text-xl font-bold text-secondary text-center">
-                you dont have any booking
+                Your cart is empty
               </p>
             </div>
           )}

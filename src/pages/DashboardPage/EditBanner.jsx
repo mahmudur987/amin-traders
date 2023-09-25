@@ -42,7 +42,7 @@ const EditBanner = () => {
 
   return (
     <div className="w-full">
-      <h1 className="text-center text-2xl md:text-4xl font-bold my-10">
+      <h1 className="text-center uppercase text-2xl md:text-4xl font-bold my-10">
         All Banners
       </h1>
       <div className="flex justify-end my-5">

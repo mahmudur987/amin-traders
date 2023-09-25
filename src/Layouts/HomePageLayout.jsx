@@ -3,6 +3,7 @@ import Header from "../components/home/Header/Header";
 import Footer from "../components/shared/footer/Footer";
 import { useContext } from "react";
 import { authContext } from "../context/UserContext";
+import WhatsAppWidgetPoupup from "../components/WhatsApp/WhatsAppWidget";
 
 const HomepageLayout = () => {
   const { theme } = useContext(authContext);
@@ -16,6 +17,8 @@ const HomepageLayout = () => {
         <Header />
       </div>
       <Outlet />
+
+      <WhatsAppWidgetPoupup />
       <Footer />
     </main>
   );

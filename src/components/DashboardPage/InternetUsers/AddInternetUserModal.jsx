@@ -3,6 +3,7 @@ import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../shared/loading/Loading";
 
 const AddInternetUserModal = ({ isOpen, onClose, refetch }) => {
   const {
@@ -163,6 +164,7 @@ const AddInternetUserModal = ({ isOpen, onClose, refetch }) => {
                 type="text"
                 id="name"
                 name="name"
+                required
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
@@ -177,6 +179,7 @@ const AddInternetUserModal = ({ isOpen, onClose, refetch }) => {
                 type="text"
                 id="phoneNumber"
                 name="phoneNumber"
+                required
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
@@ -191,6 +194,7 @@ const AddInternetUserModal = ({ isOpen, onClose, refetch }) => {
                 type="email"
                 id="email"
                 name="email"
+                required
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
@@ -205,6 +209,7 @@ const AddInternetUserModal = ({ isOpen, onClose, refetch }) => {
                 type="text"
                 id="address"
                 name="address"
+                required
                 value={formData.address}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
@@ -219,6 +224,7 @@ const AddInternetUserModal = ({ isOpen, onClose, refetch }) => {
                 type="text"
                 id="serviceName"
                 name="serviceName"
+                required
                 value={formData.serviceName}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
@@ -234,12 +240,13 @@ const AddInternetUserModal = ({ isOpen, onClose, refetch }) => {
                 className="w-full border rounded-lg py-2 px-3"
                 id="packageName"
                 name="packageName"
+                required
                 value={formData.packageName}
                 onChange={handleChange}
               >
                 <option value="">Please select a Package</option>
                 {IP?.map((x, index) => (
-                  <option key={index} value={x?.name}>
+                  <option key={index} value={x?._id}>
                     {x?.name}
                   </option>
                 ))}

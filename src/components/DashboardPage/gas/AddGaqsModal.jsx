@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
+import toast from "react-hot-toast";
 
 const AddGasModal = ({ isOpen, onClose, refetch }) => {
   const [name, setName] = useState("");
@@ -51,10 +52,12 @@ const AddGasModal = ({ isOpen, onClose, refetch }) => {
           AxiosBaseURL.post("/gasservice/allgaspackage", newData)
             .then((data) => {
               refetch();
+              toast.success("add successfully");
               console.log(data.data);
             })
             .catch((err) => {
               console.error(err);
+              toast.error(err.message);
             });
         }
       });

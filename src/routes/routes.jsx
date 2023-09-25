@@ -28,6 +28,7 @@ import OilProductDetails from "../components/Oilpage/oilProducts/OilProductDetai
 import UpdateContactUsDetails from "../components/DashboardPage/UpdateContactUsDetails/UpdateContactUsDetails";
 import UpdateAboutUs from "../components/DashboardPage/UpdateaboutUs/UpdateAboutUs";
 import UpdateFeedback from "../components/DashboardPage/UpdateFeedbacks/UpdateFeedback";
+import InternetBill from "../pages/DashboardPage/InternetBill";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -148,6 +149,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/feedback",
         element: <UpdateFeedback />,
+      },
+      {
+        path: "/dashboard/internetbill",
+        element: <InternetBill />,
       },
       {
         path: "/dashboard/internetuser/:id",

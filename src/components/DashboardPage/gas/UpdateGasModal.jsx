@@ -52,11 +52,13 @@ const UpdateGasModal = ({ isOpen, onClose, data, refetch }) => {
             AxiosBaseURL.post(`/gasservice/${data._id}`, Data)
               .then((data) => {
                 console.log(data.data);
+                toast.success("update successfully");
                 refetch();
                 Setloading(false);
               })
               .catch((err) => {
                 console.error(err);
+                toast.error(err.message);
                 Setloading(false);
               });
           }
@@ -84,9 +86,12 @@ const UpdateGasModal = ({ isOpen, onClose, data, refetch }) => {
         .then(() => {
           refetch();
           Setloading(false);
+          toast.success("update successfully");
         })
         .catch((err) => {
           Setloading(false);
+          toast.error(err.message);
+
           toast.error(err.message);
         });
     }

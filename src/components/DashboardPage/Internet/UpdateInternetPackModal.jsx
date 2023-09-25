@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
+import toast from "react-hot-toast";
 // eslint-disable-next-line react/prop-types
 
 // eslint-disable-next-line react/prop-types
@@ -21,9 +22,11 @@ const UpdateInternetPackModal = ({ isOpen, onClose, data, refetch }) => {
       .then((data) => {
         refetch();
         console.log(data.data);
+        toast.success("update successfully");
       })
       .catch((err) => {
         console.error(err);
+        toast.error(err.message);
       });
 
     onClose();

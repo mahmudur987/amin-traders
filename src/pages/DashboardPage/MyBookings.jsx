@@ -40,12 +40,12 @@ const MyBookings = () => {
       <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">My Bookings</h1>
 
       <div className="w-full flex justify-end">
-        <button className="btn btn-outline ">
+        {/* <button className="btn btn-outline ">
           sort
           <span className="text-xl">
             <AiFillCaretDown />
           </span>
-        </button>
+        </button> */}
       </div>
 
       <div className="w-full flex flex-col  gap-10">
@@ -58,7 +58,7 @@ const MyBookings = () => {
             <div className=" w-full flex  justify-center">
               {" "}
               <p className="text-xl font-bold text-secondary text-center">
-                you dont have any booking
+                You Have No Bookings
               </p>
             </div>
           )}

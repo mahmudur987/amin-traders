@@ -42,9 +42,11 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
     AxiosBaseURL.post("/orders", newOrder)
       .then((data) => {
         console.log("orderposted", data);
+        toast.success(data.data.status);
       })
       .catch((err) => {
         console.log("orderpostError", err);
+        toast.error(err.message);
       });
 
     onClose();

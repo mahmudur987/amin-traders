@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
+import toast from "react-hot-toast";
 
 const AddInternetPackModal = ({ isOpen, onClose, refetch }) => {
   const [name, setName] = useState("");
@@ -23,9 +24,11 @@ const AddInternetPackModal = ({ isOpen, onClose, refetch }) => {
       .then((data) => {
         refetch();
         console.log(data.data);
+        toast.success("Add successfully");
       })
       .catch((err) => {
         console.error(err);
+        toast.error(err.message);
       });
 
     console.log(newData);

@@ -4,6 +4,7 @@ import { useContext } from "react";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import { authContext } from "../../../context/UserContext";
 import { UsedbUser } from "../../Hooks/dbUser";
+import toast from "react-hot-toast";
 
 const OilBuyModal = ({ isOpen, onClose, data }) => {
   const { user } = useContext(authContext);
@@ -32,9 +33,11 @@ const OilBuyModal = ({ isOpen, onClose, data }) => {
     AxiosBaseURL.post("/orders", newOrder)
       .then((data) => {
         console.log("orderposted", data);
+        toast.success(data.data.status);
       })
       .catch((err) => {
         console.log("orderpostError", err);
+        toast.error(err.message);
       });
 
     onClose();

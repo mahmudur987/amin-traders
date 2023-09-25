@@ -17,7 +17,7 @@ const UpdateOilModal = ({ isOpen, onClose, data, refetch }) => {
   const [offerPrice, setofferPrice] = useState(data?.offer?.lessPrice);
   const [image, setimage] = useState(null);
   const [isOffer, setisoffer] = useState(data?.offer?.isOffer);
-  const [bestDeals, setBestDeals] = useState(false);
+  const [bestDeals, setBestDeals] = useState(data?.bestDeals);
   const handleSubmit = (e) => {
     e.preventDefault();
     Setloading(true);
@@ -76,7 +76,6 @@ const UpdateOilModal = ({ isOpen, onClose, data, refetch }) => {
         Setloading(false);
         refetch();
         toast.success("product Added successfully");
-
         console.log(data.data);
       })
       .catch((err) => {
@@ -238,6 +237,7 @@ const UpdateOilModal = ({ isOpen, onClose, data, refetch }) => {
               </label>
               <input
                 type="checkbox"
+                checked={bestDeals}
                 name="vat"
                 onChange={(e) => setBestDeals(e.target.checked)}
               />

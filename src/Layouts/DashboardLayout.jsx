@@ -42,6 +42,9 @@ const DashboardLayout = () => {
             <li>
               <Link to={"/dashboard/cart"}> My Shopping Cart</Link>
             </li>
+            <li>
+              <Link to={"/dashboard/internetbill"}> Internet Bill Summary</Link>
+            </li>
             {dbuser?.role === "admin" && (
               <>
                 <li>

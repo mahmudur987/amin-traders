@@ -37,11 +37,11 @@ const SinglePackage = ({ data }) => {
           <span className="text-2xl font-semibold">{speed}</span>
           <span>Mbps</span>
         </p>
-        <p className="w-1/2 ">
+        <p className="w-1/2 flex flex-wrap ">
           <span className="text-xl">BDT</span>
           <span className="text-2xl font-bold">{price}</span>
           <span className="">PerMonth</span>
-          <span>Excluding Vat</span>
+          <span className="text-nature">Excluding Vat</span>
         </p>
       </div>
       <div className="divider"></div>

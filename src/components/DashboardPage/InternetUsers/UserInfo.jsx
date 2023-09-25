@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import UpdateInternetUserModal from "./UpdateInternetUserModal";
+import { authContext } from "../../../context/UserContext";
+import { UsedbUser } from "../../Hooks/dbUser";
 
 /* eslint-disable react/prop-types */
 const UserInfo = ({ user, revalidator }) => {
+  const { user: authuser } = useContext(authContext);
+  const [dbuser] = UsedbUser(authuser?.email);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -11,6 +16,8 @@ const UserInfo = ({ user, revalidator }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  console.log(user);
   return (
     <>
       <div className="flex justify-between">
@@ -31,7 +38,10 @@ const UserInfo = ({ user, revalidator }) => {
                 <strong>Address:</strong> {user?.address}
               </p>
               <p>
-                <strong>Package Name:</strong> {user?.packageName}
+                <strong>Package Name:</strong> {user?.packageName?.name}
+              </p>
+              <p>
+                <strong>Monthly Bill Amount:</strong> {user?.packageName?.price}
               </p>
               <p>
                 <strong>Service Name:</strong> {user?.serviceName}
@@ -39,11 +49,13 @@ const UserInfo = ({ user, revalidator }) => {
             </div>
           )}
         </div>
-        <div className="flex justify-end my-3">
-          <button onClick={openModal} className="btn btn-outline ">
-            Update Package
-          </button>
-        </div>
+        {dbuser?.role === "admin" && (
+          <div className="flex justify-end my-3">
+            <button onClick={openModal} className="btn btn-outline ">
+              Update Info
+            </button>
+          </div>
+        )}
       </div>
       <UpdateInternetUserModal
         user={user}

@@ -1,12 +1,12 @@
-import { AiFillCaretDown } from "react-icons/ai";
 import InternetUser from "../../components/DashboardPage/InternetUsers/InternetUser";
 import { useQuery } from "@tanstack/react-query";
 
 import toast from "react-hot-toast";
 import AxiosBaseURL from "../../axios/AxiosConfig";
-import LoadingSpinner from "../../components/shared/loading/Loading";
+
 import AddInternetUserModal from "../../components/DashboardPage/InternetUsers/AddInternetUserModal";
 import { useState } from "react";
+import LoadingSpinner from "../../components/shared/loading/Loading";
 
 const InternetUsers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,7 +17,7 @@ const InternetUsers = () => {
     error,
     refetch,
   } = useQuery({
-    queryKey: [],
+    queryKey: ["internetusers"],
     queryFn: async () => {
       const data = await AxiosBaseURL.get("/internetusers");
       return data.data.data;
