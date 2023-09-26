@@ -49,6 +49,11 @@ const Cart = ({ index, cart, refetch }) => {
             <button className="btn btn-sm btn-primary">Order</button>
           </Link>
         )}
+        {serviceName === "Bag" && (
+          <Link to={`/service/bags/${cart.Bag._id}`}>
+            <button className="btn btn-sm btn-primary">Order</button>
+          </Link>
+        )}
       </td>
       <td>
         <Link>

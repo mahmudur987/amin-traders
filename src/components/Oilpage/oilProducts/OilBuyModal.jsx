@@ -57,7 +57,7 @@ const OilBuyModal = ({ isOpen, onClose, data }) => {
             <p className="text-xl font-bold">
               {" "}
               Buying <span className="text-info text-2xl">
-                {data.name}
+                {data?.name}
               </span>{" "}
             </p>
             <div className="modal-close cursor-pointer z-50" onClick={onClose}>
