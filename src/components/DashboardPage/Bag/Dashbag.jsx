@@ -23,7 +23,7 @@ const DashBag = ({ data, refetch }) => {
     publishDate,
     quantity,
   } = data || {};
-  console.log(typeof price);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = (id) => {

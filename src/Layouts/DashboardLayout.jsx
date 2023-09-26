@@ -6,12 +6,16 @@ import { useContext } from "react";
 
 import { UsedbUser } from "../components/Hooks/dbUser";
 import { authContext } from "../context/UserContext";
+import { Helmet } from "react-helmet";
 const DashboardLayout = () => {
   const { user } = useContext(authContext);
   const [dbuser] = UsedbUser(user?.email);
 
   return (
     <div>
+      <Helmet>
+        <title> Dashboard Amin-traders </title>
+      </Helmet>
       <Header />
 
       <div className="drawer lg:drawer-open">
