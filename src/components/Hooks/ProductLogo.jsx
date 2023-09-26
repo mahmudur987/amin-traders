@@ -1,5 +1,5 @@
 import React from "react";
-import img1 from "../../assets/amin-traders.png";
+import img1 from "../../assets/amin-traders.svg";
 const ProductLogo = ({ url }) => {
   return (
     <div className="relative w-full h-full">
