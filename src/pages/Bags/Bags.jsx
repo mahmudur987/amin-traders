@@ -15,7 +15,9 @@ const Bags = () => {
     queryKey: ["bag"],
     queryFn: async () => {
       const data = await AxiosBaseURL.get("/bag");
-      return data.data.data;
+      return data.data.data.filter(
+        (item) => new Date(item.publishDate) < new Date()
+      );
     },
   });
 
