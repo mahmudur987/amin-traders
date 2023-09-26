@@ -10,6 +10,12 @@ import { useEffect } from "react";
 import RecentlyViewed from "../shared/recentlyViewed/RecentlyViewed";
 import BagBuyModal from "./BagBuyModal";
 import toast from "react-hot-toast";
+import ProductLogo from "../Hooks/ProductLogo";
+import DownBagCart from "./DownBagCart";
+import SubscriptionForm from "../shared/Subscriibe/SubscriptionForm";
+import Advantage from "../shared/Advantage/Advantage";
+import LikeGas from "../shared/YouMayLike/Gas/LikeGas";
+import MostViewed from "../shared/mostViewed/Mostviewed";
 
 const BagDetails = () => {
   const { user } = useContext(authContext);
@@ -25,10 +31,9 @@ const BagDetails = () => {
     size,
     price,
     image,
-    totalorder,
+
     description,
-    bestDeals,
-    publishDate,
+
     quantity,
   } = data;
 
@@ -111,7 +116,7 @@ const BagDetails = () => {
       <div className="container mx-auto mt-6">
         <div className="flex flex-col md:flex-row items-center justify-around flex-wrap">
           <div className="md:w-1/2">
-            <img src={image} alt={name} className="" />
+            <ProductLogo url={image} />
           </div>
           <div className="md:w-1/2 px-4">
             <h1 className="text-3xl font-semibold mb-4">{name}</h1>
@@ -125,6 +130,9 @@ const BagDetails = () => {
             <div className="mt-4">
               <p className="text-gray-700">
                 Material: <span className="font-semibold">{material}</span>
+              </p>
+              <p className="text-gray-700">
+                Bag Type: <span className="font-semibold">{bagType}</span>
               </p>
               <p className="text-gray-700">
                 Color: <span className="font-semibold">{color}</span>
@@ -164,6 +172,22 @@ const BagDetails = () => {
       </div>
       <RecentlyViewed />
       <BagBuyModal data={data} isOpen={isModalOpen} onClose={closeModal} />
+
+      <Advantage />
+      {showFixedDiv && (
+        <div className="fixed z-10 bottom-0 left-0 right-0 p-4 shadow-md">
+          <DownBagCart
+            data={data}
+            openModal={openModal}
+            handleAddTocart={handleAddTocart}
+          />
+        </div>
+      )}
+      <LikeGas />
+      {user && <RecentlyViewed />}
+
+      {!user && <MostViewed />}
+      <SubscriptionForm />
     </main>
   );
 };

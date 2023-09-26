@@ -16,8 +16,6 @@ const BagDisplay = ({ bag }) => {
 
           {offer?.isOffer && <div className="badge badge-secondary">Offer</div>}
         </h2>
-        <h2 className="text-xl font-semibold mt-2"></h2>
-        <p className="text-gray-700">Material: {bag?.material}</p>
         <p className="text-gray-700">Color: {bag?.color}</p>
         <p className="text-gray-700">Size: {bag?.size}</p>
         <p className="text-gray-700">quantity: {quantity}</p>
