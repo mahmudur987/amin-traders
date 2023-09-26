@@ -105,9 +105,11 @@ const LikeOil = () => {
         You Might Also Like
       </h1>
       <Slider {...settings}>
-        {data.map((x, i) => (
-          <OilProduct key={i} data={x} />
-        ))}
+        {data
+          ?.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
+          .map((x, i) => (
+            <OilProduct key={i} data={x} />
+          ))}
       </Slider>
     </div>
   );

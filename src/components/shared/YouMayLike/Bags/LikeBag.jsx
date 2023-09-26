@@ -5,12 +5,13 @@ import toast from "react-hot-toast";
 import AxiosBaseURL from "../../../../axios/AxiosConfig";
 import LoadingSpinner from "../../loading/Loading";
 import Product from "../../../GasServicePage/Products/product";
+import BagDisplay from "../../../Bags/BagDisplay";
 
-const LikeGas = () => {
+const LikeBag = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["allgaspackage"],
     queryFn: async () => {
-      const data = await AxiosBaseURL.get("/gasservice/allgaspackage");
+      const data = await AxiosBaseURL.get("/bag");
       return data.data.data.filter(
         (item) => new Date(item.publishDate) < new Date()
       );
@@ -108,11 +109,11 @@ const LikeGas = () => {
         {data
           ?.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
           .map((x, i) => (
-            <Product key={i} data={x} />
+            <BagDisplay key={i} bag={x} />
           ))}
       </Slider>
     </div>
   );
 };
 
-export default LikeGas;
+export default LikeBag;

@@ -14,8 +14,9 @@ import ProductLogo from "../Hooks/ProductLogo";
 import DownBagCart from "./DownBagCart";
 import SubscriptionForm from "../shared/Subscriibe/SubscriptionForm";
 import Advantage from "../shared/Advantage/Advantage";
-import LikeGas from "../shared/YouMayLike/Gas/LikeGas";
+
 import MostViewed from "../shared/mostViewed/Mostviewed";
+import LikeBag from "../shared/YouMayLike/Bags/LikeBag";
 
 const BagDetails = () => {
   const { user } = useContext(authContext);
@@ -183,7 +184,7 @@ const BagDetails = () => {
           />
         </div>
       )}
-      <LikeGas />
+      <LikeBag />
       {user && <RecentlyViewed />}
 
       {!user && <MostViewed />}
