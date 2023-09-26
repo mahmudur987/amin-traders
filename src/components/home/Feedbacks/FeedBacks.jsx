@@ -19,43 +19,7 @@ const FeedBacks = () => {
       return data.data.data;
     },
   });
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "flex",
-          background: "green",
-          width: "40px",
-          height: "40px",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        onClick={onClick}
-      />
-    );
-  }
 
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "flex",
-          background: "green",
-          width: "40px",
-          height: "40px",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        onClick={onClick}
-      />
-    );
-  }
   const settings = {
     dots: true,
     infinite: true,
@@ -65,8 +29,7 @@ const FeedBacks = () => {
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+
     responsive: [
       {
         breakpoint: 1024,
