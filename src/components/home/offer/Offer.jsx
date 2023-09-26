@@ -9,10 +9,12 @@ import { useContext, useEffect, useState } from "react";
 import { authContext } from "../../../context/UserContext";
 import Product from "../../GasServicePage/Products/product";
 import OilProduct from "../../Oilpage/oilProducts/OilProduct";
+import BagDisplay from "../../Bags/BagDisplay";
 const Offer = () => {
   const [Internet, setInternet] = useState(null);
   const [Gas, setGas] = useState(null);
   const [Oil, setOil] = useState(null);
+  const [Bag, setBag] = useState(null);
   const { loading, Setloading } = useContext(authContext);
   useEffect(() => {
     Setloading(true);
@@ -40,8 +42,17 @@ const Offer = () => {
         console.error(err);
         toast.error("some Error happen");
       });
+    AxiosBaseURL.get("/bag")
+      .then((data) => {
+        setBag(data.data.data.filter((x) => x.bestDeals === true));
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("some Error happen");
+      });
     Setloading(false);
   }, []);
+  console.log(Bag);
   const settings = {
     dots: true,
     infinite: true,
@@ -88,6 +99,15 @@ const Offer = () => {
                 <Slider {...settings}>
                   {Oil?.slice(0, 4).map((data) => (
                     <OilProduct data={data} key={data._id} />
+                  ))}
+                </Slider>
+              </div>
+            )}
+            {Bag?.length > 0 && (
+              <div className="w-full max-w-lg  h-[500px] border    p-5 ">
+                <Slider {...settings}>
+                  {Bag?.slice(0, 4).map((data) => (
+                    <BagDisplay bag={data} key={data._id} />
                   ))}
                 </Slider>
               </div>

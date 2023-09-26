@@ -1,14 +1,15 @@
 /* eslint-disable react/prop-types */
 
 import { Link } from "react-router-dom";
+import ProductLogo from "../Hooks/ProductLogo";
 
 const BagDisplay = ({ bag }) => {
   const { offer, price, _id, quantity } = bag || {};
   return (
-    <div className="card w-full max-w-xs  bg-base-100 shadow-xl mx-auto">
-      <figure className="w-full h-52">
-        <img className="w-full h-full  " src={bag?.image} alt={bag?.name} />
-      </figure>
+    <div className="card w-full max-w-xs bg-base-100 shadow-xl mx-auto">
+      <div className="w-full h-52">
+        <ProductLogo url={bag?.image} />
+      </div>
       <div className="card-body p-2 gap-1">
         <h2 className="card-title">
           {bag?.name}

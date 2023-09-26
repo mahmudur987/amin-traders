@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { Link } from "react-router-dom";
+import ProductLogo from "../../Hooks/ProductLogo";
 
 const Product = ({ data }) => {
   const { picture, Brand, name, offer, price, quantity, _id } = data || {};
@@ -10,7 +11,7 @@ const Product = ({ data }) => {
       {data && (
         <div className="card max-w-xs w-full h-96 bg-base-100 shadow-xl mx-auto">
           <figure className="w-full h-52">
-            <img className="w-full h-full" src={picture} alt="Shoes" />
+            <ProductLogo url={picture} />
           </figure>
           <div className="card-body p-3">
             <h2 className="card-title">

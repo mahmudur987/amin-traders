@@ -3,8 +3,10 @@
 import { Link } from "react-router-dom";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import { useState } from "react";
+import UpdateBagModal from "./UpdateBagModal";
+import ProductLogo from "../../Hooks/ProductLogo";
 
-const DashBag = ({ data }) => {
+const DashBag = ({ data, refetch }) => {
   //   console.log(data);
   const {
     offer: { isOffer, lessPrice },
@@ -16,18 +18,16 @@ const DashBag = ({ data }) => {
     size,
     price,
     image,
-
     description,
     bestDeals,
     publishDate,
     quantity,
   } = data || {};
-
+  console.log(typeof price);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = (id) => {
-    Setloading(true);
-    AxiosBaseURL.delete(`/bags/${id}`)
+    AxiosBaseURL.delete(`/bag/${id}`)
       .then((data) => {
         refetch();
         console.log(data.data);
@@ -35,7 +35,6 @@ const DashBag = ({ data }) => {
       .catch((err) => {
         console.error(err);
       });
-    Setloading(false);
   };
 
   const openModal = () => {
@@ -49,11 +48,11 @@ const DashBag = ({ data }) => {
 
   return (
     <div className="card w-full max-w-xs  bg-base-100 shadow-xl mx-auto">
-      <figure className="w-full h-52">
-        <img className="w-full h-full  " src={image} alt={name} />
-      </figure>
+      <div className="w-full h-52">
+        <ProductLogo url={image} />
+      </div>
       <div className="card-body p-2 gap-1">
-        <h2 className="card-title">
+        <h2 className="card-title flex flex-col w-full items-start">
           {name}
 
           {isOffer && <div className="badge badge-secondary">Offer</div>}
@@ -80,13 +79,24 @@ const DashBag = ({ data }) => {
             Price : <span>{price}</span>
           </p>
         )}
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-2">
           <button onClick={openModal} className="btn btn-sm btn-secondary">
             Update{" "}
           </button>
-          <button className="btn btn-sm btn-secondary">Delete </button>
+          <button
+            onClick={() => handleDelete(_id)}
+            className="btn btn-sm btn-secondary"
+          >
+            Delete{" "}
+          </button>
         </div>
       </div>
+      <UpdateBagModal
+        refetch={refetch}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        data={data}
+      />
     </div>
   );
 };

@@ -18,7 +18,7 @@ const AddBagModal = ({ isOpen, onClose, refetch }) => {
     totalorder: 0,
     description: "",
     bestDeals: false,
-    publishDate: new Date(),
+    publishDate: Date,
   });
 
   const handleChange = (e) => {
@@ -123,6 +123,7 @@ const AddBagModal = ({ isOpen, onClose, refetch }) => {
               <input
                 type="file"
                 name="image"
+                required
                 onChange={(e) => setimage(e.target.files[0])}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
@@ -136,6 +137,7 @@ const AddBagModal = ({ isOpen, onClose, refetch }) => {
               <input
                 type="text"
                 id="bagType"
+                required
                 name="bagType"
                 value={formData.bagType}
                 onChange={handleChange}
@@ -152,6 +154,7 @@ const AddBagModal = ({ isOpen, onClose, refetch }) => {
                 type="text"
                 id="name"
                 name="name"
+                required
                 value={formData.name}
                 onChange={handleChange}
                 className="border border-gray-300 rounded-md p-2 w-full"
@@ -167,6 +170,7 @@ const AddBagModal = ({ isOpen, onClose, refetch }) => {
                 type="text"
                 id="material"
                 name="material"
+                required
                 value={formData.material}
                 onChange={handleChange}
                 className="border border-gray-300 rounded-md p-2 w-full"
@@ -182,6 +186,7 @@ const AddBagModal = ({ isOpen, onClose, refetch }) => {
                 type="text"
                 id="color"
                 name="color"
+                required
                 value={formData.color}
                 onChange={handleChange}
                 className="border border-gray-300 rounded-md p-2 w-full"
@@ -197,6 +202,7 @@ const AddBagModal = ({ isOpen, onClose, refetch }) => {
                 type="text"
                 id="size"
                 name="size"
+                required
                 value={formData.size}
                 onChange={handleChange}
                 className="border border-gray-300 rounded-md p-2 w-full"
@@ -212,6 +218,7 @@ const AddBagModal = ({ isOpen, onClose, refetch }) => {
                 type="number"
                 id="quantity"
                 name="quantity"
+                required
                 value={formData.quantity}
                 onChange={handleChange}
                 className="border border-gray-300 rounded-md p-2 w-full"
@@ -226,6 +233,7 @@ const AddBagModal = ({ isOpen, onClose, refetch }) => {
               <input
                 type="number"
                 id="price"
+                required
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
@@ -242,6 +250,7 @@ const AddBagModal = ({ isOpen, onClose, refetch }) => {
                 id="description"
                 name="description"
                 value={formData.description}
+                required
                 onChange={handleChange}
                 rows="4"
                 className="border border-gray-300 rounded-md p-2 w-full"

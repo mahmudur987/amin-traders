@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ProductLogo from "../../Hooks/ProductLogo";
 
 // eslint-disable-next-line react/prop-types
 const OilProduct = ({ data }) => {
@@ -7,7 +8,7 @@ const OilProduct = ({ data }) => {
   return (
     <div className="card w-full max-w-xs h-96  bg-base-100 shadow-xl mx-auto">
       <figure className="h-52">
-        <img className="w-full h-full  " src={picture} alt="Shoes" />
+        <ProductLogo url={picture} />
       </figure>
       <div className="card-body p-2 gap-1">
         <h2 className="card-title">

@@ -42,7 +42,9 @@ const DashBags = () => {
   }
   return (
     <div className="flex flex-col gap-10 lg:gap-20">
-      <h1 className="w-full font-bold text-center text-3xl">All bags</h1>
+      <h1 className="w-full font-bold text-center text-3xl lg:text-4xl">
+        All bags
+      </h1>
       <div className=" w-full flex justify-end">
         <button onClick={openModal} className="btn btn-outline">
           Add New Bag{" "}
@@ -50,7 +52,7 @@ const DashBags = () => {
       </div>
       <div className=" w-full flex flex-wrap justify-around gap-5">
         {Bags?.map((data) => (
-          <DashBag key={data._id} data={data} />
+          <DashBag key={data._id} data={data} refetch={refetch} />
         ))}
       </div>
 
