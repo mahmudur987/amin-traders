@@ -8,6 +8,7 @@ import AxiosBaseURL from "../../../axios/AxiosConfig";
 
 import OilProduct from "../../Oilpage/oilProducts/OilProduct";
 import Product from "../../GasServicePage/Products/product";
+import BagDisplay from "../../Bags/BagDisplay";
 
 const RecentlyViewed = () => {
   const { user } = useContext(authContext);
@@ -49,6 +50,9 @@ const RecentlyViewed = () => {
               }
               if (data.gasProductId) {
                 return <Product key={i} data={data.gasProductId} />;
+              }
+              if (data.bagProductId) {
+                return <BagDisplay key={i} bag={data.bagProductId} />;
               }
             })}
           </div>

@@ -7,7 +7,6 @@ import { useQuery } from "@tanstack/react-query";
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 import LoadingSpinner from "../../shared/loading/Loading";
 import toast from "react-hot-toast";
-// Import your images
 
 const BannerSlider = () => {
   const { data, isLoading, isError, error } = useQuery({

@@ -147,7 +147,8 @@ export const LpgGasData = [
     picture:
       "https://images.unsplash.com/photo-1627881960266-52ffbc47aaa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Z2FzJTIwY3lsaW5kZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=400&q=60",
     name: "Bashundhra Lpg",
-    quantity: "12kg",
+    quantity: "12 pice",
+    quantity: "12 pice",
     valveSize: "20 M M",
     valveType: "Compact and Regular",
     Brand: "Bashundhara",
@@ -588,3 +589,85 @@ export const internetUsers = [
     ],
   },
 ];
+// Define your bag data (you can use the JSON data provided earlier)
+export const wovenBags = [
+  {
+    bagType: "nonwovenbag",
+    description:
+      "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It ha ",
+    name: "Reusable Shopping Bag",
+    material: "Polypropylene (PP)",
+    color: "Green",
+    size: "Standard",
+    quantity: 1,
+    price: 2.99,
+    image:
+      "https://hips.hearstapps.com/hmg-prod/images/gh-012222-best-reusable-grocery-bags-1647963678.png",
+  },
+  {
+    bagType: "nonwovenbag",
+    description:
+      "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It ha ",
+    name: "Promotional Tote Bag",
+    material: "Non-Woven Polypropylene (NWPP)",
+    color: "Red",
+    size: "Medium",
+    quantity: 1,
+    price: 1.49,
+    image:
+      "https://cms.cloudinary.vpsvc.com/images/c_scale,dpr_auto,f_auto,q_auto:best,t_productPageHeroGalleryTransformation_v2,w_auto/legacy_dam/en-us/S001492270/PPAG-3528-Promo-Tote-Bag-Marquee-003?cb=e5a1bff88bf2c4eaffad616f4867c14ed0f6ec48",
+  },
+  {
+    bagType: "nonwovenbag",
+    description:
+      "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It ha ",
+    name: "Custom Printed Non-Woven Bag",
+    material: "Non-Woven Polyethylene (PE)",
+    color: "White",
+    size: "Large",
+    quantity: 1,
+    price: 3.99,
+    image:
+      "https://bagmaverick.com/wp-content/uploads/2021/10/promotional-tote-bags-bills.jpg",
+  },
+  {
+    bagType: "wovenbag",
+    description:
+      "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It ha ",
+
+    name: "Jute Tote Bag",
+    material: "Jute",
+    color: "Natural",
+    size: "Medium",
+    quantity: 1,
+    price: 15.99,
+    image:
+      "https://www.remodelista.com/wp-content/uploads/2018/05/hand-woven-jute-tote-bag-natural-future-kept.jpg",
+    bagtype: "wovenBag",
+  },
+  {
+    bagType: "wovenbag",
+    description:
+      "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It ha ",
+    name: "Cotton Beach Bag",
+    material: "Cotton",
+    color: "Blue Stripes",
+    size: "Large",
+    quantity: 1,
+    price: 24.99,
+    image:
+      "https://www.bagworkshop.com/wp-content/uploads/2021/02/BWS-0163-Contrast-Beach-Bag-Natural.jpg",
+  },
+  {
+    bagType: "wovenbag",
+    description:
+      "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It ha ",
+    name: "Rattan Market Basket",
+    material: "Rattan",
+    color: "Brown",
+    size: "Small",
+    quantity: 1,
+    price: 19.99,
+    image: "https://m.media-amazon.com/images/I/71PpxySREGS.jpg",
+  },
+]; // Woven bag data

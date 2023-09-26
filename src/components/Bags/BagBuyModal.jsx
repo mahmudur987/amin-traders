@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 // Modal.js
+
 import { useContext, useState } from "react";
-import { authContext } from "../../../context/UserContext";
-import AxiosBaseURL from "../../../axios/AxiosConfig";
-import { UsedbUser } from "../../Hooks/dbUser";
 import toast from "react-hot-toast";
 import { FaPlus, FaMinus } from "react-icons/fa";
-const GasBuyModal = ({ isOpen, onClose, data }) => {
+import { authContext } from "../../context/UserContext";
+import { UsedbUser } from "../Hooks/dbUser";
+import AxiosBaseURL from "../../axios/AxiosConfig";
+const BagBuyModal = ({ isOpen, onClose, data }) => {
   const { name, offer, price, quantity } = data || {};
   const { user } = useContext(authContext);
   const [dbuser] = UsedbUser(user?.email);
@@ -31,8 +32,8 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
       userPhoneNumber,
       userAddress,
       packageName: `${data?.name}`,
-      Gas: data?._id,
-      serviceName: "Gas",
+      Bag: data?._id,
+      serviceName: "Bag",
       paymentAmount: totalPrice,
       orderQuantity: orderQuantity,
       paymentStatus: "pending",
@@ -89,14 +90,14 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
               )}
             </h2>
             <p>
-              Quantity : <span>{quantity}</span>
+              Quantity : <span>{quantity} piece</span>
             </p>
 
             <p>
               Price : <span>{totalPrice}</span>
             </p>
             <div className="flex justify-between items-center">
-              <p>Order Quantity:</p>
+              <p>Order Quantity: {orderQuantity} </p>
               <p className="flex justify-end gap-1 items-center">
                 <button
                   onClick={() => {
@@ -201,4 +202,4 @@ const GasBuyModal = ({ isOpen, onClose, data }) => {
   );
 };
 
-export default GasBuyModal;
+export default BagBuyModal;

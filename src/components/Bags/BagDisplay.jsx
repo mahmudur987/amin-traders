@@ -1,20 +1,42 @@
 /* eslint-disable react/prop-types */
 
-const BagDisplay = ({ bags }) => {
+import { Link } from "react-router-dom";
+
+const BagDisplay = ({ bag }) => {
+  const { offer, price, _id, quantity } = bag || {};
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {bags.map((bag) => (
-        <div key={bag.id} className="bg-white p-4 rounded-lg shadow-lg">
-          <img src={bag.image} alt={bag.name} className="w-full h-80" />
-          <h2 className="text-xl font-semibold mt-2">{bag.name}</h2>
-          <p className="text-gray-700">Material: {bag.material}</p>
-          <p className="text-gray-700">Color: {bag.color}</p>
-          <p className="text-gray-700">Size: {bag.size}</p>
-          <p className="text-green-600 font-semibold">
-            Phone Number :01500010000 (call for order and Details)
+    <div className="card w-full max-w-xs  bg-base-100 shadow-xl mx-auto">
+      <figure className="w-full h-52">
+        <img className="w-full h-full  " src={bag?.image} alt={bag?.name} />
+      </figure>
+      <div className="card-body p-2 gap-1">
+        <h2 className="card-title">
+          {bag?.name}
+
+          {offer?.isOffer && <div className="badge badge-secondary">Offer</div>}
+        </h2>
+        <h2 className="text-xl font-semibold mt-2"></h2>
+        <p className="text-gray-700">Material: {bag?.material}</p>
+        <p className="text-gray-700">Color: {bag?.color}</p>
+        <p className="text-gray-700">Size: {bag?.size}</p>
+        <p className="text-gray-700">quantity: {quantity}</p>
+
+        {offer?.isOffer ? (
+          <p>
+            Offer Price : <span className="line-through">{price}</span>{" "}
+            <span>{price - offer.lessPrice}</span>
           </p>
+        ) : (
+          <p>
+            Price : <span>{price}</span>
+          </p>
+        )}
+        <div className="flex justify-end">
+          <Link to={`/service/bags/${_id}`}>
+            <button className="btn btn-sm btn-secondary">Details</button>
+          </Link>
         </div>
-      ))}
+      </div>
     </div>
   );
 };

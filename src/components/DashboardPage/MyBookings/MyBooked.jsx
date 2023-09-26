@@ -82,6 +82,22 @@ const MyBooked = ({ order, index, refetch }) => {
               )}
             </>
           )}
+          {order.Bag.length > 0 && (
+            <>
+              <p>
+                package Name :{packageName}{" "}
+                <span className="mx-3 font-bold">
+                  ( {order?.Bag[0].quantity} piece)
+                </span>{" "}
+              </p>
+              <p>Brand Name :{order?.Bag[0].brandName} </p>
+              <p>Price :{paymentAmount} </p>
+
+              {serviceName !== "Internet" && (
+                <p>Quantity :{orderQuantity} package </p>
+              )}
+            </>
+          )}
         </div>
         <hr />
         <div>

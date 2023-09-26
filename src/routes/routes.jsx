@@ -29,6 +29,8 @@ import UpdateContactUsDetails from "../components/DashboardPage/UpdateContactUsD
 import UpdateAboutUs from "../components/DashboardPage/UpdateaboutUs/UpdateAboutUs";
 import UpdateFeedback from "../components/DashboardPage/UpdateFeedbacks/UpdateFeedback";
 import InternetBill from "../pages/DashboardPage/InternetBill";
+import BagDetails from "../components/Bags/BagDetails";
+import Bag from "../pages/DashboardPage/Bag";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -76,6 +78,13 @@ export const router = createBrowserRouter([
         element: <Bags />,
       },
       {
+        path: "/service/bags/:id",
+        element: <BagDetails />,
+        loader: async ({ params }) => {
+          return AxiosBaseURL.get(`/bag/${params.id}`);
+        },
+      },
+      {
         path: "/service/signup",
         element: <SignUpPage />,
       },
@@ -117,6 +126,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/oil",
         element: <Oil />,
+      },
+      {
+        path: "/dashboard/bag",
+        element: <Bag />,
       },
       {
         path: "/dashboard/users",
