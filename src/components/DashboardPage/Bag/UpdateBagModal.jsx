@@ -114,7 +114,7 @@ const UpdateBagModal = ({ isOpen, onClose, refetch, data }) => {
       <div className="modal-container bg-white w-11/12 md:max-w-xl mx-auto rounded shadow-lg z-50 overflow-y-auto">
         <div className="modal-content py-4 text-left px-6">
           <div className="flex justify-between items-center pb-3">
-            <p className="text-xl font-bold"> Add a New Oil Package </p>
+            <p className="text-xl font-bold"> Update this {name} </p>
             <div
               className="modal-close text-2xl cursor-pointer z-50"
               onClick={onClose}
