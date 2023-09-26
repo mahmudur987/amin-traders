@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import BagDisplay from "../../components/Bags/BagDisplay";
 import LoadingSpinner from "../../components/shared/loading/Loading";
 import AxiosBaseURL from "../../axios/AxiosConfig";
+import toast from "react-hot-toast";
 
 const Bags = () => {
   const {
