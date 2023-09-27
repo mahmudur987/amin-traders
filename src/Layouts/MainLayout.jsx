@@ -10,7 +10,6 @@ const MainLayout = () => {
   const { theme } = useContext(authContext);
 
   const location = useLocation();
-  console.log(location);
 
   return (
     <main

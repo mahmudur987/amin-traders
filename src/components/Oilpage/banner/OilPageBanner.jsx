@@ -52,8 +52,8 @@ const OilPageBanner = () => {
           >
             <div className="hero-overlay bg-opacity-40"></div>
             <div className="flex justify-center ">
-              <div className="w-full text-white ">
-                <h1 className="mb-5 text-3xl lg:text-5xl font-bold">
+              <div className="w-full text-white  p-3 lg:p-10">
+                <h1 className="mb-5 text-3xl lg:text-5xl font-bold ">
                   {" "}
                   {x.heading}{" "}
                 </h1>

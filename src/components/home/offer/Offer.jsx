@@ -52,7 +52,7 @@ const Offer = () => {
       });
     Setloading(false);
   }, []);
-  console.log(Bag);
+
   const settings = {
     dots: true,
     infinite: true,
