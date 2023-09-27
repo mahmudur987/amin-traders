@@ -114,7 +114,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link className="flex items-center" to={"/"}>
-          <img src={img1} className="w-10 h-10" alt="" />
+          <img src={img1} className="w-10 h-8" alt="" />
           <button className="btn btn-ghost  text-xl md:text-2xl lg:text-3xl uppercase">
             {" "}
             Amin Traders

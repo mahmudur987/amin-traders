@@ -79,7 +79,7 @@ const UpComingProducts = () => {
           <div className="w-full h-full flex flex-col items-center ">
             <h1 className="text-2xl font-bold my-5 md:my-10">Internet</h1>
             <div className="w-full">
-              {futureInternetData?.slice(0, 2).map((data) => (
+              {futureInternetData?.slice(0, 1).map((data) => (
                 <UIP data={data} key={data._id} />
               ))}
             </div>
@@ -93,7 +93,7 @@ const UpComingProducts = () => {
             <h1 className="text-2xl font-bold my-5 md:my-10">Lpg Gas</h1>
             {futureGasData && (
               <div className=" h-full  ">
-                {futureGasData?.slice(0, 2).map((data) => (
+                {futureGasData?.slice(0, 1).map((data) => (
                   <UGP data={data} key={data._id}></UGP>
                 ))}
               </div>
@@ -108,7 +108,7 @@ const UpComingProducts = () => {
             <h1 className="text-2xl font-bold my-5 md:my-10">Food Oil</h1>
             {futureOilData && (
               <div className=" h-full ">
-                {futureOilData?.slice(0, 2).map((data) => (
+                {futureOilData?.slice(0, 1).map((data) => (
                   <UOP data={data} key={data._id}></UOP>
                 ))}
               </div>
