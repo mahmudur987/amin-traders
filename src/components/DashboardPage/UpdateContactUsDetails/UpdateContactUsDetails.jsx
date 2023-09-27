@@ -64,6 +64,7 @@ function UpdateContactUsDetails() {
         .then((data) => {
           console.log(data);
           revalidator.revalidate();
+          toast.success("your profile update successfully");
         })
         .catch((err) => {
           toast.error(err.message);

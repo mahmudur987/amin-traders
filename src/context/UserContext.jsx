@@ -8,6 +8,7 @@ import {
   signOut,
   signInWithPopup,
   sendPasswordResetEmail,
+  deleteUser,
 } from "firebase/auth";
 
 import app from "../firebase/Firebase.config";
@@ -50,7 +51,17 @@ const UserContext = ({ children }) => {
   const logout = () => {
     return signOut(auth);
   };
-
+  const Deleteuser = () => {
+    return deleteUser(user)
+      .then(() => {
+        // User deleted.
+        co;
+      })
+      .catch((error) => {
+        // An error ocurred
+        // ...
+      });
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       Setuser(currentUser);
@@ -75,6 +86,7 @@ const UserContext = ({ children }) => {
     googleLogIn,
     logout,
     passwordResset,
+    Deleteuser,
   };
   return (
     <div>

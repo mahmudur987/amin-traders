@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineCaretDown, AiOutlineMenuUnfold } from "react-icons/ai";
 import { useContext, useState } from "react";
-
+import img1 from "../../../assets/amin-traders.svg";
 import toast from "react-hot-toast";
 import { authContext } from "../../../context/UserContext";
 const Navbar = () => {
@@ -113,9 +113,13 @@ const Navbar = () => {
             {menuItems}
           </ul>
         </div>
-        <a className="btn btn-ghost  text-xl md:text-2xl lg:text-3xl uppercase">
-          Amin-Traders
-        </a>
+        <Link className="flex items-center" to={"/"}>
+          <img src={img1} className="w-10 h-10" alt="" />
+          <button className="btn btn-ghost  text-xl md:text-2xl lg:text-3xl uppercase">
+            {" "}
+            Amin Traders
+          </button>
+        </Link>
       </div>
       <div className=" max-w-xl w-full navbar-center hidden lg:flex">
         <ul className="w-full  flex justify-around px-1  ">{menuItems}</ul>
