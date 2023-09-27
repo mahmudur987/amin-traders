@@ -121,7 +121,8 @@ const MyBooked = ({ order, index, refetch }) => {
           {delivery.status ? "deliverd" : "not deleverd"}
         </p>
       </div>
-      {(!orderStatus || orderStatus === "pending") && (
+      {(!orderStatus ||
+        (orderStatus === "pending" && paymentStatus === "pending")) && (
         <>
           <p className="p-3">
             if the order status is pending Yo can cancel this order

@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 
 const OilOrder = ({ index, order, refetch }) => {
-  // console.log(order);
+  console.log(order);
   const {
     _id,
     userName,
@@ -15,7 +15,15 @@ const OilOrder = ({ index, order, refetch }) => {
     paymentStatus,
     orderDate,
     orderStatus,
+    onlinePayment,
+    delivery,
   } = order;
+  const {
+    PaymentMethod,
+    transactionId,
+    userPhoneNumber: phone,
+  } = onlinePayment || {};
+  const { status, deliveryDate } = delivery || {};
   const handleOrderrecived = (id) => {
     AxiosBaseURL.post(`/orders/orderrecive/${id}`)
       .then((data) => {
@@ -47,17 +55,37 @@ const OilOrder = ({ index, order, refetch }) => {
         <p>package Name :{packageName} </p>
         <p>Payment Amount :{paymentAmount} </p>
         <p>Payment Status :{paymentStatus} </p>
+        {paymentStatus === "complete" && onlinePayment && (
+          <>
+            <p>Method :{PaymentMethod}</p>
+            <p>transactionId :{transactionId}</p>
+            <p>
+              {PaymentMethod} Number :{phone}
+            </p>
+          </>
+        )}
+
         <p>Order Status :{orderStatus ? orderStatus : "N/A"} </p>
         <p>Order Date :{orderDate.slice(0, 10)} </p>
+
+        {status && (
+          <>
+            <p className="text-secondary">
+              Delevery Complete at {deliveryDate}
+            </p>
+          </>
+        )}
+
         <div className="card-actions justify-end">
-          {!orderStatus && (
-            <button
-              onClick={() => handleOrderrecived(_id)}
-              className="btn btn-outline btn-sm"
-            >
-              Recived
-            </button>
-          )}
+          {!orderStatus ||
+            (orderStatus === "pending" && (
+              <button
+                onClick={() => handleOrderrecived(_id)}
+                className="btn btn-outline btn-sm"
+              >
+                Recived
+              </button>
+            ))}
           {orderStatus !== "delivered" && (
             <button
               onClick={() => handleOrderDelever(_id)}

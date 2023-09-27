@@ -5,7 +5,6 @@ import { authContext } from "../../context/UserContext";
 import { useQuery } from "@tanstack/react-query";
 import AxiosBaseURL from "../../axios/AxiosConfig";
 import MyBooked from "../../components/DashboardPage/MyBookings/MyBooked";
-import { AiFillCaretDown } from "react-icons/ai";
 import { UsedbUser } from "../../components/Hooks/dbUser";
 const MyBookings = () => {
   const { user } = useContext(authContext);
@@ -21,7 +20,7 @@ const MyBookings = () => {
     queryFn: async () => {
       const data = await AxiosBaseURL.get(`/orders/${dbuser?._id}`);
       return data.data.data.sort(
-        (a, b) => new Date(a.orderDate) - new Date(b.orderDate)
+        (a, b) => new Date(b.orderDate) - new Date(a.orderDate)
       );
     },
   });

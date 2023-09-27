@@ -32,6 +32,7 @@ import UpdateFeedback from "../components/DashboardPage/UpdateFeedbacks/UpdateFe
 import InternetBill from "../pages/DashboardPage/InternetBill";
 import BagDetails from "../components/Bags/BagDetails";
 import Bag from "../pages/DashboardPage/Bag";
+import InternetConnectionRequests from "../pages/DashboardPage/InternetConnectionRequests";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -143,6 +144,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <Oil />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/interconnectionrequest",
+        element: (
+          <AdminRoute>
+            <InternetConnectionRequests />
           </AdminRoute>
         ),
       },

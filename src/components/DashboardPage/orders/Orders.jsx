@@ -6,6 +6,7 @@ import InternetOrder from "./InternetOrder";
 import GasOrder from "./GasOrder";
 import OilOrder from "./OilOrder";
 import { AiFillCaretDown } from "react-icons/ai";
+import BagOrder from "./BagOrder";
 
 const Ordrs = () => {
   const {
@@ -48,6 +49,14 @@ const Ordrs = () => {
       const statusB = b.delivery.status ? 1 : 0;
       return statusA - statusB;
     });
+  const BagOrders = orders
+    ?.filter((x) => x.serviceName === "Bag")
+    .slice()
+    .sort((a, b) => {
+      const statusA = a.delivery.status ? 1 : 0;
+      const statusB = b.delivery.status ? 1 : 0;
+      return statusA - statusB;
+    });
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -76,8 +85,8 @@ const Ordrs = () => {
           Internet Services
         </h1>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-          {InternetOrders.map((order, i) => (
+        <div className="  flex flex-wrap justify-around gap-5 ">
+          {InternetOrders?.map((order, i) => (
             <InternetOrder refetch={refetch} key={i} index={i} order={order} />
           ))}
         </div>
@@ -89,12 +98,13 @@ const Ordrs = () => {
           Gas Services
         </h1>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-          {GasOrders.map((order, i) => (
+        <div className="flex flex-wrap justify-around gap-5 ">
+          {GasOrders?.map((order, i) => (
             <GasOrder refetch={refetch} key={i} index={i} order={order} />
           ))}
         </div>
       </div>
+
       {/* oil order */}
 
       <div className="w-full flex flex-col  gap-10">
@@ -102,9 +112,22 @@ const Ordrs = () => {
           Oil Services
         </h1>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-          {OilOrders.map((order, i) => (
+        <div className="flex flex-wrap justify-around gap-5 ">
+          {OilOrders?.map((order, i) => (
             <OilOrder refetch={refetch} key={i} index={i} order={order} />
+          ))}
+        </div>
+      </div>
+      {/* oil order */}
+
+      <div className="w-full flex flex-col  gap-10">
+        <h1 className="text-xl md:text-3xl lg:text-4xl font-bold underline text-info">
+          Bags
+        </h1>
+
+        <div className="flex flex-wrap justify-around gap-5 ">
+          {BagOrders?.map((order, i) => (
+            <BagOrder refetch={refetch} key={i} index={i} order={order} />
           ))}
         </div>
       </div>

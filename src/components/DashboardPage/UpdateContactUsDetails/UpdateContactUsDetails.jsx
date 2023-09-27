@@ -10,6 +10,10 @@ function UpdateContactUsDetails() {
     address: "",
     email: "",
     phoneNumber: "",
+    whatsAppNumber: "",
+    roketNumber: "",
+    bkashNumber: "",
+    nagadNumber: "",
     officeTime: "",
     _id: "",
     ImageUrl: "",
@@ -22,8 +26,6 @@ function UpdateContactUsDetails() {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(formData);
 
     if (image) {
       const imageData = new FormData();
@@ -60,6 +62,7 @@ function UpdateContactUsDetails() {
           console.error("imagebb error", err);
         });
     } else {
+      console.log(formData);
       await AxiosBaseURL.patch("/extrah/update-address", formData)
         .then((data) => {
           console.log(data);
@@ -85,6 +88,7 @@ function UpdateContactUsDetails() {
     AxiosBaseURL.get("/extrah") // Adjust the endpoint as needed
       .then((response) => {
         const existingData = response.data.data[0]; // Update with the actual data retrieval logic
+
         setFormData(existingData);
       })
       .catch((error) => {
@@ -154,6 +158,68 @@ function UpdateContactUsDetails() {
             type="tel"
             name="phoneNumber"
             value={formData.phoneNumber}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border rounded-md"
+            required
+          />
+        </div>
+        {/* Whats App number */}
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Whats app Number
+          </label>
+          <input
+            type="tel"
+            name="whatsAppNumber"
+            value={formData.whatsAppNumber}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border rounded-md"
+            required
+          />
+        </div>
+
+        {/* Bkas number */}
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Bkash Number
+          </label>
+          <input
+            type="tel"
+            name="bkashNumber"
+            value={formData.bkashNumber}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border rounded-md"
+            required
+          />
+        </div>
+
+        {/* nagadNumber */}
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Nagad Number
+          </label>
+          <input
+            type="tel"
+            name="nagadNumber"
+            value={formData.nagadNumber}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border rounded-md"
+            required
+          />
+        </div>
+        {/* Roket number */}
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Roket Number
+          </label>
+          <input
+            type="tel"
+            name="roketNumber"
+            value={formData.roketNumber}
             onChange={handleInputChange}
             className="w-full px-3 py-2 border rounded-md"
             required

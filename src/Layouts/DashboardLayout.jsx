@@ -73,6 +73,11 @@ const DashboardLayout = () => {
                   <Link to={"/dashboard/internetusers"}>Internet Users</Link>
                 </li>
                 <li>
+                  <Link to={"/dashboard/interconnectionrequest"}>
+                    Internet Connection Request
+                  </Link>
+                </li>
+                <li>
                   <Link to={"/dashboard/editbanner"}>Edit Banner</Link>
                 </li>
                 <li>

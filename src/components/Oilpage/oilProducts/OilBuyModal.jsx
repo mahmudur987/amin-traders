@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 // Modal.js
 import { useContext } from "react";
@@ -5,40 +6,80 @@ import AxiosBaseURL from "../../../axios/AxiosConfig";
 import { authContext } from "../../../context/UserContext";
 import { UsedbUser } from "../../Hooks/dbUser";
 import toast from "react-hot-toast";
+import PaymentForm from "../../shared/Online Transection/PaymentForm";
+import { FaMinus, FaPlus } from "react-icons/fa";
+import { useState } from "react";
 
 const OilBuyModal = ({ isOpen, onClose, data }) => {
+  const { name, offer, price, quantity } = data || {};
   const { user } = useContext(authContext);
   const [dbuser] = UsedbUser(user?.email);
+  const [orderQuantity, setOrderQuantity] = useState(1);
+  const [initialprice, setInitialPrice] = useState(
+    parseInt(offer.isOffer ? price - offer?.lessPrice : data?.price)
+  );
+  const [totalPrice, setTotalPrice] = useState(initialprice);
+  const [show, Setshow] = useState(false);
+  const [onlinePayment, setOnlinePayment] = useState(null);
+  console.log(onlinePayment);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!user) return toast.error("please LogIn first");
-
     const from = e.target;
     const userPhoneNumber = from.userPhoneNumber.value;
     const userAddress = from.userAddress.value;
-    const newOrder = {
-      user: dbuser?._id,
-      userName: dbuser?.name,
-      userEmail: dbuser?.email,
-      userPhoneNumber,
-      userAddress,
-      packageName: `${data?.name}`,
-      Oil: data?._id,
-      serviceName: "Oil",
-      paymentAmount: parseInt(data?.price),
-      paymentStatus: "pending",
-    };
-    console.log(newOrder);
+    if (onlinePayment) {
+      const newOrder = {
+        user: dbuser?._id,
+        userName: dbuser?.name,
+        userEmail: dbuser?.email,
+        userPhoneNumber,
+        userAddress,
+        packageName: `${data?.name}`,
+        Oil: data?._id,
+        serviceName: "Oil",
+        paymentAmount: totalPrice,
+        orderQuantity: orderQuantity,
+        paymentStatus: "complete",
+        onlinePayment,
+      };
+      console.log(newOrder);
 
-    AxiosBaseURL.post("/orders", newOrder)
-      .then((data) => {
-        console.log("orderposted", data);
-        toast.success(data.data.status);
-      })
-      .catch((err) => {
-        console.log("orderpostError", err);
-        toast.error(err.message);
-      });
+      AxiosBaseURL.post("/orders", newOrder)
+        .then((data) => {
+          console.log("orderposted", data);
+          toast.success(data.data.status);
+        })
+        .catch((err) => {
+          console.log("orderpostError", err);
+          toast.error(err.message);
+        });
+    } else {
+      const newOrder = {
+        user: dbuser?._id,
+        userName: dbuser?.name,
+        userEmail: dbuser?.email,
+        userPhoneNumber,
+        userAddress,
+        packageName: `${data?.name}`,
+        Oil: data?._id,
+        serviceName: "Oil",
+        paymentAmount: totalPrice,
+        orderQuantity: orderQuantity,
+        paymentStatus: "pending",
+      };
+      console.log(newOrder);
+
+      AxiosBaseURL.post("/orders", newOrder)
+        .then((data) => {
+          console.log("orderposted", data);
+          toast.success(data.data.status);
+        })
+        .catch((err) => {
+          console.log("orderpostError", err);
+          toast.error(err.message);
+        });
+    }
 
     onClose();
   };
@@ -73,6 +114,80 @@ const OilBuyModal = ({ isOpen, onClose, data }) => {
             </div>
           </div>
 
+          {/* product info */}
+          <div>
+            <h2 className="card-title">
+              {name}
+              {offer?.isOffer && (
+                <div className="badge badge-secondary">Offer</div>
+              )}
+            </h2>
+            <p>
+              Quantity : <span>{quantity}</span>
+            </p>
+
+            <p>
+              Price : <span>{totalPrice}</span>
+            </p>
+            <div className="flex justify-between items-center">
+              <p>Order Quantity: </p>
+              <p className="flex justify-end gap-1 items-center">
+                <button
+                  onClick={() => {
+                    if (orderQuantity <= 0) {
+                      return;
+                    }
+                    setOrderQuantity(orderQuantity - 1);
+                    setTotalPrice(totalPrice - initialprice);
+                  }}
+                  className="btn btn-outline btn-sm"
+                >
+                  <FaMinus />
+                </button>
+
+                <span className="btn">{orderQuantity}</span>
+                <button
+                  onClick={() => {
+                    setOrderQuantity(orderQuantity + 1);
+                    setTotalPrice(initialprice * (orderQuantity + 1));
+                  }}
+                  className="btn btn-outline btn-sm"
+                >
+                  <FaPlus />
+                </button>
+              </p>
+            </div>
+
+            {onlinePayment && (
+              <div>
+                <p>payment Method: {onlinePayment.PaymentMethod}</p>
+                <p>transactionId: {onlinePayment.transactionId}</p>
+                <p>transaction Phone Number: {onlinePayment.userPhoneNumber}</p>
+              </div>
+            )}
+          </div>
+          {/* online payment */}
+          <div>
+            <div className="my-4 flex justify-around items-center  ">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="name"
+              >
+                Online payment
+              </label>
+              <input
+                type="checkbox"
+                checked={show}
+                onChange={(e) => Setshow(e.target.checked)}
+              />
+            </div>
+            {show && (
+              <PaymentForm
+                setOnlinePayment={setOnlinePayment}
+                Setshow={Setshow}
+              />
+            )}
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label

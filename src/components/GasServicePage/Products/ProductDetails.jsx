@@ -100,7 +100,6 @@ const ProductDetails = () => {
       packageName: data?.name,
       userEmail: dbuser?.email,
     };
-    console.log(JSON.stringify(recentViewedData));
     AxiosBaseURL.post("/recentview", recentViewedData)
       .then((data) => {
         console.log("recentviewdData", data.data);

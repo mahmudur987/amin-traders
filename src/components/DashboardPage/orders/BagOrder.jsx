@@ -2,7 +2,8 @@
 
 import AxiosBaseURL from "../../../axios/AxiosConfig";
 
-const GasOrder = ({ index, order, refetch }) => {
+const BagOrder = ({ index, order, refetch }) => {
+  console.log(order);
   const {
     _id,
     userName,
@@ -99,4 +100,4 @@ const GasOrder = ({ index, order, refetch }) => {
   );
 };
 
-export default GasOrder;
+export default BagOrder;

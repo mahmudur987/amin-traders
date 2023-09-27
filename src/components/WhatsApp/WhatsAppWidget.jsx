@@ -1,4 +1,3 @@
-import React from "react";
 import { WhatsAppWidget } from "react-whatsapp-widget";
 import "react-whatsapp-widget/dist/index.css";
 import AxiosBaseURL from "../../axios/AxiosConfig";
@@ -12,13 +11,15 @@ const WhatsAppWidgetPoupup = () => {
     },
   });
 
-  const { phoneNumber } = AddressDetails || {};
+  const { whatsAppNumber } = AddressDetails || {};
+  // console.log(AddressDetails);
+
   return (
     <div>
       <WhatsAppWidget
-        phoneNumber={`${phoneNumber}`}
+        phoneNumber={`${whatsAppNumber}`}
         message="Hello, how can I help you? "
-        companyName="AMIN-TRADERS"
+        companyName="AMIN TRADERS"
         replyTimeText="whithin this day"
         backgroundColor="#25D366"
         open
