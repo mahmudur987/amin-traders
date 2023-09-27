@@ -22,7 +22,6 @@ const WhatsAppWidgetPoupup = () => {
         companyName="AMIN TRADERS"
         replyTimeText="whithin this day"
         backgroundColor="#25D366"
-        open
       />
     </div>
   );

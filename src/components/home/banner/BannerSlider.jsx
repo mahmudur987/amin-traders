@@ -51,7 +51,7 @@ const BannerSlider = () => {
               }}
             >
               <div className="hero-overlay bg-opacity-60"></div>
-              <div className="flex lg:justify-start text-center text-white">
+              <div className="flex lg:justify-start text-center text-white p-5 lg:p-10">
                 <div className="w-full lg:w-2/3">
                   <h1 className="mb-5 text-2xl lg:text-4xl font-bold uppercase">
                     {x.heading}
