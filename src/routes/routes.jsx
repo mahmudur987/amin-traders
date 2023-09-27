@@ -19,6 +19,7 @@ import InternetUsers from "../pages/DashboardPage/InternetUsers";
 import InternetUserDetails from "../components/DashboardPage/InternetUsers/InternetUserDetails";
 import AxiosBaseURL from "../axios/AxiosConfig";
 import PrivatRoutes from "./PrivetRoutes";
+import AdminRoute from "./AdminRoute";
 import MyBookings from "../pages/DashboardPage/MyBookings";
 import MyCart from "../pages/DashboardPage/MyCart";
 import Bags from "../pages/Bags/Bags";
@@ -113,31 +114,62 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/order",
-        element: <AllOrder />,
+        element: (
+          <AdminRoute>
+            <AllOrder />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/internet",
-        element: <Internet />,
+        element: (
+          <AdminRoute>
+            {" "}
+            : <Internet />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/gas",
-        element: <Gas />,
+        element: (
+          <AdminRoute>
+            {" "}
+            <Gas />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/oil",
-        element: <Oil />,
+        element: (
+          <AdminRoute>
+            <Oil />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/bag",
-        element: <Bag />,
+        element: (
+          <AdminRoute>
+            <Bag />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/users",
-        element: <AllUsers />,
+        element: (
+          <AdminRoute>
+            {" "}
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/internetusers",
-        element: <InternetUsers />,
+        element: (
+          <AdminRoute>
+            <InternetUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/mybooking",
@@ -149,19 +181,36 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/editbanner",
-        element: <EditBanner />,
+        element: (
+          <AdminRoute>
+            <EditBanner />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/updatecontactusdetails",
-        element: <UpdateContactUsDetails />,
+        element: (
+          <AdminRoute>
+            <UpdateContactUsDetails />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/aboutus",
-        element: <UpdateAboutUs />,
+        element: (
+          <AdminRoute>
+            <UpdateAboutUs />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/feedback",
-        element: <UpdateFeedback />,
+        element: (
+          <AdminRoute>
+            {" "}
+            <UpdateFeedback />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/internetbill",
