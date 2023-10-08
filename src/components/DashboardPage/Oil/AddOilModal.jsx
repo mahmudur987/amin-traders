@@ -96,6 +96,7 @@ const AddOilModal = ({ isOpen, onClose, refetch }) => {
                 type="text"
                 name="name"
                 defaultValue={name}
+                required
                 onChange={(e) => setName(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
@@ -113,6 +114,7 @@ const AddOilModal = ({ isOpen, onClose, refetch }) => {
               <input
                 type="file"
                 name="image"
+                required
                 onChange={(e) => setimage(e.target.files[0])}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
@@ -131,6 +133,7 @@ const AddOilModal = ({ isOpen, onClose, refetch }) => {
               <input
                 type="text"
                 name="brandName"
+                required
                 defaultValue={brandName}
                 onChange={(e) => setbrandName(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -149,6 +152,7 @@ const AddOilModal = ({ isOpen, onClose, refetch }) => {
                 type="number"
                 name="name"
                 defaultValue={quantity}
+                required
                 onChange={(e) => setquantity(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"
@@ -166,6 +170,7 @@ const AddOilModal = ({ isOpen, onClose, refetch }) => {
                 type="text"
                 name="name"
                 defaultValue={price}
+                required
                 onChange={(e) => setprice(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Name"

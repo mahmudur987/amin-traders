@@ -97,6 +97,7 @@ const AddGasModal = ({ isOpen, onClose, refetch }) => {
               <input
                 type="text"
                 name="name"
+                required
                 defaultValue={name}
                 onChange={(e) => setName(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -114,6 +115,7 @@ const AddGasModal = ({ isOpen, onClose, refetch }) => {
               </label>
               <input
                 type="file"
+                required
                 name="image"
                 onChange={(e) => setimage(e.target.files[0])}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -134,6 +136,7 @@ const AddGasModal = ({ isOpen, onClose, refetch }) => {
                 name="brandName"
                 defaultValue={Brand}
                 placeholder="Brand "
+                required
                 onChange={(e) => setbrand(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
@@ -152,6 +155,7 @@ const AddGasModal = ({ isOpen, onClose, refetch }) => {
                 name="quantity"
                 defaultValue={quantity}
                 placeholder="Quantity"
+                required
                 onChange={(e) => setquantity(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
@@ -168,6 +172,7 @@ const AddGasModal = ({ isOpen, onClose, refetch }) => {
                 type="text"
                 name="price"
                 defaultValue={price}
+                required
                 onChange={(e) => setprice(parseInt(e.target.value))}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="price"

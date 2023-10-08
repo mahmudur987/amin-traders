@@ -46,7 +46,7 @@ const AddInternetPackModal = ({ isOpen, onClose, refetch }) => {
       <div className="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
         <div className="modal-content py-4 text-left px-6">
           <div className="flex justify-between items-center pb-3">
-            <p className="text-xl font-bold"> Update Internet Package </p>
+            <p className="text-xl font-bold"> Add new Internet Package </p>
             <div
               className="modal-close text-2xl cursor-pointer z-50"
               onClick={onClose}
@@ -66,6 +66,7 @@ const AddInternetPackModal = ({ isOpen, onClose, refetch }) => {
               <input
                 type="text"
                 name="name"
+                required
                 defaultValue={name}
                 onChange={(e) => setName(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -82,6 +83,7 @@ const AddInternetPackModal = ({ isOpen, onClose, refetch }) => {
               <input
                 type="text"
                 name="email"
+                required
                 defaultValue={price}
                 onChange={(e) => setprice(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -98,6 +100,7 @@ const AddInternetPackModal = ({ isOpen, onClose, refetch }) => {
               <input
                 type="text"
                 name="phoneNumber"
+                required
                 defaultValue={speed}
                 onChange={(e) => setspeed(e.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
